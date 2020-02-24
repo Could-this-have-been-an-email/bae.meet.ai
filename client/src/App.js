@@ -5,7 +5,8 @@ import NoMatch from './pages/NoMatch';
 import User from './pages/User';
 import Meeting from './pages/Meeting';
 import SignUp from './pages/SignUp';
-import NewMeeting from './pages/NewMeeting'
+import NewMeeting from './pages/NewMeeting';
+import './styles/app.css';
 
 function App() {
   return (
