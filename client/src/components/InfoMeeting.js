@@ -1,9 +1,12 @@
 import React from 'react';
 
-function InfoMeeting() {
+function InfoMeeting(props) {
   return (
     <div className="w-1/2 mx-auto">
-      <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+      <form
+        onSubmit={props.submitform}
+        className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+      >
         <div className="flex">
           <div className="w-1/2">
             <div className="mb-4">
@@ -15,6 +18,7 @@ function InfoMeeting() {
                 id="date"
                 type="date"
                 placeholder="Username"
+                name="meetingDate"
               ></input>
             </div>
             <div className="mb-4">
@@ -26,6 +30,7 @@ function InfoMeeting() {
                 id="location"
                 type="text"
                 placeholder="Location"
+                name="meetingLocation"
               ></input>
             </div>
             <div className="mb-4">
@@ -37,6 +42,7 @@ function InfoMeeting() {
                 id="name"
                 type="text"
                 placeholder="Meeting"
+                name="meetingName"
               ></input>
             </div>
           </div>
@@ -50,6 +56,7 @@ function InfoMeeting() {
                 id="time"
                 type="time"
                 placeholder="Username"
+                name="meetingTime"
               ></input>
             </div>
             <div className="mb-4">
@@ -61,6 +68,7 @@ function InfoMeeting() {
                 id="duration"
                 type="number"
                 placeholder="Duration"
+                name="meetingDuration"
               ></input>
             </div>
           </div>
@@ -74,8 +82,11 @@ function InfoMeeting() {
             id="agenda"
             type="text"
             placeholder="Agenda"
+            name="meetingAgenda"
           ></input>
-          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 mt-3 px-4 rounded-full">Add Agenda</button>
+          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 mt-3 px-4 rounded-full">
+            Add Agenda
+          </button>
         </div>
       </form>
     </div>
