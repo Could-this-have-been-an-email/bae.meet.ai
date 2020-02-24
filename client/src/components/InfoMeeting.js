@@ -4,8 +4,9 @@ function InfoMeeting(props) {
   return (
     <div className="w-1/2 mx-auto">
       <form
-        onSubmit={props.submitform}
         className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+        id="meetingForm"
+        onSubmit={props.submitform}
       >
         <div className="flex">
           <div className="w-1/2">
@@ -88,6 +89,15 @@ function InfoMeeting(props) {
             Add Agenda
           </button>
         </div>
+        {/* <div className="flex">
+          <button
+            onClick={props.clickSubmit}
+            type="button"
+            className="mx-auto bg-green-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded"
+          >
+            Schedule Meeting
+          </button>
+        </div> */}
       </form>
     </div>
   );
