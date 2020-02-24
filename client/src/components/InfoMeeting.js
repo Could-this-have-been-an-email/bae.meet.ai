@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 function InfoMeeting() {
   return (
@@ -64,6 +64,18 @@ function InfoMeeting() {
               ></input>
             </div>
           </div>
+        </div>
+        <div className="mb-4">
+          <label className="block text-gray-700 text-sm font-bold mb-2">
+            Agenda:
+          </label>
+          <input
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="agenda"
+            type="text"
+            placeholder="Agenda"
+          ></input>
+          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 mt-3 px-4 rounded-full">Add Agenda</button>
         </div>
       </form>
     </div>
