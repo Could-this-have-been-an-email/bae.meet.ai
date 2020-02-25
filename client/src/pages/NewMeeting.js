@@ -1,49 +1,68 @@
-import React, { useState, useReducer } from 'react';
+import React, { useState, useReducer, useRef } from 'react';
 import '../styles/newMeeting.css';
 import InfoMeeting from '../components/InfoMeeting';
 
 function Meeting() {
-  const[oneMeeting, setOneMeeting] =  useState([])
-  // const [meeting, dispatch] = useReducer((state, action) => {
-  //   console.log('action', action);
-  //   if (action === 'createMeeting') {
-  //     return [
-  //       ...state,
-  //       {
-  //         meetingId: action.id,
-  //         meetingDate: action.date,
-  //         meetingTime: action.time,
-  //         meetingLocation: action.location,
-  //         meetingDuration: action.duration,
-  //         meetingName: action.name,
-  //         meetingAgenda: action.agenda
-  //       }
-  //     ];
-  //   } else {
-  //     return state;
-  //   }
-  // }, [{}]);
+  // const [oneMeeting, setOneMeeting] = useState([]);
+  const agendaInput = useRef();
+  const [agendavalue, dispatch] = useReducer((state, action) => {
+    if (action.type === 'addAgenda') {
+      return [
+        ...state,
+        {
+          id: state.length + 1,
+          newagenda: action.value
+        }
+      ];
+    } else {
+      return state;
+    }
+  }, []);
+
+  const submitAgenda = () => {
+    dispatch({
+      type: 'addAgenda',
+      value: agendaInput.current.value
+    });
+    agendaInput.current.value = '';
+  };
+
+  console.log(agendavalue);
 
   const handleInput = event => {
     event.preventDefault();
-    console.log('submit');
-    setOneMeeting({
-      // type: 'createMeeting',
+    let meetings = [{}];
+
+    let oneMeeting = {
       id: event.target.meetingTime.value,
       date: event.target.meetingDate.value,
       time: event.target.meetingTime.value,
       location: event.target.meetingLocation.value,
       duration: event.target.meetingDuration.value,
       name: event.target.meetingName.value,
-      agenda: event.target.meetingAgenda.value
-    });
+      agenda: agendavalue
+    };
+
+    let allMeetings = meetings.push(oneMeeting);
+    console.log('submit', allMeetings);
+    // setOneMeeting({
+    //   id: event.target.meetingTime.value,
+    //   date: event.target.meetingDate.value,
+    //   time: event.target.meetingTime.value,
+    //   location: event.target.meetingLocation.value,
+    //   duration: event.target.meetingDuration.value,
+    //   name: event.target.meetingName.value,
+    //   agenda: event.target.meetingAgenda.value
+    // });
   };
 
-  console.log('onemeet', oneMeeting)
   return (
     <div>
       <InfoMeeting
         submitform={handleInput}
+        submitAgenda={submitAgenda}
+        agendaInput={agendaInput}
+
         // clickSubmit={handleInput}
         // meetingInfo={meeting}
       ></InfoMeeting>

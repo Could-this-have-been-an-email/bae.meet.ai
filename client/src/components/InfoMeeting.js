@@ -1,6 +1,13 @@
 import React from 'react';
 
 function InfoMeeting(props) {
+
+  const resetAgenda = () => {
+    document.getElementById("agenda").reset();
+
+  }
+
+
   return (
     <div className="w-1/2 mx-auto">
       <form
@@ -79,25 +86,29 @@ function InfoMeeting(props) {
             Agenda:
           </label>
           <input
+            ref={props.agendaInput}
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id="agenda"
             type="text"
             placeholder="Agenda"
             name="meetingAgenda"
           ></input>
-          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 mt-3 px-4 rounded-full">
+          <button
+            onClick={props.submitAgenda}
+            type="button"
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 mt-3 px-4 rounded-full"
+          >
             Add Agenda
           </button>
         </div>
-        {/* <div className="flex">
-          <button
-            onClick={props.clickSubmit}
-            type="button"
+        <div className="flex">
+          <input
+            // onClick={props.submitform}
+            type="submit"
+            value="Schedule Meeting"
             className="mx-auto bg-green-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded"
-          >
-            Schedule Meeting
-          </button>
-        </div> */}
+          ></input>
+        </div>
       </form>
     </div>
   );
