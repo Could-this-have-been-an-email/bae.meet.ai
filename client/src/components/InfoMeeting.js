@@ -1,13 +1,6 @@
 import React from 'react';
 
 function InfoMeeting(props) {
-
-  const resetAgenda = () => {
-    document.getElementById("agenda").reset();
-
-  }
-
-
   return (
     <div className="w-1/2 mx-auto">
       <form
@@ -85,6 +78,11 @@ function InfoMeeting(props) {
           <label className="block text-gray-700 text-sm font-bold mb-2">
             Agenda:
           </label>
+          <ul>
+            {props.agendavalueMap.map((item, index) => (
+              <li>{item.newagenda}</li>
+            ))}
+          </ul>
           <input
             ref={props.agendaInput}
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -103,7 +101,6 @@ function InfoMeeting(props) {
         </div>
         <div className="flex">
           <input
-            // onClick={props.submitform}
             type="submit"
             value="Schedule Meeting"
             className="mx-auto bg-green-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded"

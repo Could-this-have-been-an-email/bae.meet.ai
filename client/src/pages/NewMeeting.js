@@ -3,8 +3,7 @@ import '../styles/newMeeting.css';
 import InfoMeeting from '../components/InfoMeeting';
 
 function Meeting() {
-  // const [oneMeeting, setOneMeeting] = useState([]);
-  const allMeetings = [];
+  let allMeetings = [];
 
   const agendaInput = useRef();
   const [agendavalue, dispatch] = useReducer((state, action) => {
@@ -16,8 +15,6 @@ function Meeting() {
           newagenda: action.value
         }
       ];
-    } else if (action.type === 'resetState') {
-      return state = ''
     } else {
       return state;
     }
@@ -33,6 +30,7 @@ function Meeting() {
 
   const handleInput = event => {
     event.preventDefault();
+    console.log('submit');
 
     let oneMeeting = {
       id: allMeetings.length,
@@ -41,24 +39,11 @@ function Meeting() {
       location: event.target.meetingLocation.value,
       duration: event.target.meetingDuration.value,
       name: event.target.meetingName.value,
-      agenda: agendavalue || event.target.meetingAgenda.value
+      agenda: agendavalue
     };
 
     allMeetings.push(oneMeeting);
-    dispatch({
-      type: 'resetState'
-    });
-    console.log('2', allMeetings);
-
-    // setOneMeeting({
-    //   id: event.target.meetingTime.value,
-    //   date: event.target.meetingDate.value,
-    //   time: event.target.meetingTime.value,
-    //   location: event.target.meetingLocation.value,
-    //   duration: event.target.meetingDuration.value,
-    //   name: event.target.meetingName.value,
-    //   agenda: event.target.meetingAgenda.value
-    // });
+    console.log(allMeetings);
   };
 
   return (
@@ -67,9 +52,7 @@ function Meeting() {
         submitform={handleInput}
         submitAgenda={submitAgenda}
         agendaInput={agendaInput}
-
-        // clickSubmit={handleInput}
-        // meetingInfo={meeting}
+        agendavalueMap={agendavalue}
       ></InfoMeeting>
     </div>
   );
