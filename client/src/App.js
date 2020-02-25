@@ -5,6 +5,8 @@ import NoMatch from "./pages/NoMatch";
 import User from "./pages/User";
 import Meeting from "./pages/Meeting";
 import SignUp from "./pages/SignUp";
+import NewMeeting from "./pages/NewMeeting";
+import "./styles/app.css";
 
 function App() {
   return (
@@ -19,6 +21,9 @@ function App() {
           </Route>
           <Route path="/user">
             <User />
+          </Route>
+          <Route path="/newmeeting">
+            <NewMeeting />
           </Route>
           <Route path="/meeting">
             <Meeting />
