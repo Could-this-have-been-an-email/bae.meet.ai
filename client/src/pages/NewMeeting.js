@@ -4,6 +4,8 @@ import InfoMeeting from '../components/InfoMeeting';
 
 function Meeting() {
   // const [oneMeeting, setOneMeeting] = useState([]);
+  const allMeetings = [];
+
   const agendaInput = useRef();
   const [agendavalue, dispatch] = useReducer((state, action) => {
     if (action.type === 'addAgenda') {
@@ -14,6 +16,8 @@ function Meeting() {
           newagenda: action.value
         }
       ];
+    } else if (action.type === 'resetState') {
+      return state = ''
     } else {
       return state;
     }
@@ -27,24 +31,25 @@ function Meeting() {
     agendaInput.current.value = '';
   };
 
-  console.log(agendavalue);
-
   const handleInput = event => {
     event.preventDefault();
-    let meetings = [{}];
 
     let oneMeeting = {
-      id: event.target.meetingTime.value,
+      id: allMeetings.length,
       date: event.target.meetingDate.value,
       time: event.target.meetingTime.value,
       location: event.target.meetingLocation.value,
       duration: event.target.meetingDuration.value,
       name: event.target.meetingName.value,
-      agenda: agendavalue
+      agenda: agendavalue || event.target.meetingAgenda.value
     };
 
-    let allMeetings = meetings.push(oneMeeting);
-    console.log('submit', allMeetings);
+    allMeetings.push(oneMeeting);
+    dispatch({
+      type: 'resetState'
+    });
+    console.log('2', allMeetings);
+
     // setOneMeeting({
     //   id: event.target.meetingTime.value,
     //   date: event.target.meetingDate.value,
