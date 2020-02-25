@@ -1,4 +1,4 @@
-import React, { useState, useReducer, useRef } from 'react';
+import React, { useReducer, useRef } from 'react';
 import '../styles/newMeeting.css';
 import InfoMeeting from '../components/InfoMeeting';
 
