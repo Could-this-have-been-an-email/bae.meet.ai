@@ -99,6 +99,18 @@ function InfoMeeting(props) {
             Add Agenda
           </button>
         </div>
+        <div className="mb-4">
+          <input type="checkbox" id="userMeeting" name="name"></input>
+          <label for="name">name</label>
+        </div>
+        <div className="mb-4">
+          <input type="checkbox" id="userMeeting" name="name"></input>
+          <label for="name">name</label>
+        </div>
+        <div className="mb-4">
+          <input type="checkbox" id="userMeeting" name="name"></input>
+          <label for="name">name</label>
+        </div>
         <div className="flex">
           <input
             type="submit"
