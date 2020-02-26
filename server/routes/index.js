@@ -6,4 +6,8 @@ router.use('/api', apiRoutes);
 
 // one get route
 
+router.get('/', (req, res) => {
+  res.render('');
+});
+
 module.exports = router;

@@ -1,31 +1,31 @@
 const db = require('../models');
 
 module.exports = {
-  //find all movies
+  //find all users
   findAll: function(req, res) {
     db.User.find({})
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
-  //find movie by id
+  //find users by id
   findById: function(req, res) {
     db.User.findById(req.params.id)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
-  //create movie
+  //create users
   create: function(req, res) {
     db.User.create(req.body)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
-  //update movie
+  //update users
   update: function(req, res) {
     db.User.findOneAndUpdate({ _id: req.params.id }, req.body)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
-  //delete movie
+  //delete users
   delete: function(req, res) {
     db.User.findById({ _id: req.params.id })
       .then(dbModel => dbModel.remove())
