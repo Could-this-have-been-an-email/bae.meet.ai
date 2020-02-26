@@ -1,0 +1,20 @@
+[
+  {
+    "id": "1",
+    "firstName": "Tiger",
+    "LastName": "Nixon",
+    "jobTitle": "developer"
+  },
+  {
+    "id": "2",
+    "firstName": "Garrett ",
+    "LastName": "Winters",
+    "jobTitle": "sr developer"
+  },
+  {
+    "id": "3",
+    "firstName": "Ashton",
+    "LastName": "Cox",
+    "jobTitle": "manager"
+  }
+]
