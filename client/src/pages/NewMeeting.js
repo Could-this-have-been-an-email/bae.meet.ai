@@ -5,7 +5,6 @@ import UserJson from '../utils/user.json';
 
 function Meeting() {
   let allMeetings = [];
-
   const [users, setUsers] = useState([UserJson]);
 
   const agendaInput = useRef();
