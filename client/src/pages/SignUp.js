@@ -1,23 +1,24 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "../styles/SignUp.css";
 
 function SignUp() {
-  const [firstname, setFirstname] = useState();
-  const [lastname, setLastname] = useState();
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
-
   const handleSubmit = e => {
     e.preventDefault();
-    console.log("lastname is " + firstname);
-    console.log("lastname is " + lastname);
-    console.log("email is " + email);
-    console.log("password is " + password);
+    console.log(e.target);
+    let oneUser = {
+      firstName: e.target.userFirstName.value,
+      lastName: e.target.userLastName.value,
+      jobTitle: e.target.userJobTitle.value,
+      email: e.target.userEmail.value,
+      password: e.target.userPassword.value
+    };
+
+    console.log(oneUser);
   };
 
   return (
     <div className="container mx-auto px-64">
-      <form onSubmit={handleSubmit}>
+      <form type="submit" onSubmit={handleSubmit} id="userForm">
         <div className="form-icons">
           <h1>Register for an account</h1>
 
@@ -29,14 +30,26 @@ function SignUp() {
               className="input-group-field"
               type="text"
               placeholder="First name"
-              onChange={e => setFirstname(e.target.value)}
+              name="userFirstName"
             />
 
             <input
               className="input-group-field"
               type="text"
               placeholder="Last name"
-              onChange={e => setLastname(e.target.value)}
+              name="userLastName"
+            />
+          </div>
+
+          <div className="input-group">
+            <span className="input-group-label">
+              <i className="fa fa-id-card"></i>
+            </span>
+            <input
+              className="input-group-field"
+              type="text"
+              placeholder="Job Title"
+              name="userJobTitle"
             />
           </div>
 
@@ -48,7 +61,7 @@ function SignUp() {
               className="input-group-field"
               type="text"
               placeholder="Email"
-              onChange={e => setEmail(e.target.value)}
+              name="userEmail"
             />
           </div>
 
@@ -60,12 +73,16 @@ function SignUp() {
               className="input-group-field"
               type="text"
               placeholder="Password"
-              onChange={e => setPassword(e.target.value)}
+              name="userPassword"
             />
           </div>
         </div>
 
-        <button className="button expanded">Sign Up</button>
+        <input
+          value="Sign Up"
+          className="button expanded"
+          type="submit"
+        ></input>
       </form>
     </div>
   );
