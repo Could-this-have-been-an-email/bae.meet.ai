@@ -1,8 +1,18 @@
 import React from 'react';
+import UserLI from '../components/UserLI';
 
 function InfoMeeting(props) {
   return (
     <div className="w-1/2 mx-auto">
+      {/* <div>
+        {props.userJson.map(name => (
+          <UserLI
+            first={name.firstName}
+            lname={name.lastName}
+            job={name.jobTitle}
+          ></UserLI>
+        ))}
+      </div> */}
       <form
         className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
         id="meetingForm"
@@ -100,6 +110,20 @@ function InfoMeeting(props) {
           </button>
         </div>
         <div className="mb-4">
+          <div className="flex justify-end">
+            <div className="col">
+              {props.userJson.map(name => (
+                <UserLI
+                  first={name.firstName}
+                  lname={name.lastName}
+                  job={name.jobTitle}
+                ></UserLI>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* <div className="mb-4">
           <input type="checkbox" id="userMeeting" name="name"></input>
           <label for="name">name</label>
         </div>
@@ -110,7 +134,7 @@ function InfoMeeting(props) {
         <div className="mb-4">
           <input type="checkbox" id="userMeeting" name="name"></input>
           <label for="name">name</label>
-        </div>
+        </div> */}
         <div className="flex">
           <input
             type="submit"

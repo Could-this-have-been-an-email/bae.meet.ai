@@ -1,9 +1,12 @@
-import React, { useReducer, useRef } from 'react';
+import React, { useReducer, useRef, useState } from 'react';
 import '../styles/newMeeting.css';
 import InfoMeeting from '../components/InfoMeeting';
+import UserJson from '../utils/user.json';
 
 function Meeting() {
   let allMeetings = [];
+
+  const [users, setUsers] = useState([UserJson]);
 
   const agendaInput = useRef();
   const [agendavalue, dispatch] = useReducer((state, action) => {
@@ -53,6 +56,7 @@ function Meeting() {
         submitAgenda={submitAgenda}
         agendaInput={agendaInput}
         agendavalueMap={agendavalue}
+        userJson={UserJson}
       ></InfoMeeting>
     </div>
   );
