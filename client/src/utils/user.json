@@ -2,19 +2,19 @@
   {
     "id": "1",
     "firstName": "Tiger",
-    "LastName": "Nixon",
+    "lastName": "Nixon",
     "jobTitle": "developer"
   },
   {
     "id": "2",
     "firstName": "Garrett ",
-    "LastName": "Winters",
+    "lastName": "Winters",
     "jobTitle": "sr developer"
   },
   {
     "id": "3",
     "firstName": "Ashton",
-    "LastName": "Cox",
+    "lastName": "Cox",
     "jobTitle": "manager"
   }
 ]
