@@ -32,7 +32,6 @@ const atendeesSchema = new Schema({
 const meetingSchema = new Schema({
   name: {
     type: String,
-    minlegnth: [1, 'Too Short'],
     trim: true,
     required: false
   },
