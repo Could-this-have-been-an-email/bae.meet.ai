@@ -2,12 +2,15 @@ import React from 'react';
 
 const UserLI = props => {
   let username = `${props.first} ${props.lname}`;
+
+  
   return (
     <div>
       <input
+        ref={props.userRef}
         onChange={props.submitUsers}
         type="checkbox"
-        name={username}
+        name={props.job}
       ></input>
       <label for="name">{username}</label>
     </div>

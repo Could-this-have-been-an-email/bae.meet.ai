@@ -26,11 +26,11 @@ function Meeting() {
   }, []);
 
   const submitUsers = event => {
-    // selectedUserObject = {
-    //   name:
-    // }
+    const filterUser = UserJson.filter(user =>
+      user.jobTitle === event.target.name
+    )
 
-    usersSelected.push(event.target.name);
+    usersSelected.push(filterUser);
 
     console.log(usersSelected);
   };
