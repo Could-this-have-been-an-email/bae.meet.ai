@@ -1,0 +1,17 @@
+.image{
+  border-radius: 50%;
+  height: 150px;
+  width: 150px;
+  margin-bottom: 30px;
+}
+
+.personalInfoOne{
+  margin-left: 30px;
+  font-size: 30px;
+  margin-top:20px;
+}
+
+.personalInfoTwo{
+  margin-left: 30px;
+  font-size: 20px;
+}
