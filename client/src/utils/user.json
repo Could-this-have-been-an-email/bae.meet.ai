@@ -16,5 +16,23 @@
     "firstName": "Ashton",
     "lastName": "Cox",
     "jobTitle": "manager"
+  },
+  {
+    "id": "4",
+    "firstName": "Tim",
+    "lastName": "John",
+    "jobTitle": "manager"
+  },
+  {
+    "id": "5",
+    "firstName": "Laura",
+    "lastName": "Yuku",
+    "jobTitle": "manager"
+  },
+  {
+    "id": "6",
+    "firstName": "Hanz",
+    "lastName": "Zimmer",
+    "jobTitle": "manager"
   }
 ]

@@ -2,13 +2,15 @@ import React, { useReducer, useRef, useState } from 'react';
 import '../styles/newMeeting.css';
 import InfoMeeting from '../components/InfoMeeting';
 import UserJson from '../utils/user.json';
-import API from '../utils/API';
+// import API from '../utils/API';
 
 function Meeting() {
   let allMeetings = [];
+  let usersSelected = [];
   const [users, setUsers] = useState([UserJson]);
 
   const agendaInput = useRef();
+
   const [agendavalue, dispatch] = useReducer((state, action) => {
     if (action.type === 'addAgenda') {
       return [
@@ -23,6 +25,16 @@ function Meeting() {
     }
   }, []);
 
+  const submitUsers = event => {
+    const filterUser = UserJson.filter(user =>
+      user.jobTitle === event.target.name
+    )
+
+    usersSelected.push(filterUser);
+
+    console.log(usersSelected);
+  };
+
   const submitAgenda = () => {
     dispatch({
       type: 'addAgenda',
@@ -34,6 +46,7 @@ function Meeting() {
   const handleInput = event => {
     event.preventDefault();
     console.log('submit');
+    console.log(allMeetings);
 
     let oneMeeting = {
       id: allMeetings.length,
@@ -42,11 +55,12 @@ function Meeting() {
       location: event.target.meetingLocation.value,
       duration: event.target.meetingDuration.value,
       name: event.target.meetingName.value,
-      agenda: agendavalue
+      agenda: agendavalue,
+      users: usersSelected
     };
 
     allMeetings.push(oneMeeting);
-    console.log(allMeetings);
+    JSON.parse(JSON.stringify(allMeetings));
   };
 
   return (
@@ -57,6 +71,7 @@ function Meeting() {
         agendaInput={agendaInput}
         agendavalueMap={agendavalue}
         userJson={UserJson}
+        submitUsers={submitUsers}
       ></InfoMeeting>
     </div>
   );

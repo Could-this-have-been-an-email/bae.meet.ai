@@ -111,9 +111,10 @@ function InfoMeeting(props) {
         </div>
         <div className="mb-4">
           <div className="flex justify-end">
-            <div className="col">
+            <div className="col rounded h-40 w-42 p-3 shadow-lg whitespace-no-wrap overflow-y-scroll">
               {props.userJson.map(name => (
                 <UserLI
+                  submitUsers={props.submitUsers}
                   first={name.firstName}
                   lname={name.lastName}
                   job={name.jobTitle}
@@ -122,19 +123,6 @@ function InfoMeeting(props) {
             </div>
           </div>
         </div>
-
-        {/* <div className="mb-4">
-          <input type="checkbox" id="userMeeting" name="name"></input>
-          <label for="name">name</label>
-        </div>
-        <div className="mb-4">
-          <input type="checkbox" id="userMeeting" name="name"></input>
-          <label for="name">name</label>
-        </div>
-        <div className="mb-4">
-          <input type="checkbox" id="userMeeting" name="name"></input>
-          <label for="name">name</label>
-        </div> */}
         <div className="flex">
           <input
             type="submit"
