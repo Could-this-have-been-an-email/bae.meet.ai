@@ -15,7 +15,7 @@ const taskSchema = new Schema({
 });
 
 const agendaSchema = new Schema({
-  note: { type: String, required: false },
+  newagenda: { type: String, required: false },
   vote: { type: Number, default: 0, required: false },
   tasks: [taskSchema]
 });
@@ -26,7 +26,12 @@ const meetingNoteSchema = new Schema({
 });
 
 const atendeesSchema = new Schema({
-  user: { type: String }
+  0: { 
+    firstName: {type: String},
+    lastName: {type: String},
+    jobTitle: {type: String},
+    // userId: {type: String}
+     }
 });
 
 const meetingSchema = new Schema({
@@ -36,14 +41,16 @@ const meetingSchema = new Schema({
     required: false
   },
   date: { type: Date, required: false },
+  time: {type: String}, 
   owner: { type: String, trim: true, required: false },
   location: { type: String, trim: true, required: false },
+  duration: {type: Number},
   purpose: { type: String, trim: true, required: false },
   owner: { type: String, trim: true, required: false },
   backgroundForMeeting: [backgroundSchema],
   agenda: [agendaSchema],
   meetingNote: [meetingNoteSchema],
-  atendees: [atendeesSchema]
+  users: [atendeesSchema]
 });
 
 const Meeting = mongoose.model('Meeting', meetingSchema);
