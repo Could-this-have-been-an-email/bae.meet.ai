@@ -2,10 +2,10 @@ import React, { useReducer, useRef, useState } from 'react';
 import '../styles/newMeeting.css';
 import InfoMeeting from '../components/InfoMeeting';
 import UserJson from '../utils/user.json';
-// import API from '../utils/API';
+import API from '../utils/API';
 
 function Meeting() {
-  let allMeetings = [];
+  // let allMeetings = [];
   let usersSelected = [];
   const [users, setUsers] = useState([UserJson]);
 
@@ -38,35 +38,38 @@ function Meeting() {
   const submitAgenda = () => {
     dispatch({
       type: 'addAgenda',
-      value: agendaInput.current.value
+      value: agendaInput.current.value.trim()
     });
     agendaInput.current.value = '';
   };
-
-  const handleInput = event => {
+  const submitMeetingInfo = meeting => {
+    console.log('2', meeting)
+  }
+  const submitFormUser = event => {
     event.preventDefault();
-    console.log('submit');
-    console.log(allMeetings);
+    // console.log(allMeetings);
 
     let oneMeeting = {
-      id: allMeetings.length,
+      // id: allMeetings.length,
       date: event.target.meetingDate.value,
       time: event.target.meetingTime.value,
-      location: event.target.meetingLocation.value,
+      location: event.target.meetingLocation.value.trim(),
       duration: event.target.meetingDuration.value,
-      name: event.target.meetingName.value,
+      name: event.target.meetingName.value.trim(),
       agenda: agendavalue,
       users: usersSelected
     };
 
-    allMeetings.push(oneMeeting);
-    JSON.parse(JSON.stringify(allMeetings));
+    // allMeetings.push(oneMeeting);
+    console.log('1', oneMeeting)
+    // JSON.parse(JSON.stringify(allMeetings));
+    submitMeetingInfo(oneMeeting);
   };
 
   return (
     <div>
       <InfoMeeting
-        submitform={handleInput}
+        submitform={submitFormUser}
         submitAgenda={submitAgenda}
         agendaInput={agendaInput}
         agendavalueMap={agendavalue}
