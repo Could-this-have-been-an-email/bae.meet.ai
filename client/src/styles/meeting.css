@@ -1,7 +1,7 @@
   
 
 .mobile-nav-bar {
-    background: linear-gradient(to top, #ffffff00 0%, #013567 100%); 
+    background: linear-gradient(to top, #ffffff00 0%, rgba(131, 121, 244, 0) 100%); 
     overflow: hidden;
     position: fixed;
     width: 100%;

@@ -6,7 +6,11 @@ import MeetingHeader from '../../components/meetingheader';
 
 function Landing() {
   return (
-    <div>
+    <body>
+    <div class="backgroung-wrap">
+        <img id="video-bg-elem" src="../bg_img.jpg"></img>
+    </div>
+    <div class="content">
       <MeetingHeader></MeetingHeader>
       <section className="b py-10 px-4 h-screen">
         <div className="md:flex px-12 mx-5">
@@ -32,6 +36,7 @@ function Landing() {
       <div className="h-screen b"></div>
       {/* <MeetingFooter></MeetingFooter> */}
     </div>
+  </body>
   );
 }
 
