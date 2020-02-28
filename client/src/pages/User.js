@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import "../styles/user.css";
+import { Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router';
+import API from "../utils/API";
 
 
 
@@ -17,6 +20,7 @@ function User() {
             <p className="text-gray-700 text-base">
               mcbride.katie@gmail.com            
             </p>
+            <div><i class="fas fa-pen"></i></div>
           </div>
         </div>
 
@@ -41,8 +45,10 @@ function User() {
                 
           </div>
         </div>
+        </div>
       </div>
-      </div>
+
+
         <div className="max-w-sm w-full lg:max-w-full lg:flex mb-10">
           <div className="border-r border-b bg-blue-500 border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400  flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden">
                 <div className="text-white font-bold px-12 py-12 text-align-center">Tasks</div>
@@ -99,7 +105,12 @@ function User() {
                 </div>
           </div>
         </div>
-     
+            
+        <Link to="/newmeeting">
+                <button color="white" className="is-rounded">
+                  <span>New Meeting</span>
+                </button>
+        </Link>
   
   </div>
   ) 
