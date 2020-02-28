@@ -2,13 +2,15 @@ import React, { useState, useEffect } from 'react';
 import Button from '../../components/button';
 import './style.css';
 import '../../styles/meeting.css';
+import '../Landing/app';
 import MeetingHeader from '../../components/meetingheader';
 
 function Landing() {
   return (
     <body>
+      <script type="text/javascript" src="./app.js"></script>
     <div class="backgroung-wrap">
-        <img id="video-bg-elem" src="../bg_img.jpg"></img>
+        <img id="video-bg-elem" src="../bg_img.jpg" alt="background"></img>
     </div>
     <div class="content">
       <MeetingHeader></MeetingHeader>
@@ -29,6 +31,7 @@ function Landing() {
             <img
               className="align-middle"
               src="https://via.placeholder.com/550x300?text=Hero+Image"
+              alt=""
             />
           </div>
         </div>
