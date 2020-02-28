@@ -41,7 +41,8 @@ function Meeting() {
     });
     agendaInput.current.value = '';
   };
-  const submitMeetingInfo = meeting => {
+  
+  const submitMeetingInfoAPI = meeting => {
     console.log('2', meeting)
     API.createMeeting(meeting)
       .then(console.log('completedapi'))
@@ -65,7 +66,7 @@ function Meeting() {
     // allMeetings.push(oneMeeting);
     console.log('1', oneMeeting)
     // JSON.parse(JSON.stringify(allMeetings));
-    submitMeetingInfo(oneMeeting);
+    submitMeetingInfoAPI(oneMeeting);
   };
 
   return (
