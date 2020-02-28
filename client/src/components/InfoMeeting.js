@@ -4,15 +4,6 @@ import UserLI from '../components/UserLI';
 function InfoMeeting(props) {
   return (
     <div className="w-1/2 mx-auto">
-      {/* <div>
-        {props.userJson.map(name => (
-          <UserLI
-            first={name.firstName}
-            lname={name.lastName}
-            job={name.jobTitle}
-          ></UserLI>
-        ))}
-      </div> */}
       <form
         className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
         id="meetingForm"
@@ -111,7 +102,7 @@ function InfoMeeting(props) {
         </div>
         <div className="mb-4">
           <div className="flex justify-end">
-            <div className="col rounded h-40 w-42 p-3 shadow-lg whitespace-no-wrap overflow-y-scroll">
+            <div className="col rounded h-40 w-42 p-3 shadow-lg whitespace-no-wrap side-scrollbar-none border border-black overflow-y-scroll">
               {props.userJson.map(name => (
                 <UserLI
                   submitUsers={props.submitUsers}

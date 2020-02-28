@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Button from '../../components/button';
 import './style.css';
+import '../../styles/meeting.css';
 import MeetingHeader from '../../components/meetingheader';
 
 function Landing() {
@@ -11,6 +12,7 @@ function Landing() {
         <div className="md:flex md:px-12 md:mx-16">
           <div className="md:w-2/5 md:py-20 b">
             <p className="text-6xl pb-6">
+
               Build a <strong>better</strong> meeting
             </p>
             <p className="text-xl text-gray-600	pb-6 ">
@@ -28,6 +30,7 @@ function Landing() {
           </div>
         </div>
       </section>
+
 
       <section className="md:flex  md:mx-24 min-h-screen">
         <div className="flex justify-center md:w-2/4 b">
@@ -69,6 +72,7 @@ function Landing() {
           </div>
         </div>
       </section>
+
     </div>
   );
 }
