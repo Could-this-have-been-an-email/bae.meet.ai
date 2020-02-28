@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Button from '../../components/button';
 import './style.css';
+import '../../styles/meeting.css';
 import MeetingHeader from '../../components/meetingheader';
 import MeetingFooter from '../../components/meetingfooter';
 
