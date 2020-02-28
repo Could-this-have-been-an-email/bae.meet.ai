@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import API from '../utils/API';
+import React, { useState, useEffect } from "react";
+import API from "../utils/API";
+import MeetingNotes from "../components/MeetingNotes";
 
 function Meeting() {
   /* 
@@ -23,7 +24,9 @@ function Meeting() {
 
   /* END OF EXAMPLE */
 
-  return <h1>Hello Meeting!</h1>;
+  return <MeetingNotes></MeetingNotes>;
+
+  // return (<h1>Hello Meeting!</h1>)
 }
 
 export default Meeting;

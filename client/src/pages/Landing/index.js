@@ -6,12 +6,17 @@ import MeetingHeader from '../../components/meetingheader';
 
 function Landing() {
   return (
-    <div>
+    <body>
+    <div class="backgroung-wrap">
+        <img id="video-bg-elem" src="../bg_img.jpg"></img>
+    </div>
+    <div class="content">
       <MeetingHeader></MeetingHeader>
-      <section className="b py-10 px-4 h-screen">
-        <div className="md:flex px-12 mx-5">
-          <div className="b md:w-2/5 py-20">
-            <p className="text-6xl">
+      <section className="b py-10 px-4 min-h-screen">
+        <div className="md:flex md:px-12 md:mx-16">
+          <div className="md:w-2/5 md:py-20 b">
+            <p className="text-6xl pb-6">
+
               Build a <strong>better</strong> meeting
             </p>
             <p className="text-xl text-gray-600	pb-6 ">
@@ -21,17 +26,59 @@ function Landing() {
             </p>
             <Button>Sign Up</Button>
           </div>
-          <div className="b w-3/5">
+          <div className="flex justify-center md:w-3/5 b">
             <img
-              className="align-middle"
+              className="self-center"
               src="https://via.placeholder.com/550x300?text=Hero+Image"
             />
           </div>
         </div>
       </section>
-      <div className="h-screen b"></div>
-      {/* <MeetingFooter></MeetingFooter> */}
+
+
+      <section className="md:flex  md:mx-24 min-h-screen">
+        <div className="flex justify-center md:w-2/4 b">
+          <img
+            className="self-center"
+            src="https://via.placeholder.com/500x500?text=Cool+Product+Image1"
+          />
+        </div>
+        <div className="md:w-2/4 md:py-20 flex justify-center b">
+          <div className="b self-center p-6">
+            <p className="text-5xl pb-6">
+              Spend your meetings talking about what you want to talk about
+            </p>
+            <p className="text-xl text-gray-600">
+              Upvote on items that you want to discuss. Downvote the items that
+              aren't important. Let your manger know what the employees want.
+            </p>
+          </div>
+        </div>
+      </section>
+      <section className="md:flex md:flex-row-reverse md:mx-24 min-h-screen">
+        <div className="flex justify-center md:w-2/4 b">
+          <img
+            className="self-center"
+            src="https://via.placeholder.com/500x500?text=Cool+Product+Image2"
+          />
+        </div>
+        <div className="md:w-2/4 md:py-20 flex justify-center b">
+          <div className="b self-center p-6">
+            <p className="text-5xl pb-6">
+              Never sit in a meeting thinking, "this could have been an email,"
+              again
+            </p>
+            <p className="text-xl text-gray-600">
+              We are putting information into you BAE (Been An Email) items.
+              Hey, maybe everything will be moved in there and we can skip the
+              meeting entirely
+            </p>
+          </div>
+        </div>
+      </section>
+
     </div>
+  </body>
   );
 }
 
