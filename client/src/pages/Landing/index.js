@@ -3,13 +3,11 @@ import Button from '../../components/button';
 import './style.css';
 import '../../styles/meeting.css';
 import MeetingHeader from '../../components/meetingheader';
-import MeetingFooter from '../../components/meetingfooter';
 
 function Landing() {
   return (
     <div>
       <MeetingHeader></MeetingHeader>
-
       <section className="b py-10 px-4 h-screen">
         <div className="md:flex px-12 mx-5">
           <div className="b md:w-2/5 py-20">
@@ -32,7 +30,7 @@ function Landing() {
         </div>
       </section>
       <div className="h-screen b"></div>
-      <MeetingFooter></MeetingFooter>
+      {/* <MeetingFooter></MeetingFooter> */}
     </div>
   );
 }
