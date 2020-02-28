@@ -1,12 +1,14 @@
-import React, { useReducer, useRef, useState } from 'react';
+import React, { useReducer, useRef, useState, useEffect } from 'react';
 import InfoMeeting from '../components/InfoMeeting';
-import UserJson from '../utils/user.json';
+// import UserJson from '../utils/user.json';
 import API from '../utils/API';
 
 function Meeting() {
   // let allMeetings = [];
   let usersSelected = [];
-  const [users, setUsers] = useState([UserJson]);
+  // const [users, setUsers] = useState([UserJson]);
+  const [users, setUsers] = useState([]);
+
 
   const agendaInput = useRef();
 
@@ -24,8 +26,16 @@ function Meeting() {
     }
   }, []);
 
+  useEffect(() => {
+    API.getAllUsers()
+      .then(res => {
+        setUsers(res.data)
+      })
+  })
+  // Update the document title using the browser API
+
   const submitUsers = event => {
-    const filterUser = UserJson.filter(user =>
+    const filterUser = users.filter(user =>
       user.jobTitle === event.target.name
     )
 
@@ -41,7 +51,7 @@ function Meeting() {
     });
     agendaInput.current.value = '';
   };
-  
+
   const submitMeetingInfoAPI = meeting => {
     console.log('2', meeting)
     API.createMeeting(meeting)
@@ -76,7 +86,8 @@ function Meeting() {
         submitAgenda={submitAgenda}
         agendaInput={agendaInput}
         agendavalueMap={agendavalue}
-        userJson={UserJson}
+        // userJson={UserJson}
+        userJson={users}
         submitUsers={submitUsers}
       ></InfoMeeting>
     </div>
