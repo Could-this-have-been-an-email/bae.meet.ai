@@ -7,6 +7,50 @@ import API from "../utils/API";
 
 
 function User() {
+  const [meetings, setMeetings] = useState([])
+  const [prevMeetings, setPrevMeetings] = useState([])
+  const [upcomingMeetings, setUpcomingMeetings] = useState([])
+
+  
+
+  useEffect(() => {
+    loadMeetings()
+  }, [])
+
+
+  function loadMeetings() {
+    API.getAllMeetings()
+      .then(res => {
+        setMeetings(res.data);
+        filter(res.data);
+        filterUpcoming(res.data);
+       
+      }
+      )
+      .catch(err => console.log(err));
+      
+  };
+
+  function filter(filterMeetings){
+    const prevMeetings = filterMeetings.filter(meeting => {
+      let today = new Date();
+      return today > new Date(meeting.date);
+   } 
+  );
+  setPrevMeetings(prevMeetings);
+  }
+
+  function filterUpcoming(filterUp){
+    const upcomingMeetings = filterUp.filter(meeting => {
+      let today = new Date();
+      return today < new Date(meeting.date);
+   } 
+  );
+  setUpcomingMeetings(upcomingMeetings);
+  }
+
+
+
   return (
   <div className="flex flex-wrap m-10 ">
       <div className="flex mb-4">
@@ -77,9 +121,11 @@ function User() {
                 <div class="mb-8">
                   <div class="text-gray-900 font-bold text-xl mb-2">Upcoming Meetings</div>
                   <p class="text-gray-700 text-base">
-                    <li>3/20 new hire meeting. </li>
-                    <li>3/24 Web Design Meeting for new project</li>
-                    <li>3/26 Bootcamp and new recruits</li>
+                    <div>{upcomingMeetings.map(meeting =>{
+                      return(
+                        <li>{meeting.name}</li>
+                      );
+                        })} </div>
                   </p>
                   <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-5">More</button>
                 </div>
@@ -97,9 +143,11 @@ function User() {
                 <div class="mb-8">
                   <div class="text-gray-900 font-bold text-xl mb-2">Previous Meetings</div>
                   <p class="text-gray-700 text-base">
-                    <li>2/20 Review web design layout. </li>
-                    <li>2/24 Connecting front-end to back-end</li>
-                    <li>2/26 Web Design name and logo</li>
+                    <div>{prevMeetings.map(meeting =>{
+                      return(
+                        <li>{meeting.name}</li>
+                      );
+                        })} </div>
                   </p>
                   <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-5 right-0">More</button>
                 </div>
