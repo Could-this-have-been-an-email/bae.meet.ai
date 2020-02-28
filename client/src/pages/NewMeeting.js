@@ -1,5 +1,4 @@
 import React, { useReducer, useRef, useState } from 'react';
-import '../styles/newMeeting.css';
 import InfoMeeting from '../components/InfoMeeting';
 import UserJson from '../utils/user.json';
 import API from '../utils/API';
