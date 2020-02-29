@@ -3,16 +3,19 @@ import Button from '../../components/button';
 import './style.css';
 import '../../styles/meeting.css';
 import MeetingHeader from '../../components/meetingheader';
+import AOS from 'aos';
 
 function Landing() {
+  useEffect(() => {
+    AOS.init();
+  });
   return (
     <div>
       <MeetingHeader></MeetingHeader>
-      <section className="b py-10 px-4 min-h-screen">
+      <section className="py-10 px-4 vh">
         <div className="md:flex md:px-12 md:mx-16">
-          <div className="md:w-2/5 md:py-20 b">
+          <div className="md:w-2/5 md:py-20">
             <p className="text-6xl pb-6">
-
               Build a <strong>better</strong> meeting
             </p>
             <p className="text-xl text-gray-600	pb-6 ">
@@ -22,7 +25,7 @@ function Landing() {
             </p>
             <Button>Sign Up</Button>
           </div>
-          <div className="flex justify-center md:w-3/5 b">
+          <div className="flex justify-center md:w-3/5">
             <img
               className="self-center"
               src="https://via.placeholder.com/550x300?text=Hero+Image"
@@ -31,16 +34,15 @@ function Landing() {
         </div>
       </section>
 
-
-      <section className="md:flex  md:mx-24 min-h-screen">
-        <div className="flex justify-center md:w-2/4 b">
+      <section data-aos="fade-up" className="md:flex  md:mx-24 vh">
+        <div className="flex justify-center md:w-2/4">
           <img
             className="self-center"
             src="https://via.placeholder.com/500x500?text=Cool+Product+Image1"
           />
         </div>
-        <div className="md:w-2/4 md:py-20 flex justify-center b">
-          <div className="b self-center p-6">
+        <div className="md:w-2/4 md:py-20 flex justify-center">
+          <div className=" self-center p-6">
             <p className="text-5xl pb-6">
               Spend your meetings talking about what you want to talk about
             </p>
@@ -51,15 +53,19 @@ function Landing() {
           </div>
         </div>
       </section>
-      <section className="md:flex md:flex-row-reverse md:mx-24 min-h-screen">
-        <div className="flex justify-center md:w-2/4 b">
+
+      <section
+        data-aos="fade-up"
+        className="md:flex md:flex-row-reverse md:mx-24 vh"
+      >
+        <div className="flex justify-center md:w-2/4">
           <img
             className="self-center"
             src="https://via.placeholder.com/500x500?text=Cool+Product+Image2"
           />
         </div>
-        <div className="md:w-2/4 md:py-20 flex justify-center b">
-          <div className="b self-center p-6">
+        <div className="md:w-2/4 md:py-20 flex justify-center">
+          <div className="self-center p-6">
             <p className="text-5xl pb-6">
               Never sit in a meeting thinking, "this could have been an email,"
               again
@@ -73,6 +79,24 @@ function Landing() {
         </div>
       </section>
 
+      <section data-aos="fade-up" className="md:flex  md:mx-24 vh">
+        <div className="flex justify-center md:w-2/4">
+          <img
+            className="self-center"
+            src="https://via.placeholder.com/500x500?text=Meetings+Page"
+          />
+        </div>
+        <div className="md:w-2/4 md:py-20 flex justify-center">
+          <div className=" self-center p-6">
+            <p className="text-5xl pb-6">Different</p>
+            <p className="text-xl text-gray-600">explanations</p>
+            <p className="text-xl text-gray-600">of</p>
+            <p className="text-xl text-gray-600">the</p>
+            <p className="text-xl text-gray-600">meeting</p>
+            <p className="text-xl text-gray-600">page</p>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
