@@ -6,6 +6,7 @@ import User from './pages/User';
 import Meeting from './pages/Meeting';
 import SignUp from './pages/SignUp';
 import NewMeeting from './pages/NewMeeting';
+import Login from './pages/Login';
 import './styles/app.css';
 
 function App() {
@@ -18,6 +19,9 @@ function App() {
           </Route>
           <Route exact path="/signup">
             <SignUp />
+          </Route>
+          <Route path="/login">
+            <Login />
           </Route>
           <Route path="/user">
             <User />
