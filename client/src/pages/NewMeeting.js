@@ -1,12 +1,10 @@
 import React, { useReducer, useRef, useState, useEffect } from 'react';
 import InfoMeeting from '../components/InfoMeeting';
-// import UserJson from '../utils/user.json';
+import '../styles/newMeeting.css'
 import API from '../utils/API';
 
 function Meeting() {
-  // let allMeetings = [];
   let usersSelected = [];
-  // const [users, setUsers] = useState([UserJson]);
   const [users, setUsers] = useState([]);
 
 
@@ -31,6 +29,7 @@ function Meeting() {
       await API.getAllUsers()
         .then(res => setUsers(res.data))
         .catch(err => console.log(err))
+
 
     }
     fetchData();
@@ -64,10 +63,8 @@ function Meeting() {
   }
   const submitFormUser = event => {
     event.preventDefault();
-    // console.log(allMeetings);
 
     let oneMeeting = {
-      // id: allMeetings.length,
       date: event.target.meetingDate.value,
       time: event.target.meetingTime.value,
       location: event.target.meetingLocation.value.trim(),
@@ -77,9 +74,7 @@ function Meeting() {
       users: usersSelected
     };
 
-    // allMeetings.push(oneMeeting);
     console.log('1', oneMeeting)
-    // JSON.parse(JSON.stringify(allMeetings));
     submitMeetingInfoAPI(oneMeeting);
   };
 
@@ -90,7 +85,6 @@ function Meeting() {
         submitAgenda={submitAgenda}
         agendaInput={agendaInput}
         agendavalueMap={agendavalue}
-        // userJson={UserJson}
         userJson={users}
         submitUsers={submitUsers}
       ></InfoMeeting>
