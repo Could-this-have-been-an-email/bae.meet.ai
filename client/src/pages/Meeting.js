@@ -7,10 +7,6 @@ import MeetingHeader from "../components/meetingheader";
 function Meeting() {
 
   const [meeting, setMeeting] = useState([]);
-  
-
-
-  
 
   var url = 'http://localhost:3000/meeting/5e587edede38f8205a93f6d9';
   var id = url.substring(url.lastIndexOf('/') + 1);
@@ -26,13 +22,32 @@ function Meeting() {
     API.getMeeting(id)
       .then(res => {
         setMeeting(res.data);
-        console.log(res.data);
+
         
       }
     )
       .catch(err => console.log(err));
   };
  
+  function handleUpVote(id){
+    meeting.agenda.forEach(singleAgenda => {
+      if (id === singleAgenda._id){
+        singleAgenda.vote += 1;
+      }
+      console.log(meeting)
+    })
+    
+  }
+
+  function handleDownVote(id){
+    meeting.agenda.forEach(singleAgenda => {
+      if (id === singleAgenda._id){
+        singleAgenda.vote -= 1;
+      }
+      console.log(meeting)
+    })
+    
+  }
   
 
   return (
@@ -51,7 +66,7 @@ function Meeting() {
         <div class="row-start-5 col-start-2 col-span-4"> Agenda:
         {meeting.agenda ? <div>{meeting.agenda.map(agenda =>{
                 return(
-                <li>{agenda.newagenda}</li>
+                <li >{agenda.newagenda}<button onClick={()=> handleUpVote(agenda._id)}>+</button><button onClick={()=> handleDownVote(agenda._id)}>-</button></li>
                 );})} 
             </div>: <></> }
         </div>
