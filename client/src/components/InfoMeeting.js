@@ -102,7 +102,7 @@ function InfoMeeting(props) {
         </div>
         <div className="mb-4">
           <div className="flex justify-end">
-            <div className="col rounded h-40 w-42 p-3 shadow-lg whitespace-no-wrap side-scrollbar-none border border-black overflow-y-scroll">
+            <div className="col-end-1 rounded h-40 w-40 p-3 shadow-lg whitespace-no-wrap side-scrollbar-none border border-black overflow-y-scroll">
               {props.userJson.map(name => (
                 <UserLI
                   key={props._id}
