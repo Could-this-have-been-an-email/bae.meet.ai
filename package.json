@@ -1,0 +1,31 @@
+{
+  "name": "bae.meet.ai",
+  "version": "1.0.0",
+  "description": "Everyone has been in meetings that were uneccessary and shuold have been emails. Bae is a full MERN stack webapp that aims to streamline the process of planing meetings and determining if it should actually be an email.",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-rate-limit": "^5.1.1",
+    "express-secure-only": "^0.2.1",
+    "fs": "0.0.1-security",
+    "https": "^1.0.0",
+    "ibm-watson": "^5.4.0",
+    "mongoose": "^5.9.2",
+    "nodemon": "^2.0.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Could-this-have-been-an-email/bae.meet.ai.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Could-this-have-been-an-email/bae.meet.ai/issues"
+  },
+  "homepage": "https://github.com/Could-this-have-been-an-email/bae.meet.ai#readme"
+}
