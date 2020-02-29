@@ -105,10 +105,11 @@ function InfoMeeting(props) {
             <div className="col rounded h-40 w-42 p-3 shadow-lg whitespace-no-wrap side-scrollbar-none border border-black overflow-y-scroll">
               {props.userJson.map(name => (
                 <UserLI
+                  key={props._id}
                   submitUsers={props.submitUsers}
                   first={name.firstName}
                   lname={name.lastName}
-                  job={name.jobTitle}
+                  id={name._id}
                 ></UserLI>
               ))}
             </div>
