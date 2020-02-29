@@ -1,5 +1,6 @@
 import React, { useReducer, useRef, useState, useEffect } from 'react';
 import InfoMeeting from '../components/InfoMeeting';
+import '../styles/newMeeting.css'
 // import UserJson from '../utils/user.json';
 import API from '../utils/API';
 
@@ -31,6 +32,7 @@ function Meeting() {
       await API.getAllUsers()
         .then(res => setUsers(res.data))
         .catch(err => console.log(err))
+
 
     }
     fetchData();
