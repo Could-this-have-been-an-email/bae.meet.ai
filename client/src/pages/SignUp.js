@@ -1,6 +1,7 @@
-import React from "react";
-import "../styles/SignUp.css";
+import React from 'react';
+import '../styles/SignUp.css';
 import API from '../utils/API';
+import Button from '../components/button';
 
 function SignUp() {
   const handleSubmit = e => {
@@ -20,9 +21,9 @@ function SignUp() {
 
   const submitOneUserAPI = user => {
     API.createUser(user)
-      .then(console.log('user submitted'))
-      .catch(err => console.log(err))
-  }
+      .then(window.location.assign('/login'))
+      .catch(err => console.log(err));
+  };
 
   return (
     <div className="container mx-auto px-64">
