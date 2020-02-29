@@ -5,26 +5,31 @@ import AttendeeCard from "../components/attendeeCard";
 import MeetingHeader from "../components/meetingheader";
 
 function Meeting() {
-  /* 
-  
-  EXAMPLE API CALL AND DATA; NOT ACTUAL CODE
-  
-  */
 
-  const [meeting, setMeeting] = useState({});
+  const [meeting, setMeeting] = useState([])
+
+  var url = 'http://localhost:3000/meeting/5e587edede38f8205a93f6d9';
+  var id = url.substring(url.lastIndexOf('/') + 1);
+  // console.log(id); 
+
   useEffect(() => {
-    loadAllMeetings();
-  }, []);
+    loadMeeting(id)
+  }, [])
 
-  //API call to get meeting and add to state
-  const loadAllMeetings = () => {
-    API.getAllMeetings().then(res => {
-      setMeeting(res.data);
-      console.log(res.data);
-    });
+
+  function loadMeeting(id) {
+    console.log(id)
+    API.getMeeting(id)
+      .then(res => {
+        setMeeting(res.data);
+        console.log(res.data);
+        
+      }
+    )
+      .catch(err => console.log(err));
   };
-
-  /* END OF EXAMPLE */
+ 
+  
 
   return (
     <>
@@ -32,6 +37,7 @@ function Meeting() {
         <div class="row-start-2 col-start-2 col-span-4">Meeting Title</div>
         <div class="row-start-2 col-start-8 col-span-2">Attendees:</div>
         <div class="row-start-3 col-start-2 col-span-4">Outcome:</div>
+
 
         <div class="row-start-4 col-start-2 col-span-4">
           Pre-Mtg Info / BAE items:
@@ -50,3 +56,25 @@ function Meeting() {
 }
 
 export default Meeting;
+
+
+ /* 
+  
+  EXAMPLE API CALL AND DATA; NOT ACTUAL CODE
+  
+  */
+
+//  const [meeting, setMeeting] = useState({});
+//  useEffect(() => {
+//    loadAllMeetings();
+//  }, []);
+
+ //API call to get meeting and add to state
+//  const loadAllMeetings = () => {
+//    API.getAllMeetings().then(res => {
+//      setMeeting(res.data);
+//      console.log(res.data);
+//    });
+//  };
+
+ /* END OF EXAMPLE */

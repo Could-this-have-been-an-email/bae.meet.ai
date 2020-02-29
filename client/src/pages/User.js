@@ -121,7 +121,9 @@ function User() {
                   <p class="text-gray-700 text-base">
                     <div>{upcomingMeetings.map(meeting =>{
                       return(
+                        <Link to={`/meeting/${meeting._id}`}>
                         <li>{meeting.name}</li>
+                        </Link>
                       );
                         })} </div>
                   </p>
