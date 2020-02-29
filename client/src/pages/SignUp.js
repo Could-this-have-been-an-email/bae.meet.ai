@@ -1,6 +1,8 @@
+
 import React from "react";
 import "../styles/SignUp.css";
 import API from "../utils/API";
+
 
 function SignUp() {
   const handleSubmit = e => {
@@ -20,7 +22,9 @@ function SignUp() {
 
   const submitOneUserAPI = user => {
     API.createUser(user)
-      .then(console.log("user submitted"))
+
+      .then(window.location.assign('/login'))
+
       .catch(err => console.log(err));
   };
 
