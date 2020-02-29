@@ -34,7 +34,8 @@ function Meeting() {
       if (id === singleAgenda._id){
         singleAgenda.vote += 1;
       }
-      console.log(meeting)
+      console.log(meeting._id)
+      API.updateMeeting(meeting._id, meeting)
     })
     
   }

@@ -41,5 +41,10 @@ export default {
   createMeeting: function (meetingData) {
     console.log("3", meetingData)
     return server.post('/api/meeting', meetingData);
-  }
+  },
+
+  updateMeeting: function (id, meetingData) {
+    return server.put(`/api/meeting/${id}`, meetingData);
+  },
+
 };
