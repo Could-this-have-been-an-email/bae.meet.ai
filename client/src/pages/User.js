@@ -84,8 +84,9 @@ function User() {
 
     {/* TIME SPENT IN MEETINGS */}
     <div className="wrapper">
+      <div className= "box-wrapper">
       <div className="box1">
-        <div className="max-w-sm rounded w-full overflow-hidden shadow-lg w-1/3 mb-4 mr-10 pb-10">
+        <div className="max-w-sm rounded w-full overflow-hidden shadow-xl w-1/3 mb-4 mr-10 pb-10">
           <div className="px-4 py-2">
             <div className="font-bold text-2xl mb-2">Meetings</div>
          
@@ -97,12 +98,26 @@ function User() {
       </div>
 
 
-      {/* UPCOMING MEETINGS */}
-      <div className="box2">
-        <div className="max-w-sm w-full lg:max-w-full lg:flex mb-10">
-          <div class="border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-1 justify-between leading-normal">
+   
+
+
+      {/* TIME SAVED */}
+      <div className="box3">
+        <div className="max-w-sm rounded w-full overflow-hidden shadow-xl w-1/3 mb-4 pb-10">
+          <div className="px-4 py-2">
+            <div className="font-bold text-2xl mb-2">Time Saved</div>
+            <p className="text-gray-700 text-base">
+              Timer/graph showing time saved.
+            </p>
+        </div>
+        </div>
+      </div>
+
+         {/* UPCOMING MEETINGS */}
+         <div className="box2">
+          <div class="max-w-sm rounded w-full overflow-hidden shadow-xl w-1/3 mb-4 mr-10 pb-10">
                 <div class="mb-8">
-                  <div class="text-gray-900 font-bold text-xl mb-2">Upcoming Meetings</div>
+                  <div class="text-gray-900 font-bold text-2xl mb-2 mx-3">Upcoming Meetings</div>
                   <p class="text-gray-700 text-base">
                     <div>{upcomingMeetings.map(meeting =>{
                       return(
@@ -110,52 +125,35 @@ function User() {
                       );
                         })} </div>
                   </p>
-                  <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-5">More</button>
+                  <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-5 right-0 mx-5">More</button>
                 </div>
           </div>
-        </div>
-      </div>
-
-
-      {/* TIME SAVED */}
-      <div className="box3">
-        <div className="max-w-sm rounded w-full overflow-hidden shadow-lg w-1/3 mb-4 pb-10">
-          <div className="px-4 py-2">
-            <div className="font-bold text-2xl mb-2">Time Saved</div>
-            <p className="text-gray-700 text-base">
-            </p>
-        </div>
-        </div>
       </div>
 
 
       
       {/* PREVIOUS MEETINGS */}
       <div className="box4">
-        <div className="max-w-sm w-full lg:max-w-full lg:flex mb-10">
-          <div className="border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400  flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden">
-          </div>
-          <div class="border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-1 justify-between leading-normal">
-                <div class="mb-8">
-                  <div class="text-gray-900 font-bold text-xl mb-2">Previous Meetings</div>
-                  <p class="text-gray-700 text-base">
-                    <div>{prevMeetings.map(meeting =>{
-                      return(
-                        <li>{meeting.name}</li>
-                      );
-                        })} </div>
-                  </p>
-                  <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-5 right-0">More</button>
-                </div>
+        <div className="max-w-sm rounded w-full overflow-hidden shadow-xl w-1/3 mb-4 mr-10 pb-10">
+          <div className="mb-8">
+          <div class="text-gray-900 font-bold text-2xl mb-2 mx-3">Previous Meetings</div>
+          <p class="text-gray-700 text-base">
+            <div>{prevMeetings.map(meeting =>{
+                return(
+                <li>{meeting.name}</li>
+                );})} 
+            </div>
+          </p>
+          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-5 right-0 mx-5">More</button>
           </div>
         </div>
       </div>
-
+    </div>
 
       {/* TASKS */}
       <div className="box5">
-        <div className="max-w-sm w-full lg:max-w-full lg:flex mb-10">
-          <div className="border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-1 justify-between leading-normal">
+        <div className="max-w-sm w-full lg:max-w-full lg:flex mb-10 pr-5 shadow-xl">
+          <div className="border-r border-b border-l border-gray-400  lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-1 justify-between leading-normal">
                 <div className="mb-8">
                   <div className="text-gray-900 font-bold text-3xl mb-2 border-b border-gray-400 w-full">Tasks</div>
                   <p className="text-gray-700 text-base">
@@ -174,8 +172,11 @@ function User() {
 
 
 
-    </div>
+    
+  </div>
   ) 
 }
 
 export default User;
+
+

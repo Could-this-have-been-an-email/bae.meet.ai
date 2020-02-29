@@ -56,21 +56,39 @@
 }
 .box1 {
   align-self: flex-start;
-  border: 5px solid red;
+  /* border: 5px solid red; */
+  width: 50%;
+  padding: 10px;
+ 
+  
 }
 .box2 {
   align-self: center;
-  border: 5px solid red;
+  /* border: 5px solid red; */
+  width: 50%;
+  padding: 10px;
+ 
 }
 .box3 {
-  align-self: start;
-  border: 5px solid red;
+  align-self: flex-start;
+  /* border: 5px solid red; */
+  width: 50%;
+  padding: 10px;
 }
 .box4 {
   align-self: center;
-  border: 5px solid red;
+  /* border: 5px solid red; */
+  width: 50%;
+  padding: 10px;
 }
 .box5 {
   align-self: stretch;
-  border: 5px solid red;
+  /* border: 5px solid red; */
+}
+
+.box-wrapper{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: flex-start;
 }
