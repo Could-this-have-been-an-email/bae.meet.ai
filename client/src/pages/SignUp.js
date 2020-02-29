@@ -1,7 +1,8 @@
-import React from 'react';
-import '../styles/SignUp.css';
-import API from '../utils/API';
-import Button from '../components/button';
+
+import React from "react";
+import "../styles/SignUp.css";
+import API from "../utils/API";
+
 
 function SignUp() {
   const handleSubmit = e => {
@@ -21,7 +22,9 @@ function SignUp() {
 
   const submitOneUserAPI = user => {
     API.createUser(user)
+
       .then(window.location.assign('/login'))
+
       .catch(err => console.log(err));
   };
 
