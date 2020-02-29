@@ -26,3 +26,51 @@
   display: inline-block;
   font-size: 16px;
 }
+
+.flex-grid {
+  display: flex;
+}
+
+.col {
+  flex: 1;
+}
+
+@media (max-width: 400px) {
+  .flex-grid {
+    display: block;
+  }
+}
+
+.flex-grid-thirds {
+  display: flex;
+  justify-content: space-between;
+}
+.flex-grid-thirds .col {
+  width: 32%;
+}
+
+.wrapper {
+  display: flex;
+  align-items: flex-end;
+  min-height: 200px; 
+}
+.box1 {
+  align-self: flex-start;
+  border: 5px solid red;
+}
+.box2 {
+  align-self: center;
+  border: 5px solid red;
+}
+.box3 {
+  align-self: start;
+  border: 5px solid red;
+}
+.box4 {
+  align-self: center;
+  border: 5px solid red;
+}
+.box5 {
+  align-self: stretch;
+  border: 5px solid red;
+}
