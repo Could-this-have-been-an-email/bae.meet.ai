@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import API from "../utils/API";
 import MeetingNotes from "../components/MeetingNotes";
+import AttendeeCard from "../components/attendeeCard";
+import MeetingHeader from "../components/meetingheader";
 
 function Meeting() {
   /* 
@@ -24,9 +26,27 @@ function Meeting() {
 
   /* END OF EXAMPLE */
 
-  return <MeetingNotes></MeetingNotes>;
+  return (
+    <>
+      <div class="grid grid-rows-7 grid-flow-col gap-1">
+        <div class="row-start-2 col-start-2 col-span-4">Meeting Title</div>
+        <div class="row-start-2 col-start-8 col-span-2">Attendees:</div>
+        <div class="row-start-3 col-start-2 col-span-4">Outcome:</div>
 
-  // return (<h1>Hello Meeting!</h1>)
+        <div class="row-start-4 col-start-2 col-span-4">
+          Pre-Mtg Info / BAE items:
+        </div>
+        <div class="row-start-5 col-start-2 col-span-4">Agenda:</div>
+        <div class="row-start-6 row-end-6 col-start-2 col-span-4">
+          Notes:
+          <MeetingNotes></MeetingNotes>
+        </div>
+        <div class="row-start-3 row-span-4 col-start-8 col-span-2">
+          <AttendeeCard></AttendeeCard>
+        </div>
+      </div>
+    </>
+  );
 }
 
 export default Meeting;
