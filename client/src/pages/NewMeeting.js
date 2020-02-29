@@ -27,16 +27,20 @@ function Meeting() {
   }, []);
 
   useEffect(() => {
-    API.getAllUsers()
-      .then(res => {
-        setUsers(res.data)
-      })
-  })
+    async function fetchData() {
+      await API.getAllUsers()
+        .then(res => setUsers(res.data))
+        .catch(err => console.log(err))
+
+    }
+    fetchData();
+  }, [])
+  console.log(users)
   // Update the document title using the browser API
 
   const submitUsers = event => {
     const filterUser = users.filter(user =>
-      user.jobTitle === event.target.name
+      user._id === event.target.name
     )
 
     usersSelected.push(filterUser);
