@@ -1,4 +1,5 @@
 import axios from 'axios';
+const mongoose = require("mongoose");
 
 const server = axios.create({ baseURL: 'http://localhost:3001/' });
 
@@ -28,6 +29,8 @@ export default {
   },
   // Gets the meetings with the given id
   getMeeting: function (id) {
+    // const objectId = new ObjectId(id);
+    // console.log(objectId);
     return server.get(`/api/meeting/${id}`);
   },
   // Deletes the meetings with the given id
