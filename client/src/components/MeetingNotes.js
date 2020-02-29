@@ -8,7 +8,7 @@ class MeetingNotes extends React.Component {
 
   render() {
     return (
-      <div className="container mx-auto px-64">
+      <div className="container">
         <Editor
           apiKey="avgvd7u4i68a9mq24lbgo9zusv5tq1vyu4pw9xrjkt9depds"
           initialValue="<p>This is the initial content of the editor</p>"
