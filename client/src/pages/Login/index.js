@@ -15,10 +15,16 @@ function Login() {
     console.log('checkuser', checkedUser)
 
     API.checkUser(checkedUser)
+    console.log(checkedUser)
+
 
     // console.log('email is ' + email);
     // console.log('password is ' + password);
   };
+
+  API.getUserAuthen((req, res) => {
+    console.log(res)
+  })
 
   // console.log('email', email);
   // console.log('password', password);
