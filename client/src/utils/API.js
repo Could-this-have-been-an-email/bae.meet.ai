@@ -50,5 +50,10 @@ export default {
       res.json(req.user);
     });
     console.log('usercatch', user)
-  }
+  }, 
+  
+  updateMeeting: function (id, meetingData) {
+    return server.put(`/api/meeting/${id}`, meetingData);
+  },
+
 };
