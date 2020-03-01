@@ -1,17 +1,27 @@
 import React, { useState, useEffect } from 'react';
+import API from '../../utils/API';
+
 
 function Login() {
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+  // const [email, setEmail] = useState();
+  // const [password, setPassword] = useState();
 
   const handleSubmit = e => {
     e.preventDefault();
-    console.log('email is ' + email);
-    console.log('password is ' + password);
+    let checkedUser = {
+      email: e.target.email.value,
+      password: e.target.password.value
+    }
+    console.log('checkuser', checkedUser)
+
+    API.checkUser(checkedUser)
+
+    // console.log('email is ' + email);
+    // console.log('password is ' + password);
   };
 
-  console.log('email', email);
-  console.log('password', password);
+  // console.log('email', email);
+  // console.log('password', password);
   return (
     <div>
       <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
@@ -37,7 +47,7 @@ function Login() {
                   required
                   className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 sm:text-sm sm:leading-5"
                   placeholder="Email address"
-                  onChange={e => setEmail(e.target.value)}
+                // onChange={e => setEmail(e.target.value)}
                 />
               </div>
               <div className="-mt-px">
@@ -48,7 +58,7 @@ function Login() {
                   required
                   className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 sm:text-sm sm:leading-5"
                   placeholder="Password"
-                  onChange={e => setPassword(e.target.value)}
+                // onChange={e => setPassword(e.target.value)}
                 />
               </div>
             </div>
