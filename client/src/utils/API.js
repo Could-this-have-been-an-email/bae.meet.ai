@@ -1,6 +1,6 @@
 import axios from "axios";
 const mongoose = require("mongoose");
-// var passport = require("../config/passport");
+
 
 const server = axios.create({ baseURL: "http://localhost:3001/" });
 
@@ -44,14 +44,15 @@ export default {
     return server.post("/api/meeting", meetingData);
   },
 
-  // checkUser: function(user) {
-  //   user.post("/api/login", passport.authenticate("local"), function(req, res) {
-  //     res.json(req.user);
-  //   });
-  //   console.log("usercatch", user);
-  // },
 
-  updateMeeting: function(id, meetingData) {
-    return server.put(`/api/meeting/${id}`, meetingData);
+  checkUser: function (user) {
+    console.log("3", user)
+
+    return server.post("/api/user/login", user)
+  },
+
+  getUserAuthen: function (user) {
+    return server.get('/api/users/login', user)
+
   }
 };
