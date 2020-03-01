@@ -3,6 +3,9 @@ import "../styles/user.css";
 import { Link } from 'react-router-dom';
 import { BrowserRouter as Router, Route } from 'react-router';
 import API from "../utils/API";
+import Chart from "./chart.png";
+import Graph from "./graph.png"
+
 
 
 
@@ -90,9 +93,8 @@ function User() {
           <div className="px-4 py-2">
             <div className="font-bold text-2xl mb-2">Meetings</div>
          
-            <p className="text-gray-700 text-base">
-              Time spent in meetings           
-            </p>
+            <img src={Chart}></img>
+            <p>Amount of time spent in meetings this week.</p>
           </div>
         </div>
       </div>
@@ -106,9 +108,8 @@ function User() {
         <div className="max-w-sm rounded w-full overflow-hidden shadow-xl w-1/3 mb-4 pb-10">
           <div className="px-4 py-2">
             <div className="font-bold text-2xl mb-2">Time Saved</div>
-            <p className="text-gray-700 text-base">
-              Timer/graph showing time saved.
-            </p>
+            <img src={Graph}></img>
+            <p>Hours spent in meetings each month.</p>
         </div>
         </div>
       </div>
@@ -142,7 +143,9 @@ function User() {
           <p class="text-gray-700 text-base">
             <div>{prevMeetings.map(meeting =>{
                 return(
-                <li>{meeting.name}</li>
+                  <Link to={`/meeting/${meeting._id}`}>
+                  <li>{meeting.name}</li>
+                  </Link>
                 );})} 
             </div>
           </p>
