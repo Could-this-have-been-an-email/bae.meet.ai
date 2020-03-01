@@ -2,6 +2,9 @@
 
 /* Document
    ========================================================================== */
+   .side-scrollbar-none::-webkit-scrollbar { 
+    display: none;
+  }
 
 /**
  * 1. Correct the line height in all browsers.
