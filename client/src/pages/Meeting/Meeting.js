@@ -20,8 +20,8 @@ function Meeting() {
     console.log(id);
     API.getMeeting(id)
       .then(res => {
-        console.log(res);
-        setMeeting(res);
+        console.log(res.data);
+        setMeeting(res.data);
       })
       .catch(err => console.log(err));
   }

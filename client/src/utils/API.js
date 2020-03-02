@@ -44,6 +44,10 @@ export default {
     return server.post("/api/meeting", meetingData);
   },
 
+  updateMeeting: function (id, meetingData) {
+    return server.put(`/api/meeting/${id}`, meetingData);
+  },
+
 
   checkUser: function (user) {
     console.log("3", user)
