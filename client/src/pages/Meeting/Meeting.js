@@ -17,11 +17,11 @@ function Meeting() {
   }, []);
 
   function loadMeeting() {
-    console.log(id);
+    // console.log(id);
     API.getMeeting(id)
       .then(res => {
-        console.log(res);
-        setMeeting(res);
+        // console.log(res.data);
+        setMeeting(res.data);
       })
       .catch(err => console.log(err));
   }
@@ -31,7 +31,7 @@ function Meeting() {
       if (id === singleAgenda._id) {
         singleAgenda.vote += 1;
       }
-      console.log(meeting._id);
+      // console.log(meeting._id);
       API.updateMeeting(meeting._id, meeting);
     });
   }
@@ -40,6 +40,16 @@ function Meeting() {
     meeting.agenda.forEach(singleAgenda => {
       if (id === singleAgenda._id) {
         singleAgenda.vote -= 1;
+      }
+      // console.log(meeting);
+      API.updateMeeting(meeting._id, meeting);
+    });
+  }
+
+  function handleTask(id) {
+    meeting.agenda.forEach(singleAgenda => {
+      if (id === singleAgenda._id) {
+        singleAgenda.tasks.task = singleAgenda.input.value;
       }
       console.log(meeting);
     });
@@ -77,6 +87,18 @@ function Meeting() {
                     <button onClick={() => handleDownVote(agenda._id)}>
                       -
                     </button>
+                    <div class="mb-4">
+                      <form>
+                      <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
+                        Add a Task
+                      </label>
+                      <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="task" type="text" placeholder="Task"></input>
+                      <button onClick={() => handleTask(agenda._id)} class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
+                      Add Task
+                    </button>
+                    </form>
+                    </div>
+                    
                   </li>
                 );
               })}
