@@ -12,10 +12,8 @@ function Login() {
       email: e.target.email.value,
       password: e.target.password.value
     }
-    console.log('checkuser', checkedUser)
 
     API.checkUser(checkedUser)
-    console.log(checkedUser)
 
 
     // console.log('email is ' + email);
@@ -23,7 +21,7 @@ function Login() {
   };
 
   API.getUserAuthen((req, res) => {
-    console.log(res)
+    console.log('touchdown res res', res)
   })
 
   // console.log('email', email);
