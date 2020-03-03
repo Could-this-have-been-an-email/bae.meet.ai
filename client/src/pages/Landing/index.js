@@ -11,12 +11,12 @@ function Landing() {
     AOS.init();
   });
   return (
-    <body>
+    <div>
       <script type="text/javascript" src="./app.js"></script>
-      <div class="backgroung-wrap">
+      <div className="backgroung-wrap">
         <img id="video-bg-elem" src="../bg_img.jpg" alt="background"></img>
       </div>
-      <div class="content">
+      <div className="content">
         <MeetingHeader></MeetingHeader>
         <section className="py-10 px-4 vh">
           <div className="md:flex md:px-12 md:mx-16">
@@ -107,7 +107,7 @@ function Landing() {
           </div>
         </section>
       </div>
-    </body>
+    </div>
   );
 }
 
