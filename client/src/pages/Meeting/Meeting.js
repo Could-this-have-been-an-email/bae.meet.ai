@@ -27,6 +27,15 @@ function Meeting() {
       .catch(err => console.log(err));
   }
 
+  function hideVotes() {
+    var x = document.getElementById("js-votes");
+    if (x.style.display === "none") {
+      x.style.display = "block";
+    } else {
+      x.style.display = "none";
+    }
+  }
+
   function handleUpVote(id) {
     meeting.agenda.forEach(singleAgenda => {
       if (id === singleAgenda._id) {
@@ -134,6 +143,7 @@ function Meeting() {
             type="submit"
             value="Start Meeting"
             className="mx-auto bg-green-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded"
+            onClick={() => hideVotes()}
           ></input>
         </div>
         <div class="row-start-7 col-start-4">

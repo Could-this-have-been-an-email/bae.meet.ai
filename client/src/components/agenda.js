@@ -11,7 +11,7 @@ function Agenda(props) {
           {" "}
           {props.agenda.newagenda}
         </div>
-        <div class="col-start-3 flex items-center justify-end">
+        <div id="js-votes" className="col-start-3 flex items-center justify-end">
           <button
             class="fa fa-arrow-up"
             onClick={() => props.handleUpVote(props.agenda._id)}
