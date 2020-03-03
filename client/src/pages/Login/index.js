@@ -14,6 +14,14 @@ function Login() {
     }
 
     API.checkUser(checkedUser)
+      // .then(function (result) {
+      //   console.log('results', result)
+      //   window.location.replace("/user/:id");
+      // })
+      // .catch(function (err) {
+      //   console.log(err);
+      // });
+
 
 
     // console.log('email is ' + email);

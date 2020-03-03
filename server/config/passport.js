@@ -8,7 +8,6 @@ passport.use(new LocalStrategy(
     usernameField: "email"
   },
   function (email, password, done) {
-    console.log("email", email, password)
     db.User.findOne({
       email: email
     }).then(function (dbUser) {
@@ -25,17 +24,19 @@ passport.use(new LocalStrategy(
           message: "Incorrect password."
         });
       }
-      console.log("returneeddd")
       return done(null, dbUser);
     });
   }
 ));
-passport.serializeUser(function (user, cb) {
-  cb(null, user);
+passport.serializeUser(function (user, done) {
+  console.log('ster', user.id)
+  done(null, user.id);
 });
 
-passport.deserializeUser(function (obj, cb) {
-  cb(null, obj);
+passport.deserializeUser(function (id, done) {
+  User.findById(id, function (err, user) {
+    done(err, user);
+  });
 });
 
 module.exports = passport;
