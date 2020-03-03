@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route } from 'react-router';
 import API from "../utils/API";
 import Chart from "./chart.png";
 import Graph from "./graph.png"
+import MeetingHeader from "../components/meetingheader";
 
 
 
@@ -57,11 +58,12 @@ function User() {
   return (
     // Outline div
     <div>
+      {/* <MeetingHeader /> */}
 
     {/* Div for photo, name, button */}
     <div className="flex-grid">
       <div className="col">
-        <img className="w-40 h-40 rounded-full mx-20 my-10"src="https://image.shutterstock.com/image-photo/portrait-smiling-red-haired-millennial-260nw-1194497251.jpg"></img>
+        <img className="w-40 h-40 rounded-full mx-20 my-10 shadow-2xl"src="https://image.shutterstock.com/image-photo/portrait-smiling-red-haired-millennial-260nw-1194497251.jpg"></img>
       </div>
 
       {/* Name, title, and e-mail */}
@@ -89,12 +91,12 @@ function User() {
     <div className="wrapper">
       <div className= "box-wrapper">
       <div className="box1">
-        <div className="max-w-sm rounded w-full overflow-hidden shadow-xl w-1/3 mb-4 mr-10 pb-10">
+        <div className="max-w-sm rounded w-full overflow-hidden shadow-2xl w-1/3 mb-4 mr-10 pb-10">
           <div className="px-4 py-2">
-            <div className="font-bold text-2xl mb-2">Meetings</div>
-         
-            <img src={Chart}></img>
-            <p>Amount of time spent in meetings this week.</p>
+          <div className="font-bold text-2xl mb-3 mt-3 border-b border-gray-400 w-full">Time Saved</div>
+            <img src={Graph}></img>
+            <p>Hours spent in meetings each month.</p>
+            
           </div>
         </div>
       </div>
@@ -105,22 +107,22 @@ function User() {
 
       {/* TIME SAVED */}
       <div className="box3">
-        <div className="max-w-sm rounded w-full overflow-hidden shadow-xl w-1/3 mb-4 pb-10">
+        <div className="max-w-sm rounded w-full overflow-hidden shadow-2xl w-1/3 mb-4 pb-10">
           <div className="px-4 py-2">
-            <div className="font-bold text-2xl mb-2">Time Saved</div>
-            <img src={Graph}></img>
-            <p>Hours spent in meetings each month.</p>
+          <div className="font-bold text-2xl mb-3 border-b mt-3 border-gray-400 w-full">Meetings</div>
+         <img src={Chart}></img>
+         <p>Amount of time spent in meetings this week.</p>
         </div>
         </div>
       </div>
 
          {/* UPCOMING MEETINGS */}
          <div className="box2">
-          <div class="max-w-sm rounded w-full overflow-hidden shadow-xl w-1/3 mb-4 mr-10 pb-10">
-                <div class="mb-8">
-                  <div class="text-gray-900 font-bold text-2xl mb-2 mx-3">Upcoming Meetings</div>
+          <div class="max-w-sm rounded w-full overflow-hidden shadow-2xl w-1/3 mb-4 mr-10 pb-10">
+                <div class="px-4 py-2">
+                  <div class="font-bold text-2xl mb-3 border-b mt-3 border-gray-400 w-full">Upcoming Meetings</div>
                   <p class="text-gray-700 text-base">
-                    <div>{upcomingMeetings.map(meeting =>{
+                    <div className="mx-5">{upcomingMeetings.map(meeting =>{
                       return(
                         <Link to={`/meeting/${meeting._id}`}>
                         <li>{meeting.name}</li>
@@ -137,11 +139,11 @@ function User() {
       
       {/* PREVIOUS MEETINGS */}
       <div className="box4">
-        <div className="max-w-sm rounded w-full overflow-hidden shadow-xl w-1/3 mb-4 mr-10 pb-10">
-          <div className="mb-8">
-          <div class="text-gray-900 font-bold text-2xl mb-2 mx-3">Previous Meetings</div>
+        <div className="max-w-sm rounded w-full overflow-hidden shadow-2xl w-1/3 mb-4 mr-10 pb-10">
+        <div class="px-4 py-2">
+            <div class="font-bold text-2xl mb-3 border-b mt-3 border-gray-400 w-full">Previous Meetings</div>
           <p class="text-gray-700 text-base">
-            <div>{prevMeetings.map(meeting =>{
+            <div className="mx-5">{prevMeetings.map(meeting =>{
                 return(
                   <Link to={`/meeting/${meeting._id}`}>
                   <li>{meeting.name}</li>
@@ -157,10 +159,10 @@ function User() {
 
       {/* TASKS */}
       <div className="box5">
-        <div className="max-w-sm w-full lg:max-w-full lg:flex mb-10 pr-5 shadow-xl">
+        <div className="max-w-sm w-full lg:max-w-full lg:flex mb-10 pr-5 shadow-2xl">
           <div className="border-r border-b border-l border-gray-400  lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-1 justify-between leading-normal">
                 <div className="mb-8">
-                  <div className="text-gray-900 font-bold text-3xl mb-2 border-b border-gray-400 w-full">Tasks</div>
+                  <div className="text-gray-900 font-bold text-2xl mb-2 border-b border-gray-400 w-full">Tasks</div>
                   <p className="text-gray-700 text-base">
                     <li>Create the front-end buttons for website</li>
                     <li>Make API calls for all routes</li>

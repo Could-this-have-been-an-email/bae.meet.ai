@@ -4,6 +4,7 @@ import API from "../../utils/API";
 import MeetingNotes from "../../components/MeetingNotes";
 import AttendeeCard from "../../components/attendeeCard";
 import Agenda from "../../components/agenda";
+import MeetingHeader from "../../components/meetingheader";
 
 function Meeting() {
   const [meeting, setMeeting] = useState([]);
@@ -49,14 +50,19 @@ function Meeting() {
   function handleTask(id) {
     meeting.agenda.forEach(singleAgenda => {
       if (id === singleAgenda._id) {
-        singleAgenda.tasks.task = singleAgenda.input.value;
+        var inputVal = document.getElementById("task").value;
+        // console.log(inputVal)
+        singleAgenda.tasks.task.push(inputVal);
+        API.updateMeeting(meeting._id, meeting);
       }
-      console.log(meeting);
+      // console.log(meeting);
+      console.log(singleAgenda.tasks.task);
     });
   }
 
   return (
     <>
+      <MeetingHeader />
       <div class="grid grid-rows-7 grid-flow-col gap-1">
         <div class="row-start-2 col-start-2 col-span-4 text-2xl">
           Meeting Title:
