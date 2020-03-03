@@ -19,24 +19,28 @@ router
 router
   .post('/login', passport.authenticate('local'),
     function (req, res) {
+      console.log('req', req.user._id);
+      // console.log('res', res);
       // If this function gets called, authentication was successful.
       // `req.user` contains the authenticated user.
+      // location.assign(`/api/user/${req.user._id}`)
       console.log("REEEEEEE")
-      res.sendStatus(200);
+      res.redirect(`/user/:${req.user._id}`);
     });
 
 
+// router.post('/login',
+//   passport.authenticate('local', {
+//     successRedirect: `/`,
+//     failureRedirect: '/login',
+//     failureFlash: true
+//   })
+// );
 
-// router.get('/login', function (req, res, next) {
-//   passport.authenticate('local', function (err, user, info) {
-//     if (err) { return next(err); }
-//     if (!user) { return console.log('not user') }
-//     req.logIn(user, function (err) {
-//       if (err) { return next(err); }
-//       return res.redirect('/users/' + user.username);
-//     });
-//   })(req, res, next);
-// });
+
+
+
+
 
 
 // router
