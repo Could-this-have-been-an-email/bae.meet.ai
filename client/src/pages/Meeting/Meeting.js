@@ -9,7 +9,7 @@ import MeetingHeader from "../../components/meetingheader";
 function Meeting() {
   const [meeting, setMeeting] = useState([]);
 
-  var url = "http://localhost:3000/meeting/5e5dc2855840f235589b5d22";
+  var url = "http://localhost:3000/meeting/5e587edede38f8205a93f6d9";
   var id = url.substring(url.lastIndexOf("/") + 1);
   // console.log(id);
 
@@ -25,6 +25,15 @@ function Meeting() {
         setMeeting(res.data);
       })
       .catch(err => console.log(err));
+  }
+
+  function hideVotes() {
+    var x = document.getElementById("js-votes");
+    if (x.style.display === "none") {
+      x.style.display = "block";
+    } else {
+      x.style.display = "none";
+    }
   }
 
   function handleUpVote(id) {
@@ -54,19 +63,35 @@ function Meeting() {
       if (id === singleAgenda._id) {
         var inputVal = document.getElementById("task").value;
         // console.log(inputVal)
-        singleAgenda.tasks.task.push(inputVal);
+        singleAgenda.tasks.task = inputVal;
         API.updateMeeting(meeting._id, meeting);
+        // API.updateMeeting(meeting._id, {'$set': {
+        //   'singleAgenda.tasks.task': {inputVal}}}); 
       }
       // console.log(meeting);
       console.log(singleAgenda.tasks.task);
+      console.log(meeting._id);
+      console.log(meeting);
     });
+  }
+
+  function handleNotes(id) {
+        var inputNote = document.getElementById("notes").value;
+        // console.log(inputVal)
+        API.updateMeeting(meeting._id, {'$set': {
+          'meeting.note': {inputNote}}}
+        )
+      // console.log(meeting);
+      console.log(inputNote);
+      console.log(meeting._id);
+      console.log(meeting);
   }
 
   return (
     <>
       <div class="grid grid-rows-7 grid-flow-col gap-1">
         <div class="row-start-1">
-          <MeetingHeader />
+          {/* <MeetingHeader /> */}
         </div>
         <div class="row-start-2 col-start-2 col-span-4 text-2xl">
           Meeting Title:
@@ -113,11 +138,20 @@ function Meeting() {
         <div class="row-start-3 row-span-4 col-start-8 col-span-2 flex justify-center ">
           <AttendeeCard></AttendeeCard>
         </div>
-        <div class="row-start-7 col-start-4">
+        <div class="row-start-3 col-start-4">
           <input
             type="submit"
             value="Start Meeting"
             className="mx-auto bg-green-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded"
+            onClick={() => hideVotes()}
+          ></input>
+        </div>
+        <div class="row-start-7 col-start-4">
+          <input
+            type="submit"
+            value="End Meeting"
+            className="mx-auto bg-green-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded"
+            onClick={() => handleNotes()}
           ></input>
         </div>
       </div>
