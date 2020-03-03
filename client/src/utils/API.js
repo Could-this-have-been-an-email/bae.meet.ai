@@ -55,10 +55,10 @@ export default {
     return server.post("/api/user/login", user)
   },
 
-  
+
 
   getUserAuthen: function (user) {
-    return server.get('/api/users/login', user)
+    // return server.get('/api/users/login', user)
 
   }
 };
