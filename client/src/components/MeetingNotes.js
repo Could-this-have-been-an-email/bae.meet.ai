@@ -12,6 +12,7 @@ class MeetingNotes extends React.Component {
         <Editor
           apiKey="avgvd7u4i68a9mq24lbgo9zusv5tq1vyu4pw9xrjkt9depds"
           initialValue="<p>This is the initial content of the editor</p>"
+          id="notes"
           init={{
             height: 500,
             menubar: false,
