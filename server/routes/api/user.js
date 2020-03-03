@@ -25,12 +25,8 @@ router.post('/login',
     // If this function gets called, authentication was successful.
     // `req.user` contains the authenticated user.
     console.log(req.user)
-    res.redirect(url.format({
-      pathname: `/user/${req.user._id}`,
-      query: {
-        "id": req.user._id
-      }
-    }))
+    res.redirect(`/user/${req.user._id}`,
+    )
 
   });
 
