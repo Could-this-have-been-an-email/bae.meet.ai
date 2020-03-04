@@ -12,14 +12,6 @@ function Meeting() {
   const [meeting, setMeeting] = useState([]);
   const [attendees, setAttendees] = useState([]);
 
-  var url = "http://localhost:3000/meeting/5e5f0dfad0fc5239c4c86bab";
-  var id = url.substring(url.lastIndexOf("/") + 1);
-
-
-
-
-
-
   const [content, setContent] = useState("");
 
 

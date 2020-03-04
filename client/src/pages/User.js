@@ -10,10 +10,27 @@ function User() {
   const [meetings, setMeetings] = useState([]);
   const [prevMeetings, setPrevMeetings] = useState([]);
   const [upcomingMeetings, setUpcomingMeetings] = useState([]);
+  const [user, setUser] = useState([]);
+
+  var full_url = document.URL; // Get current url
+  var url_array = full_url.split('/') // Split the string into an array with / as separator
+  var id = url_array[url_array.length - 1];  // Get the last part of the array (-1)
+
+  console.log(id);
 
   useEffect(() => {
     loadMeetings();
+    loadUser();
   }, []);
+
+  function loadUser() {
+    API.getUser(id)
+    .then(res => {
+      setUser(res.data);
+      console.log(res.data);
+    })
+    .catch(err => console.log(err));
+  }
 
   function loadMeetings() {
     API.getAllMeetings()
@@ -56,9 +73,9 @@ function User() {
         {/* Name, title, and e-mail */}
         <div className="col">
           <div className="my-10">
-            <h1 className="text-4xl text-gray-700">Katie McBride</h1>
-            <h2 className="text-2xl text-gray-700">Jr. Web Developer</h2>
-            <h2 className="text-2xl text-gray-700">mcbride.katie@gmail.com</h2>
+            <h1 className="text-4xl text-gray-700">{user.firstName} {user.lastName}</h1>
+            <h2 className="text-2xl text-gray-700">{user.position}</h2>
+            <h2 className="text-2xl text-gray-700">{user.email}</h2>
           </div>
         </div>
 
