@@ -9,7 +9,6 @@
     "@tinymce/tinymce-react": "^3.5.0",
     "aos": "^2.3.4",
     "axios": "^0.19.2",
-    "foundation-sites": "^6.6.1",
     "mongoose": "^5.9.2",
     "passport": "^0.4.1",
     "react": "^16.12.0",
