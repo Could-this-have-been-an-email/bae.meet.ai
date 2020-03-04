@@ -1,8 +1,5 @@
-
-import React from "react";
-import "../styles/SignUp.css";
-import API from "../utils/API";
-
+import React from 'react';
+import API from '../utils/API';
 
 function SignUp() {
   const handleSubmit = e => {
