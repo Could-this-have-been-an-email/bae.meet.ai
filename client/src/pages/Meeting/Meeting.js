@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import "./style.css";
 import API from "../../utils/API";
@@ -6,6 +7,7 @@ import AttendeeCard from "../../components/attendeeCard";
 import Agenda from "../../components/agenda";
 import MeetingHeader from "../../components/meetingheader";
 import { PromiseProvider } from "mongoose";
+import { Editor } from "@tinymce/tinymce-react";
 
 function Meeting() {
   const [meeting, setMeeting] = useState([]);
@@ -13,6 +15,22 @@ function Meeting() {
 
   var url = "http://localhost:3000/meeting/5e5f0dfad0fc5239c4c86bab";
   var id = url.substring(url.lastIndexOf("/") + 1);
+
+
+
+
+
+  
+  const [content, setContent] = useState("");
+ 
+
+
+
+  var full_url = document.URL; // Get current url
+  var url_array = full_url.split('/') // Split the string into an array with / as separator
+  var id = url_array[url_array.length-1];  // Get the last part of the array (-1)
+ 
+
   // console.log(id);
 
   useEffect(() => {
@@ -49,6 +67,15 @@ function Meeting() {
   //   };
   // }
 
+  function hideVotes() {
+    var x = document.getElementById('js-votes');
+    if (x.style.display === 'none') {
+      x.style.display = 'block';
+    } else {
+      x.style.display = 'none';
+    }
+  }
+
   function handleUpVote(id) {
     meeting.agenda.forEach(singleAgenda => {
       if (id === singleAgenda._id) {
@@ -74,23 +101,74 @@ function Meeting() {
   function handleTask(id) {
     meeting.agenda.forEach(singleAgenda => {
       if (id === singleAgenda._id) {
-        var inputVal = document.getElementById("task").value;
+        var inputVal = document.getElementById('task').value;
         // console.log(inputVal)
-        singleAgenda.tasks.task.push(inputVal);
+
+        singleAgenda.tasks.push({ 
+        "completed": false,
+        "userId": "333",
+        "meetingId": meeting._id,
+        "agendaId": id,
+        "task": inputVal 
+      });
+       
+
+        singleAgenda.tasks.task = inputVal;
         API.updateMeeting(meeting._id, meeting);
+        // API.updateMeeting(meeting._id, {'$set': {
+        //   'singleAgenda.tasks.task': {inputVal}}});
+
       }
+      API.updateMeeting(meeting._id, meeting)
       // console.log(meeting);
-      console.log(singleAgenda.tasks.task);
+      // console.log(singleAgenda.tasks.task);
+      // console.log(meeting._id);
+      // console.log(meeting);
     });
   }
 
+  function handleNotes(id) {
+
+        console.log(id);
+        var inputNote = content;
+        console.log(inputNote)
+        meeting.meetingNote.push({
+          "userName": "katieb",
+          "note": inputNote
+        });
+        // console.log(inputVal)
+        API.updateMeeting(meeting._id, meeting)
+    
+      // console.log(meeting);
+      console.log(inputNote);
+      console.log(meeting._id);
+      console.log(meeting);
+      // console.log(content);
+
+    var inputNote = document.getElementById('notes').value;
+    // console.log(inputVal)
+    API.updateMeeting(meeting._id, {
+      $set: {
+        'meeting.note': { inputNote }
+      }
+    });
+    // console.log(meeting);
+    console.log(inputNote);
+    console.log(meeting._id);
+    console.log(meeting);
+
+  }
+
+  function handleEditorChange (content, editor) {
+    console.log("Content was updated:", content);
+    setContent(content);
+  };
+
   return (
     <>
-      <div className="grid grid-rows-7 grid-flow-col gap-1">
-        <div className="row-start-1">
-          <MeetingHeader />
-        </div>
-        <div className="row-start-2 col-start-2 col-span-4 text-2xl">
+      <div class="grid grid-rows-7 grid-flow-col gap-1">
+        <div class="row-start-1"></div>
+        <div class="row-start-2 col-start-2 col-span-4 text-2xl">
           Meeting Title:
           {meeting.name}
         </div>
@@ -105,8 +183,10 @@ function Meeting() {
           Pre-Mtg Info / BAE items:{meeting.backgroundForMeeting}
         </div>
 
+
         <div className="row-start-5 col-start-2 col-span-2 text-lg">
           {" "}
+
           Agenda:
           {meeting.agenda ? (
             <div>
@@ -131,8 +211,29 @@ function Meeting() {
 
         <div className="row-start-6 row-end-6 col-start-2 col-span-4 text-lg">
           Notes:
-          <MeetingNotes></MeetingNotes>
+          <Editor
+          apiKey="avgvd7u4i68a9mq24lbgo9zusv5tq1vyu4pw9xrjkt9depds"
+          initialValue="<p>This is the initial content of the editor</p>"
+          id="notes"
+          
+          init={{
+            height: 500,
+            menubar: false,
+            plugins: [
+              "advlist autolink lists link image charmap print preview anchor",
+              "searchreplace visualblocks code fullscreen",
+              "insertdatetime media table paste code help wordcount"
+            ],
+            toolbar:
+              "undo redo | formatselect | bold italic backcolor | \
+            alignleft aligncenter alignright alignjustify | \
+            bullist numlist outdent indent | removeformat | help"
+          }}
+          onEditorChange={handleEditorChange}
+
+        />
         </div>
+
         <div className="row-start-3 row-span-4 col-start-8 col-span-2 flex justify-center ">
           {meeting.users ? (
             <>
@@ -146,10 +247,20 @@ function Meeting() {
           )}
         </div>
         <div className="row-start-7 col-start-4">
+
           <input
             type="submit"
             value="Start Meeting"
             className="mx-auto bg-green-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded"
+            onClick={() => hideVotes()}
+          ></input>
+        </div>
+        <div class="row-start-7 col-start-4">
+          <input
+            type="submit"
+            value="End Meeting"
+            className="mx-auto bg-green-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded"
+            onClick={() => handleNotes()}
           ></input>
         </div>
       </div>

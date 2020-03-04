@@ -12,10 +12,16 @@ function Login() {
       email: e.target.email.value,
       password: e.target.password.value
     }
-    console.log('checkuser', checkedUser)
 
     API.checkUser(checkedUser)
-    console.log(checkedUser)
+      .then(function (result) {
+        console.log('results', result)
+        window.location.replace(`/user/${result.data._id}`);
+      })
+    // .catch(function (err) {
+    //   console.log(err);
+    // });
+
 
 
     // console.log('email is ' + email);
@@ -23,7 +29,7 @@ function Login() {
   };
 
   API.getUserAuthen((req, res) => {
-    console.log(res)
+    console.log('touchdown res res', res)
   })
 
   // console.log('email', email);

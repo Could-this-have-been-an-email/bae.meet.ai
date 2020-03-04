@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Button from '../../components/button';
 import './style.css';
-import '../../styles/meeting.css';
-import '../Landing/app';
-import MeetingHeader from '../../components/meetingheader';
+import Navbar from '../../components/Navbar';
 import AOS from 'aos';
 
 function Landing() {
@@ -12,12 +10,8 @@ function Landing() {
   });
   return (
     <div>
-      <script type="text/javascript" src="./app.js"></script>
-      <div className="backgroung-wrap">
-        <img id="video-bg-elem" src="../bg_img.jpg" alt="background"></img>
-      </div>
-      <div className="content">
-        <MeetingHeader></MeetingHeader>
+      <Navbar />
+      <div>
         <section className="py-10 px-4 vh">
           <div className="md:flex md:px-12 md:mx-16">
             <div className="md:w-2/5 md:py-20">
