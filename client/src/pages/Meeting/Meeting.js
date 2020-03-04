@@ -13,7 +13,7 @@ function Meeting() {
   // console.log(id);
 
   useEffect(() => {
-    loadMeeting();
+    // loadMeeting();
   }, []);
 
   function loadMeeting() {

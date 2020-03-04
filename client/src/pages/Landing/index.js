@@ -11,6 +11,7 @@ function Landing() {
   return (
     <div>
       <Navbar />
+
       <div>
         <section className="py-10 px-4 vh">
           <div className="md:flex md:px-12 md:mx-16">
@@ -23,8 +24,9 @@ function Landing() {
                 ever leave a meeting and think, "That could have been an email?"
                 Same. So we are changing things!
               </p>
-              <Button link="/signup">Sign Up</Button>
-              <Button link="/login">Login</Button>
+              <a href="/signup" className="button is-link">
+                Sign Up
+              </a>
             </div>
             <div className="flex justify-center md:w-3/5">
               <img

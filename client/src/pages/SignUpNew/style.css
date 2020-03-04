@@ -1,0 +1,10 @@
+.center {
+  margin: 0 auto;
+}
+
+.bg-custom {
+  background-image: url(./cool-background.svg);
+  background-position: right top;
+  background-repeat: no-repeat;
+  background-size: auto 100%;
+}
