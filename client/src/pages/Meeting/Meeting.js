@@ -1,16 +1,15 @@
-import React, { useState, useEffect } from "react";
-import "./style.css";
-import API from "../../utils/API";
-import MeetingNotes from "../../components/MeetingNotes";
-import AttendeeCard from "../../components/attendeeCard";
-import Agenda from "../../components/agenda";
-import MeetingHeader from "../../components/meetingheader";
+import React, { useState, useEffect } from 'react';
+import './style.css';
+import API from '../../utils/API';
+import MeetingNotes from '../../components/MeetingNotes';
+import AttendeeCard from '../../components/attendeeCard';
+import Agenda from '../../components/agenda';
 
 function Meeting() {
   const [meeting, setMeeting] = useState([]);
 
-  var url = "http://localhost:3000/meeting/5e587edede38f8205a93f6d9";
-  var id = url.substring(url.lastIndexOf("/") + 1);
+  var url = 'http://localhost:3000/meeting/5e587edede38f8205a93f6d9';
+  var id = url.substring(url.lastIndexOf('/') + 1);
   // console.log(id);
 
   useEffect(() => {
@@ -28,11 +27,11 @@ function Meeting() {
   }
 
   function hideVotes() {
-    var x = document.getElementById("js-votes");
-    if (x.style.display === "none") {
-      x.style.display = "block";
+    var x = document.getElementById('js-votes');
+    if (x.style.display === 'none') {
+      x.style.display = 'block';
     } else {
-      x.style.display = "none";
+      x.style.display = 'none';
     }
   }
 
@@ -61,12 +60,12 @@ function Meeting() {
   function handleTask(id) {
     meeting.agenda.forEach(singleAgenda => {
       if (id === singleAgenda._id) {
-        var inputVal = document.getElementById("task").value;
+        var inputVal = document.getElementById('task').value;
         // console.log(inputVal)
         singleAgenda.tasks.task = inputVal;
         API.updateMeeting(meeting._id, meeting);
         // API.updateMeeting(meeting._id, {'$set': {
-        //   'singleAgenda.tasks.task': {inputVal}}}); 
+        //   'singleAgenda.tasks.task': {inputVal}}});
       }
       // console.log(meeting);
       console.log(singleAgenda.tasks.task);
@@ -76,23 +75,23 @@ function Meeting() {
   }
 
   function handleNotes(id) {
-        var inputNote = document.getElementById("notes").value;
-        // console.log(inputVal)
-        API.updateMeeting(meeting._id, {'$set': {
-          'meeting.note': {inputNote}}}
-        )
-      // console.log(meeting);
-      console.log(inputNote);
-      console.log(meeting._id);
-      console.log(meeting);
+    var inputNote = document.getElementById('notes').value;
+    // console.log(inputVal)
+    API.updateMeeting(meeting._id, {
+      $set: {
+        'meeting.note': { inputNote }
+      }
+    });
+    // console.log(meeting);
+    console.log(inputNote);
+    console.log(meeting._id);
+    console.log(meeting);
   }
 
   return (
     <>
       <div class="grid grid-rows-7 grid-flow-col gap-1">
-        <div class="row-start-1">
-          {/* <MeetingHeader /> */}
-        </div>
+        <div class="row-start-1"></div>
         <div class="row-start-2 col-start-2 col-span-4 text-2xl">
           Meeting Title:
           {meeting.name}
@@ -109,7 +108,7 @@ function Meeting() {
         </div>
 
         <div class="row-start-5 col-start-2 col-span-1 text-lg">
-          {" "}
+          {' '}
           Agenda:
           {meeting.agenda ? (
             <div>
