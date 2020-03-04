@@ -11,10 +11,7 @@ import { Editor } from "@tinymce/tinymce-react";
 function Meeting() {
   const [meeting, setMeeting] = useState([]);
   const [attendees, setAttendees] = useState([]);
-
   const [content, setContent] = useState("");
-
-
 
 
   var full_url = document.URL; // Get current url
@@ -25,21 +22,21 @@ function Meeting() {
   // console.log(id);
 
   useEffect(() => {
-    // loadMeeting();
+    loadMeeting();
   }, []);
 
   console.log(attendees);
 
   function loadMeeting() {
-    // console.log(id);
     API.getMeeting(id)
       .then(res => {
-        // console.log(res.data);
         setAllUsers(res.data.users);
         setMeeting(res.data);
+        console.log(res.data);
       })
       .catch(err => console.log(err));
   }
+
   let allMeetingUsers = [];
   function setAllUsers(users) {
     console.log("thisisallusers", users);
@@ -52,6 +49,7 @@ function Meeting() {
     });
   }
   console.log("userarra----------y", attendees);
+
   // function loadAttendees() {
   //   res => {
   //     setAttendees(meeting.users);
@@ -73,7 +71,6 @@ function Meeting() {
         singleAgenda.vote += 1;
       }
       loadMeeting();
-      // console.log(meeting._id);
       API.updateMeeting(meeting._id, meeting);
     });
   }
@@ -84,7 +81,6 @@ function Meeting() {
         singleAgenda.vote -= 1;
       }
       loadMeeting();
-      // console.log(meeting);
       API.updateMeeting(meeting._id, meeting);
     });
   }
@@ -93,7 +89,6 @@ function Meeting() {
     meeting.agenda.forEach(singleAgenda => {
       if (id === singleAgenda._id) {
         var inputVal = document.getElementById('task').value;
-        // console.log(inputVal)
 
         singleAgenda.tasks.push({
           "completed": false,
@@ -102,19 +97,10 @@ function Meeting() {
           "agendaId": id,
           "task": inputVal
         });
-
-
         singleAgenda.tasks.task = inputVal;
-        API.updateMeeting(meeting._id, meeting);
-        // API.updateMeeting(meeting._id, {'$set': {
-        //   'singleAgenda.tasks.task': {inputVal}}});
-
       }
       API.updateMeeting(meeting._id, meeting)
-      // console.log(meeting);
-      // console.log(singleAgenda.tasks.task);
-      // console.log(meeting._id);
-      // console.log(meeting);
+
     });
   }
 
@@ -127,17 +113,11 @@ function Meeting() {
       "userName": "katieb",
       "note": inputNote
     });
-    // console.log(inputVal)
+   
     API.updateMeeting(meeting._id, meeting)
-
-    // console.log(meeting);
-    console.log(inputNote);
-    console.log(meeting._id);
-    console.log(meeting);
-    // console.log(content);
-
+  
     var inputNote = document.getElementById('notes').value;
-    // console.log(inputVal)
+  
     API.updateMeeting(meeting._id, {
       $set: {
         'meeting.note': { inputNote }

@@ -32,6 +32,7 @@ function User() {
     .catch(err => console.log(err));
   }
 
+
   function loadMeetings() {
     API.getAllMeetings()
       .then(res => {
