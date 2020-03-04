@@ -5,11 +5,22 @@ import API from "../../utils/API";
 import MeetingNotes from "../../components/MeetingNotes";
 import AttendeeCard from "../../components/attendeeCard";
 import Agenda from "../../components/agenda";
+import MeetingHeader from "../../components/meetingheader";
+import { PromiseProvider } from "mongoose";
 import { Editor } from "@tinymce/tinymce-react";
-
 
 function Meeting() {
   const [meeting, setMeeting] = useState([]);
+  const [attendees, setAttendees] = useState([]);
+
+  var url = "http://localhost:3000/meeting/5e5f0dfad0fc5239c4c86bab";
+  var id = url.substring(url.lastIndexOf("/") + 1);
+
+
+
+
+
+  
   const [content, setContent] = useState("");
  
 
@@ -26,15 +37,35 @@ function Meeting() {
     loadMeeting();
   }, []);
 
+  console.log(attendees);
+
   function loadMeeting() {
     // console.log(id);
     API.getMeeting(id)
       .then(res => {
         // console.log(res.data);
+        setAllUsers(res.data.users);
         setMeeting(res.data);
       })
       .catch(err => console.log(err));
   }
+  let allMeetingUsers = [];
+  function setAllUsers(users) {
+    console.log("thisisallusers", users);
+    users.forEach(user => {
+      API.getUser(user).then(res => {
+        let newUser = res.data;
+        allMeetingUsers.push(newUser);
+        setAttendees(allMeetingUsers);
+      });
+    });
+  }
+  console.log("userarra----------y", attendees);
+  // function loadAttendees() {
+  //   res => {
+  //     setAttendees(meeting.users);
+  //   };
+  // }
 
   function hideVotes() {
     var x = document.getElementById('js-votes');
@@ -141,19 +172,21 @@ function Meeting() {
           Meeting Title:
           {meeting.name}
         </div>
-        <div class="row-start-2 col-start-8 col-span-2 text-2xl underline text-center">
+        <div className="row-start-2 col-start-8 col-span-2 text-2xl underline text-center">
           Attendees
         </div>
-        <div class="row-start-3 col-start-2 col-span-4 text-lg">
+        <div className="row-start-3 col-start-2 col-span-4 text-lg">
           Outcome:{meeting.outcome}
         </div>
 
-        <div class="row-start-4 col-start-2 col-span-4 text-lg">
+        <div className="row-start-4 col-start-2 col-span-4 text-lg">
           Pre-Mtg Info / BAE items:{meeting.backgroundForMeeting}
         </div>
 
-        <div class="row-start-5 col-start-2 col-span-1 text-lg">
-          {' '}
+
+        <div className="row-start-5 col-start-2 col-span-2 text-lg">
+          {" "}
+
           Agenda:
           {meeting.agenda ? (
             <div>
@@ -166,6 +199,7 @@ function Meeting() {
                     handleDownVote={handleDownVote}
                     handleUpVote={handleUpVote}
                     handleTask={handleTask}
+                    tasks={agenda.tasks}
                   ></Agenda>
                 );
               })}
@@ -175,7 +209,7 @@ function Meeting() {
           )}
         </div>
 
-        <div class="row-start-6 row-end-6 col-start-2 col-span-4 text-lg">
+        <div className="row-start-6 row-end-6 col-start-2 col-span-4 text-lg">
           Notes:
           <Editor
           apiKey="avgvd7u4i68a9mq24lbgo9zusv5tq1vyu4pw9xrjkt9depds"
@@ -200,11 +234,20 @@ function Meeting() {
         />
         </div>
 
-
-        <div class="row-start-3 row-span-4 col-start-8 col-span-2 flex justify-center ">
-          <AttendeeCard></AttendeeCard>
+        <div className="row-start-3 row-span-4 col-start-8 col-span-2 flex justify-center ">
+          {meeting.users ? (
+            <>
+              {attendees.map(attendee => {
+                console.log(attendee);
+                return <AttendeeCard attendee={attendee}></AttendeeCard>;
+              })}
+            </>
+          ) : (
+            <></>
+          )}
         </div>
-        <div class="row-start-3 col-start-4">
+        <div className="row-start-7 col-start-4">
+
           <input
             type="submit"
             value="Start Meeting"

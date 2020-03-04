@@ -1,17 +1,16 @@
-import React, { useReducer, useRef, useState, useEffect } from 'react';
-import InfoMeeting from '../components/InfoMeeting';
-import '../styles/newMeeting.css'
-import API from '../utils/API';
+import React, { useReducer, useRef, useState, useEffect } from "react";
+import InfoMeeting from "../components/InfoMeeting";
+import "../styles/newMeeting.css";
+import API from "../utils/API";
 
 function Meeting() {
   let usersSelected = [];
   const [users, setUsers] = useState([]);
 
-
   const agendaInput = useRef();
 
   const [agendavalue, dispatch] = useReducer((state, action) => {
-    if (action.type === 'addAgenda') {
+    if (action.type === "addAgenda") {
       return [
         ...state,
         {
@@ -28,39 +27,37 @@ function Meeting() {
     async function fetchData() {
       await API.getAllUsers()
         .then(res => setUsers(res.data))
-        .catch(err => console.log(err))
-
-
+        .catch(err => console.log(err));
     }
     fetchData();
-  }, [])
-  console.log(users)
+  }, []);
+  console.log(users);
   // Update the document title using the browser API
 
   const submitUsers = event => {
-    const filterUser = users.filter(user =>
-      user._id === event.target.name
-    )
+    // const filterUser = users.filter(user =>
+    //   user._id === event.target.name
+    // )
 
-    usersSelected.push(filterUser);
+    usersSelected.push(event.target.name);
 
     console.log(usersSelected);
   };
 
   const submitAgenda = () => {
     dispatch({
-      type: 'addAgenda',
+      type: "addAgenda",
       value: agendaInput.current.value.trim()
     });
-    agendaInput.current.value = '';
+    agendaInput.current.value = "";
   };
 
   const submitMeetingInfoAPI = meeting => {
-    console.log('2', meeting)
+    console.log("2", meeting);
     API.createMeeting(meeting)
-      .then(console.log('completedapi'))
-      .catch(err => console.log(err))
-  }
+      .then(console.log("completedapi"))
+      .catch(err => console.log(err));
+  };
   const submitFormUser = event => {
     event.preventDefault();
 
@@ -74,7 +71,7 @@ function Meeting() {
       users: usersSelected
     };
 
-    console.log('1', oneMeeting)
+    console.log("1", oneMeeting);
     submitMeetingInfoAPI(oneMeeting);
   };
 
