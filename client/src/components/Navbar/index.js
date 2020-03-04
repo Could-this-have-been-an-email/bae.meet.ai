@@ -4,15 +4,15 @@ import './style.css';
 
 function Navbar() {
   return (
-    <nav className="navbar is-fixed-top is-spaced has-shadow">
-      <div class="navbar-brand">
-        <a class="navbar-item" href="/">
-          Logo
+    <nav className="navbar is-fixed-top has-shadow">
+      <div className="navbar-brand">
+        <a className="navbar-item" href="/">
+          logo
         </a>
 
         <a
           role="button"
-          class="navbar-burger burger"
+          className="navbar-burger burger"
           aria-label="menu"
           aria-expanded="false"
         >
@@ -21,10 +21,12 @@ function Navbar() {
           <span aria-hidden="true"></span>
         </a>
       </div>
-      <div class="navbar-end">
-        <div class="navbar-item">
-          {/* <Button>Log in</Button> */}
-          <Button link="/login">Login</Button>
+
+      <div className="navbar-end">
+        <div className="navbar-item">
+          <a href="/login" className="button is-link">
+            Log in
+          </a>
         </div>
       </div>
     </nav>

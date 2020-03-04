@@ -1,13 +1,13 @@
-import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Landing from "./pages/Landing/index";
-import NoMatch from "./pages/NoMatch";
-import User from "./pages/User";
-import Meeting from "./pages/Meeting/Meeting";
-import SignUp from "./pages/SignUp";
-import NewMeeting from "./pages/NewMeeting";
-import Login from "./pages/Login";
-import "./styles/app.css";
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Landing from './pages/Landing/index';
+import NoMatch from './pages/NoMatch';
+import User from './pages/User';
+import Meeting from './pages/Meeting/Meeting';
+import SignUp from './pages/SignUpNew';
+import NewMeeting from './pages/NewMeeting';
+import Login from './pages/Login';
+import './styles/app.css';
 
 function App() {
   return (
