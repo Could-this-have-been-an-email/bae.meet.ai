@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const backgroundSchema = new Schema({
@@ -25,14 +25,14 @@ const meetingNoteSchema = new Schema({
   note: { type: String }
 });
 
-const atendeesSchema = new Schema({
-  0: { 
-    firstName: {type: String},
-    lastName: {type: String},
-    jobTitle: {type: String},
-    // userId: {type: String}
-     }
-});
+// const atendeesSchema = new Schema({
+//   {
+//   firstName: { type: String },
+//   lastName: { type: String },
+//   jobTitle: { type: String }
+//   // userId: {type: String}
+//   }
+// });
 
 const meetingSchema = new Schema({
   name: {
@@ -41,18 +41,18 @@ const meetingSchema = new Schema({
     required: false
   },
   date: { type: Date, required: false },
-  time: {type: String}, 
+  time: { type: String },
   owner: { type: String, trim: true, required: false },
   location: { type: String, trim: true, required: false },
-  duration: {type: Number},
+  duration: { type: Number },
   purpose: { type: String, trim: true, required: false },
   owner: { type: String, trim: true, required: false },
   backgroundForMeeting: [backgroundSchema],
   agenda: [agendaSchema],
   meetingNote: [meetingNoteSchema],
-  users: [atendeesSchema]
+  users: []
 });
 
-const Meeting = mongoose.model('Meeting', meetingSchema);
+const Meeting = mongoose.model("Meeting", meetingSchema);
 
 module.exports = Meeting;
