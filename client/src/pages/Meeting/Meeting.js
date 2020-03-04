@@ -2,11 +2,10 @@
 import React, { useState, useEffect } from "react";
 import "./style.css";
 import API from "../../utils/API";
-import MeetingNotes from "../../components/MeetingNotes";
+// import MeetingNotes from "../../components/MeetingNotes";
 import AttendeeCard from "../../components/attendeeCard";
 import Agenda from "../../components/agenda";
-import MeetingHeader from "../../components/meetingheader";
-import { PromiseProvider } from "mongoose";
+// import { PromiseProvider } from "mongoose";
 import { Editor } from "@tinymce/tinymce-react";
 
 function Meeting() {
@@ -20,16 +19,16 @@ function Meeting() {
 
 
 
-  
+
   const [content, setContent] = useState("");
- 
+
 
 
 
   var full_url = document.URL; // Get current url
   var url_array = full_url.split('/') // Split the string into an array with / as separator
-  var id = url_array[url_array.length-1];  // Get the last part of the array (-1)
- 
+  var id = url_array[url_array.length - 1];  // Get the last part of the array (-1)
+
 
   // console.log(id);
 
@@ -104,14 +103,14 @@ function Meeting() {
         var inputVal = document.getElementById('task').value;
         // console.log(inputVal)
 
-        singleAgenda.tasks.push({ 
-        "completed": false,
-        "userId": "333",
-        "meetingId": meeting._id,
-        "agendaId": id,
-        "task": inputVal 
-      });
-       
+        singleAgenda.tasks.push({
+          "completed": false,
+          "userId": "333",
+          "meetingId": meeting._id,
+          "agendaId": id,
+          "task": inputVal
+        });
+
 
         singleAgenda.tasks.task = inputVal;
         API.updateMeeting(meeting._id, meeting);
@@ -129,21 +128,21 @@ function Meeting() {
 
   function handleNotes(id) {
 
-        console.log(id);
-        var inputNote = content;
-        console.log(inputNote)
-        meeting.meetingNote.push({
-          "userName": "katieb",
-          "note": inputNote
-        });
-        // console.log(inputVal)
-        API.updateMeeting(meeting._id, meeting)
-    
-      // console.log(meeting);
-      console.log(inputNote);
-      console.log(meeting._id);
-      console.log(meeting);
-      // console.log(content);
+    console.log(id);
+    var inputNote = content;
+    console.log(inputNote)
+    meeting.meetingNote.push({
+      "userName": "katieb",
+      "note": inputNote
+    });
+    // console.log(inputVal)
+    API.updateMeeting(meeting._id, meeting)
+
+    // console.log(meeting);
+    console.log(inputNote);
+    console.log(meeting._id);
+    console.log(meeting);
+    // console.log(content);
 
     var inputNote = document.getElementById('notes').value;
     // console.log(inputVal)
@@ -159,7 +158,7 @@ function Meeting() {
 
   }
 
-  function handleEditorChange (content, editor) {
+  function handleEditorChange(content, editor) {
     console.log("Content was updated:", content);
     setContent(content);
   };
@@ -205,33 +204,33 @@ function Meeting() {
               })}
             </div>
           ) : (
-            <></>
-          )}
+              <></>
+            )}
         </div>
 
         <div className="row-start-6 row-end-6 col-start-2 col-span-4 text-lg">
           Notes:
           <Editor
-          apiKey="avgvd7u4i68a9mq24lbgo9zusv5tq1vyu4pw9xrjkt9depds"
-          initialValue="<p>This is the initial content of the editor</p>"
-          id="notes"
-          
-          init={{
-            height: 500,
-            menubar: false,
-            plugins: [
-              "advlist autolink lists link image charmap print preview anchor",
-              "searchreplace visualblocks code fullscreen",
-              "insertdatetime media table paste code help wordcount"
-            ],
-            toolbar:
-              "undo redo | formatselect | bold italic backcolor | \
+            apiKey="avgvd7u4i68a9mq24lbgo9zusv5tq1vyu4pw9xrjkt9depds"
+            initialValue="<p>This is the initial content of the editor</p>"
+            id="notes"
+
+            init={{
+              height: 500,
+              menubar: false,
+              plugins: [
+                "advlist autolink lists link image charmap print preview anchor",
+                "searchreplace visualblocks code fullscreen",
+                "insertdatetime media table paste code help wordcount"
+              ],
+              toolbar:
+                "undo redo | formatselect | bold italic backcolor | \
             alignleft aligncenter alignright alignjustify | \
             bullist numlist outdent indent | removeformat | help"
-          }}
-          onEditorChange={handleEditorChange}
+            }}
+            onEditorChange={handleEditorChange}
 
-        />
+          />
         </div>
 
         <div className="row-start-3 row-span-4 col-start-8 col-span-2 flex justify-center ">
@@ -243,8 +242,8 @@ function Meeting() {
               })}
             </>
           ) : (
-            <></>
-          )}
+              <></>
+            )}
         </div>
         <div className="row-start-7 col-start-4">
 
@@ -270,10 +269,10 @@ function Meeting() {
 
 export default Meeting;
 
-/* 
-  
+/*
+
   EXAMPLE API CALL AND DATA; NOT ACTUAL CODE
-  
+
   */
 
 //  const [meeting, setMeeting] = useState({});
