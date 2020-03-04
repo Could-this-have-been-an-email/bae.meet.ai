@@ -55,6 +55,14 @@ function Meeting() {
     agendaInput.current.value = '';
   };
 
+  // const submitBae = () => {
+  //   dispatch({
+  //     type: 'addBae',
+  //     value: baeInput.current.value.trim()
+  //   });
+  //   baeInput.current.value = '';
+  // };
+
   const submitMeetingInfoAPI = meeting => {
     console.log('2', meeting)
     API.createMeeting(meeting)
@@ -69,8 +77,10 @@ function Meeting() {
       time: event.target.meetingTime.value,
       location: event.target.meetingLocation.value.trim(),
       duration: event.target.meetingDuration.value,
+      outcome: event.target.outcome.value,
       name: event.target.meetingName.value.trim(),
       agenda: agendavalue,
+      // bae: baevalue,
       users: usersSelected
     };
 

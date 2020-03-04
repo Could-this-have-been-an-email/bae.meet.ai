@@ -5,9 +5,12 @@ import MeetingNotes from "../../components/MeetingNotes";
 import AttendeeCard from "../../components/attendeeCard";
 import Agenda from "../../components/agenda";
 import MeetingHeader from "../../components/meetingheader";
+import { Editor } from "@tinymce/tinymce-react";
 
 function Meeting() {
   const [meeting, setMeeting] = useState([]);
+  const [content, setContent] = useState("");
+ 
 
 
   var full_url = document.URL; // Get current url
@@ -66,31 +69,45 @@ function Meeting() {
       if (id === singleAgenda._id) {
         var inputVal = document.getElementById("task").value;
         // console.log(inputVal)
-        singleAgenda.tasks.task = inputVal;
+        singleAgenda.tasks.push({ 
+        "completed": false,
+        "userId": "333",
+        "meetingId": meeting._id,
+        "agendaId": id,
+        "task": inputVal 
+      });
        
-          // {new: true, overwrite: true}};
-        // API.updateMeeting(meeting._id, {'$set': {
-        //   'singleAgenda.tasks.task': {inputVal}}}); 
       }
       API.updateMeeting(meeting._id, meeting)
       // console.log(meeting);
-      console.log(singleAgenda.tasks.task);
-      console.log(meeting._id);
-      console.log(meeting);
+      // console.log(singleAgenda.tasks.task);
+      // console.log(meeting._id);
+      // console.log(meeting);
     });
   }
 
   function handleNotes(id) {
-        var inputNote = document.getElementById("notes").value;
+        console.log(id);
+        var inputNote = content;
+        console.log(inputNote)
+        meeting.meetingNote.push({
+          "userName": "katieb",
+          "note": inputNote
+        });
         // console.log(inputVal)
-        API.updateMeeting(meeting._id, {'$set': {
-          'meeting.note': {inputNote}}}
-        )
+        API.updateMeeting(meeting._id, meeting)
+    
       // console.log(meeting);
       console.log(inputNote);
       console.log(meeting._id);
       console.log(meeting);
+      // console.log(content);
   }
+
+  function handleEditorChange (content, editor) {
+    console.log("Content was updated:", content);
+    setContent(content);
+  };
 
   return (
     <>
@@ -138,8 +155,30 @@ function Meeting() {
 
         <div class="row-start-6 row-end-6 col-start-2 col-span-4 text-lg">
           Notes:
-          <MeetingNotes></MeetingNotes>
+          <Editor
+          apiKey="avgvd7u4i68a9mq24lbgo9zusv5tq1vyu4pw9xrjkt9depds"
+          initialValue="<p>This is the initial content of the editor</p>"
+          id="notes"
+          
+          init={{
+            height: 500,
+            menubar: false,
+            plugins: [
+              "advlist autolink lists link image charmap print preview anchor",
+              "searchreplace visualblocks code fullscreen",
+              "insertdatetime media table paste code help wordcount"
+            ],
+            toolbar:
+              "undo redo | formatselect | bold italic backcolor | \
+            alignleft aligncenter alignright alignjustify | \
+            bullist numlist outdent indent | removeformat | help"
+          }}
+          onEditorChange={handleEditorChange}
+
+        />
         </div>
+
+
         <div class="row-start-3 row-span-4 col-start-8 col-span-2 flex justify-center ">
           <AttendeeCard></AttendeeCard>
         </div>

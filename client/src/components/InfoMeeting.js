@@ -76,6 +76,44 @@ function InfoMeeting(props) {
           </div>
         </div>
         <div className="mb-4">
+              <label className="block text-gray-700 text-sm font-bold mb-2">
+                Outcome:
+              </label>
+              <input
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="outcome"
+                type="text"
+                placeholder="Outcome"
+                name="outcome"
+              ></input>
+            </div>
+        {/* <div className="mb-4">
+          <label className="block text-gray-700 text-sm font-bold mb-2">
+            BAE Items:
+          </label>
+          <ul>
+            {props.baevalueMap.map((item, index) => (
+              <li>{item.newbae}</li>
+            ))}
+          </ul>
+          <input
+            ref={props.baeInput}
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="bae"
+            type="text"
+            placeholder="BAE Items"
+            name="baeItems"
+          ></input>
+          <button
+            onClick={props.submitBae}
+            type="button"
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 mt-3 px-4 rounded-full"
+          >
+            Add more BAE items
+          </button>
+        </div> */}
+
+        <div className="mb-4">
           <label className="block text-gray-700 text-sm font-bold mb-2">
             Agenda:
           </label>
