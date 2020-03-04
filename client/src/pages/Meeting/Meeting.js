@@ -5,7 +5,6 @@ import API from "../../utils/API";
 import MeetingNotes from "../../components/MeetingNotes";
 import AttendeeCard from "../../components/attendeeCard";
 import Agenda from "../../components/agenda";
-import MeetingHeader from "../../components/meetingheader";
 import { Editor } from "@tinymce/tinymce-react";
 
 
@@ -20,9 +19,6 @@ function Meeting() {
   var url_array = full_url.split('/') // Split the string into an array with / as separator
   var id = url_array[url_array.length-1];  // Get the last part of the array (-1)
  
-
-  var url = 'http://localhost:3000/meeting/5e587edede38f8205a93f6d9';
-  var id = url.substring(url.lastIndexOf('/') + 1);
 
   // console.log(id);
 
