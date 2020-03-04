@@ -9,9 +9,9 @@ import { PromiseProvider } from "mongoose";
 
 function Meeting() {
   const [meeting, setMeeting] = useState([]);
-  const [attendees, setAttendees] = useState([]);
+  // const [attendees, setAttendees] = useState([]);
 
-  var url = "http://localhost:3000/meeting/5e5f0a44b16f952ed07be103";
+  var url = "http://localhost:3000/meeting/5e5f0dfad0fc5239c4c86bab";
   var id = url.substring(url.lastIndexOf("/") + 1);
   // console.log(id);
 
@@ -27,15 +27,23 @@ function Meeting() {
       .then(res => {
         // console.log(res.data);
         setMeeting(res.data);
+        setAllUsers(res.data.users);
       })
       .catch(err => console.log(err));
   }
 
-  function loadAttendees() {
-    res => {
-      setAttendees(meeting.users);
-    };
+  function setAllUsers(users) {
+    console.log("thisisallusers", users);
+    users.map(user => {
+      API.getUser(user).then(res => console.log(res.data));
+    });
   }
+
+  // function loadAttendees() {
+  //   res => {
+  //     setAttendees(meeting.users);
+  //   };
+  // }
 
   function handleUpVote(id) {
     meeting.agenda.forEach(singleAgenda => {
