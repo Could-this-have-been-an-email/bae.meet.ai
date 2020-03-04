@@ -9,7 +9,7 @@ import { PromiseProvider } from "mongoose";
 
 function Meeting() {
   const [meeting, setMeeting] = useState([]);
-  // const [attendees, setAttendees] = useState([]);
+  const [attendees, setAttendees] = useState([]);
 
   var url = "http://localhost:3000/meeting/5e5f0dfad0fc5239c4c86bab";
   var id = url.substring(url.lastIndexOf("/") + 1);
@@ -19,26 +19,30 @@ function Meeting() {
     loadMeeting();
   }, []);
 
-  console.log(meeting);
+  console.log(attendees);
 
   function loadMeeting() {
     // console.log(id);
     API.getMeeting(id)
       .then(res => {
         // console.log(res.data);
-        setMeeting(res.data);
         setAllUsers(res.data.users);
+        setMeeting(res.data);
       })
       .catch(err => console.log(err));
   }
-
+  let allMeetingUsers = [];
   function setAllUsers(users) {
     console.log("thisisallusers", users);
-    users.map(user => {
-      API.getUser(user).then(res => console.log(res.data));
+    users.forEach(user => {
+      API.getUser(user).then(res => {
+        let newUser = res.data;
+        allMeetingUsers.push(newUser);
+        setAttendees(allMeetingUsers);
+      });
     });
   }
-
+  console.log("userarra----------y", attendees);
   // function loadAttendees() {
   //   res => {
   //     setAttendees(meeting.users);
@@ -132,14 +136,9 @@ function Meeting() {
         <div className="row-start-3 row-span-4 col-start-8 col-span-2 flex justify-center ">
           {meeting.users ? (
             <>
-              {meeting.users.map(attendee => {
+              {attendees.map(attendee => {
                 console.log(attendee);
-                return (
-                  <AttendeeCard
-                    key={attendee._id}
-                    attendee={attendee}
-                  ></AttendeeCard>
-                );
+                return <AttendeeCard attendee={attendee}></AttendeeCard>;
               })}
             </>
           ) : (
