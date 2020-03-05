@@ -7,6 +7,7 @@ import Meeting from './pages/Meeting/Meeting';
 import SignUp from './pages/SignUp';
 import NewMeeting from './pages/NewMeeting';
 import Login from './pages/Login';
+import Survey from './pages/Survey';
 import './styles/app.css';
 
 function App() {
@@ -31,6 +32,9 @@ function App() {
           </Route>
           <Route path="/meeting">
             <Meeting />
+          </Route>
+          <Route path="/survey">
+            <Survey  />
           </Route>
           <Route>
             <NoMatch />
