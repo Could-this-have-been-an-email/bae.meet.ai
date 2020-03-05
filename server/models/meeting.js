@@ -2,7 +2,6 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const backgroundSchema = new Schema({
-  background: { type: String, required: false },
   note: { type: String, required: false }
 });
 
@@ -45,7 +44,7 @@ const meetingSchema = new Schema({
   owner: { type: String, trim: true, required: false },
   location: { type: String, trim: true, required: false },
   duration: { type: Number },
-  purpose: { type: String, trim: true, required: false },
+  outcome: { type: String, trim: true, required: false },
   owner: { type: String, trim: true, required: false },
   backgroundForMeeting: [backgroundSchema],
   agenda: [agendaSchema],

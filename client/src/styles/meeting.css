@@ -1,0 +1,44 @@
+  
+
+.mobile-nav-bar {
+    background: linear-gradient(to top, #ffffff00 0%, rgba(131, 121, 244, 0) 100%); 
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+  }
+  
+  .mobile-nav-bar a {
+    color: #fefefe;
+  }
+.img{
+    height: 10px;
+}
+  
+  
+
+.mobile-app-icon-bar {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-justify-content: space-around;
+        -ms-flex-pack: distribute;
+            justify-content: space-around;
+    background: #fefefe;
+  }
+  
+  .mobile-app-icon-bar button {
+    padding: 1.25rem;
+    cursor: pointer;
+  }
+  
+  .mobile-app-icon-bar button svg,
+  .mobile-app-icon-bar button i,
+  .mobile-app-icon-bar button img {
+    font-size: 2rem;
+    max-height: 2rem;
+    max-width: 2rem;
+  }
+
