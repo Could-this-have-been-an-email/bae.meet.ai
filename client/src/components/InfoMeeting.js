@@ -86,8 +86,7 @@ function InfoMeeting(props) {
                 placeholder="Outcome"
                 name="outcome"
               ></input>
-            </div>
-       s
+        </div>
 
         <div className="mb-4">
           <label className="block text-gray-700 text-sm font-bold mb-2">

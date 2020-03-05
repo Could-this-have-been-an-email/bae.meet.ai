@@ -66,6 +66,7 @@ function Meeting() {
       time: event.target.meetingTime.value,
       location: event.target.meetingLocation.value.trim(),
       duration: event.target.meetingDuration.value,
+      outcome: event.target.outcome.value,
       name: event.target.meetingName.value.trim(),
       agenda: agendavalue,
       users: usersSelected
