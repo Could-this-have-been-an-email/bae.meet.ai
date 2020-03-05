@@ -1,0 +1,20 @@
+.b {
+  border: 1px red solid;
+}
+
+.mainheight {
+  min-height: 95vh;
+}
+
+.vh {
+  min-height: 80vh;
+}
+
+.h-center {
+  margin: 0 auto;
+}
+
+.v-offset {
+  position: relative;
+  bottom: 30px;
+}
