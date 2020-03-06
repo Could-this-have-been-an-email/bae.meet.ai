@@ -25,7 +25,7 @@ function Navbar() {
       <div className="navbar-end">
         <div className="navbar-item">
           <a href="/login" className="button is-link">
-            Log in
+            Login
           </a>
         </div>
       </div>
