@@ -78,7 +78,8 @@ function Meeting() {
   const submitMeetingInfoAPI = meeting => {
     console.log("2", meeting);
     API.createMeeting(meeting)
-      .then(console.log("completedapi"))
+      // .then(console.log("completedapi"))
+      .then(window.history.back())
       .catch(err => console.log(err));
   };
   const submitFormUser = event => {
