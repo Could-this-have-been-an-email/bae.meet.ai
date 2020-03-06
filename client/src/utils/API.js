@@ -40,7 +40,6 @@ export default {
   },
   // Saves a meetings to the database
   createMeeting: function (meetingData) {
-    console.log("front api call", meetingData);
     return server.post("/api/meeting", meetingData);
   },
 
@@ -50,15 +49,10 @@ export default {
 
 
   checkUser: function (user) {
-    console.log("checkuser frontendapi user", user)
 
     return server.post("/api/user/login", user)
   },
 
 
 
-  getUserAuthen: function (user) {
-    // return server.get('/api/users/login', user)
-
-  }
 };
