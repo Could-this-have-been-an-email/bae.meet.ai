@@ -7,6 +7,7 @@ import AttendeeCard from "../../components/attendeeCard";
 import Agenda from "../../components/agenda";
 // import { PromiseProvider } from "mongoose";
 import { Editor } from "@tinymce/tinymce-react";
+import { promises } from 'fs';
 
 function Meeting() {
   const [meeting, setMeeting] = useState([]);
@@ -25,30 +26,43 @@ function Meeting() {
     loadMeeting();
   }, []);
 
-  console.log(attendees);
 
   function loadMeeting() {
     API.getMeeting(id)
       .then(res => {
-        setAllUsers(res.data.users);
         setMeeting(res.data);
-        console.log(res.data);
+        console.log(res.data.users)
+        let users = res.data.users
+        return Promise.all(users.map(user => {
+          return API.getUser(user)
+            .then(res => {
+              return res.data;
+            })
+        }))
+
+      }).then(result => {
+        console.log('46', result);
+        setAttendees(result)
       })
       .catch(err => console.log(err));
   }
-
   let allMeetingUsers = [];
+
   function setAllUsers(users) {
-    console.log("thisisallusers", users);
-    users.forEach(user => {
-      API.getUser(user).then(res => {
-        let newUser = res.data;
-        allMeetingUsers.push(newUser);
-        setAttendees(allMeetingUsers);
-      });
+    users.map(user => {
+      API.getUser(user)
+        .then(res => {
+          let newUser = res.data;
+          console.log("1a", allMeetingUsers);
+          allMeetingUsers.push(newUser)
+          setAttendees(allMeetingUsers);
+
+        })
+
     });
-  }
-  console.log("userarra----------y", attendees);
+  };
+  console.log("2a", attendees);
+
 
   // function loadAttendees() {
   //   res => {
@@ -106,27 +120,27 @@ function Meeting() {
 
   function handleNotes(id) {
 
-    console.log(id);
+    // console.log(id);
     var inputNote = content;
-    console.log(inputNote)
+    // console.log(inputNote)
     meeting.meetingNote.push({
       "userName": "katieb",
       "note": inputNote
     });
-   
+
     API.updateMeeting(meeting._id, meeting)
-  
+
     var inputNote = document.getElementById('notes').value;
-  
+
     API.updateMeeting(meeting._id, {
       $set: {
         'meeting.note': { inputNote }
       }
     });
     // console.log(meeting);
-    console.log(inputNote);
-    console.log(meeting._id);
-    console.log(meeting);
+    // console.log(inputNote);
+    // console.log(meeting._id);
+    // console.log(meeting);
 
   }
 
@@ -147,15 +161,15 @@ function Meeting() {
 }
 
   function handleEditorChange(content, editor) {
-    console.log("Content was updated:", content);
+    // console.log("Content was updated:", content);
     setContent(content);
   };
 
   return (
     <>
-      <div class="grid grid-rows-7 grid-flow-col gap-1">
-        <div class="row-start-1"></div>
-        <div class="row-start-2 col-start-2 col-span-4 text-2xl">
+      <div className="grid grid-rows-7 grid-flow-col gap-1">
+        <div className="row-start-1"></div>
+        <div className="row-start-2 col-start-2 col-span-4 text-2xl">
           Meeting Title:
           {meeting.name}
         </div>
@@ -178,7 +192,7 @@ function Meeting() {
           {meeting.agenda ? (
             <div>
               {meeting.agenda.map(agenda => {
-                console.log(agenda);
+                // console.log(agenda);
                 return (
                   <Agenda
                     agenda={agenda}
@@ -242,11 +256,13 @@ function Meeting() {
             onClick={() => hideVotes()}
           ></input>
         </div>
+
         <textarea id="myText" className="hideSurvey">
             Thank you for your attendance. I would appreciate your feedback in order to improve our meetings. 
             Please follow the link to the fill out a 5 question survey.  https://www.surveymonkey.com/r/Y2YW3FQ 
         </textarea>
-        <div class="row-start-7 col-start-4">
+
+        <div className="row-start-7 col-start-4">
           <input
             type="submit"
             value="End Meeting"

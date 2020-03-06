@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import Button from '../../components/button';
+import React, { useEffect } from 'react';
 import './style.css';
 import Navbar from '../../components/Navbar';
 import AOS from 'aos';
@@ -11,7 +10,6 @@ function Landing() {
   return (
     <div className="bg-gray-100">
       <Navbar />
-
       <div>
         <section className="py-10 px-4 mainheight bg-yellow-300	">
           <div className="md:flex md:px-12 md:mx-16">
