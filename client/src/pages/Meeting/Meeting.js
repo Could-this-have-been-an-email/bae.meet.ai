@@ -130,6 +130,22 @@ function Meeting() {
 
   }
 
+  // function alertSurvey() {
+  //   alert(`Send feedback to your manager: https://www.surveymonkey.com/r/Y2YW3FQ`)
+  // };
+
+  function sendMail() {
+    // let emails = []
+    // emails.join(";")
+    var link = "mailto: mcbride.katieb@gmail.com; taylor.m.mcbride@gmail.com"
+             + "?cc=myCCaddress@example.com"
+             + "&subject=" + escape("Post Meeting Survey")
+             + "&body=" + escape(document.getElementById('myText').value)
+    ;
+
+    window.location.href = link;
+}
+
   function handleEditorChange(content, editor) {
     console.log("Content was updated:", content);
     setContent(content);
@@ -226,12 +242,17 @@ function Meeting() {
             onClick={() => hideVotes()}
           ></input>
         </div>
+        <textarea id="myText" className="hideSurvey">
+            Thank you for your attendance. I would appreciate your feedback in order to improve our meetings. 
+            Please follow the link to the fill out a 5 question survey.  https://www.surveymonkey.com/r/Y2YW3FQ 
+        </textarea>
         <div class="row-start-7 col-start-4">
           <input
             type="submit"
             value="End Meeting"
             className="mx-auto bg-green-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded"
             onClick={() => handleNotes()}
+            onClick={() => sendMail()}
           ></input>
         </div>
       </div>
