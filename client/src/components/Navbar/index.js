@@ -1,5 +1,6 @@
 import React from 'react';
-import Button from '../button';
+
+import Logo from '../../assets/img/baelogo2.png';
 import './style.css';
 
 function Navbar() {
@@ -7,7 +8,7 @@ function Navbar() {
     <nav className="navbar is-fixed-top has-shadow">
       <div className="navbar-brand">
         <a className="navbar-item" href="/">
-          logo
+          <img src={Logo} height="28" width="28" />
         </a>
 
         <a
