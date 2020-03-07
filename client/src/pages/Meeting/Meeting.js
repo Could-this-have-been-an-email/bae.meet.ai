@@ -190,9 +190,9 @@ function Meeting() {
 
 
 
-        <div className="row-start-5 col-start-2 col-span-2 text-lg">
-          {" "}
-
+        <div className="flex row-start-5 col-start-2 col-span-2 text-lg bg-blue-100 p-2 mb-1">
+  
+          <div className="bg-red-500">
           Agenda:
           {meeting.agenda ? (
             <div>
@@ -220,10 +220,11 @@ function Meeting() {
 
               </>
             )}
-          <div className="col-span-2">
+          </div>
+          <div className="col-span-2 bg-purple-200 p-2">
             BAE:
             {meeting.agenda ? (
-              <div>
+              <div className="bg-gray-100">
                 {meeting.agenda.map(agenda => {
                   // console.log(agenda);
                   if (agenda.vote < 0) {
