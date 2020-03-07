@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 // import AddTasks from "../components/addTasks";
 import "../pages/Meeting/Meeting"
 import { PromiseProvider } from "mongoose";
+import Dropdown from "./Dropdown";
 
 
 function Agenda(props) {
@@ -67,16 +68,8 @@ function Agenda(props) {
                           </button>
                         </div>
                         <div class="dropdown-menu" id="dropdown-menu4" role="menu">
-                          <div class="dropdown-content">
-                            
-                            {props.attendees && props.attendees.map(attendee => {
-                                console.log({attendee})
-                                return(
-                                  <a className="dropdown-item">{attendee.firstName}</a>
-                                )
-                              })}
-                            
-                          </div>
+                          <Dropdown attendees={props.attendees} />
+                          
                         </div>
                       </div>
                                           

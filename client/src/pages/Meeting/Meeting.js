@@ -226,6 +226,7 @@ function Meeting() {
                         handleUpVote={handleUpVote}
                         handleTask={handleTask}
                         tasks={agenda.tasks}
+                        attendees= {attendees}
                       ></Agenda>
                     );
                   }
