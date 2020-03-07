@@ -4,8 +4,8 @@ import React from 'react';
 const BAE = (props) => {
   console.log('pros bae', props)
   return (
-    <div>
-      <div className="grid grid-cols-3 gap-1 p-1 border shadow container flex items-center">
+    <div className="my-5">
+      <div className="grid grid-cols-3 gap-1 p-1 border shadow container flex bg-purple-200 items-center">
         <div className="col-start-2 flex items-center">
           {props.agenda.newagenda}
         </div>
