@@ -4,6 +4,7 @@ import API from "../../utils/API";
 // import MeetingNotes from "../../components/MeetingNotes";
 import AttendeeCard from "../../components/attendeeCard";
 import Agenda from "../../components/agenda";
+import BAE from '../../components/BAE';
 // import { PromiseProvider } from "mongoose";
 import { Editor } from "@tinymce/tinymce-react";
 
@@ -12,7 +13,7 @@ function Meeting() {
   const [meeting, setMeeting] = useState([]);
   const [attendees, setAttendees] = useState([]);
   const [content, setContent] = useState("");
-  
+
 
   const [agendaFiltered, setagendaFiltered] = useState([]);
 
@@ -96,7 +97,7 @@ function Meeting() {
     meeting.agenda.forEach(singleAgenda => {
       if (id === singleAgenda._id) {
         var inputVal = document.getElementById("task").value;
-        
+
         singleAgenda.tasks.push({
           completed: false,
           userId: "123",
@@ -105,16 +106,16 @@ function Meeting() {
           task: inputVal
         });
         singleAgenda.tasks.task = inputVal;
-        
+
       }
       API.updateMeeting(meeting._id, meeting);
       loadMeeting();
     });
   }
 
- 
 
-  function taskUser(id){
+
+  function taskUser(id) {
 
   }
 
@@ -191,14 +192,14 @@ function Meeting() {
                   // console.log(agenda);
                   if (agenda.vote < 0) {
                     return (
-                      <Agenda
+                      <BAE
                         agenda={agenda}
                         key={agenda._id}
                         handleDownVote={handleDownVote}
                         handleUpVote={handleUpVote}
-                        handleTask={handleTask}
-                      tasks={agenda.tasks}
-                      ></Agenda>
+                        //   handleTask={handleTask}
+                        tasks={agenda.tasks}
+                      ></BAE>
                     );
                   }
                 })}
