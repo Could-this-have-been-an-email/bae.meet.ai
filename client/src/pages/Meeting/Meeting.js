@@ -30,7 +30,7 @@ function Meeting() {
         console.log("42", res.data);
         setMeeting(res.data);
 
-        setagendaFiltered(res.data.agenda);
+        setagendaFiltered(res.data.agenda.sort(sortAgenda));
         let users = res.data.users;
         return Promise.all(
           users.map(user => {
@@ -197,17 +197,17 @@ function Meeting() {
                         handleDownVote={handleDownVote}
                         handleUpVote={handleUpVote}
                         handleTask={handleTask}
-                        tasks={agenda.tasks}
+                      tasks={agenda.tasks}
                       ></Agenda>
                     );
                   }
                 })}
               </div>
             ) : (
-              <>
-                <div>No meeting agenda has been set!</div>
-              </>
-            )}
+                <>
+                  <div>No meeting agenda has been set!</div>
+                </>
+              )}
           </div>
         </div>
 
@@ -216,7 +216,7 @@ function Meeting() {
             <div className="font-bold">Agenda:</div>
             {meeting.agenda ? (
               <div>
-                {meeting.agenda.sort(sortAgenda).map(agenda => {
+                {meeting.agenda.map(agenda => {
                   // console.log(agenda);
                   if (agenda.vote >= 0) {
                     return (
@@ -233,10 +233,10 @@ function Meeting() {
                 })}
               </div>
             ) : (
-              <>
-                <div>No meeting agenda has been set!</div>
-              </>
-            )}
+                <>
+                  <div>No meeting agenda has been set!</div>
+                </>
+              )}
           </div>
         </div>
 
@@ -277,8 +277,8 @@ function Meeting() {
               })}
             </>
           ) : (
-            <></>
-          )}
+              <></>
+            )}
         </div>
         <div className="row-start-7 col-start-4">
           <input
