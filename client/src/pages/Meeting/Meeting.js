@@ -184,14 +184,6 @@ function Meeting() {
 
         <div className="row-start-4 col-start-2 col-span-4 text-lg">
           <div className="font-bold">BAE items:</div>
-<<<<<<< HEAD
-          <div className= "border border-solid border-gray-300 py-3 bg-gray-200">
-            <li>This is where an agenda item will be transferred to the BAE</li>
-            <li>BAe</li>
-            <li>BAe</li>
-            <li>BAe</li>
-          {meeting.backgroundForMeeting} 
-=======
           <div className="border border-solid border-gray-300 py-3 bg-gray-200">
             {meeting.agenda ? (
               <div className="bg-gray-100">
@@ -216,7 +208,6 @@ function Meeting() {
                 <div>No meeting agenda has been set!</div>
               </>
             )}
->>>>>>> 1ab6c3eba9b88246dddef9bc29259b3df1b7a447
           </div>
         </div>
 

@@ -1,12 +1,8 @@
-<<<<<<< HEAD
 import React, { useState, useEffect } from "react";
-import AddTasks from "../components/addTasks";
+// import AddTasks from "../components/addTasks";
 import "../pages/Meeting/Meeting"
 import { PromiseProvider } from "mongoose";
 
-=======
-import React from "react";
->>>>>>> 1ab6c3eba9b88246dddef9bc29259b3df1b7a447
 
 function Agenda(props) {
   const [popup, setPopup] = useState("");
@@ -18,11 +14,7 @@ function Agenda(props) {
   };
 
   var tasks = props.tasks;
-<<<<<<< HEAD
-  
-=======
   console.log(props);
->>>>>>> 1ab6c3eba9b88246dddef9bc29259b3df1b7a447
 
   return (
     <div>
