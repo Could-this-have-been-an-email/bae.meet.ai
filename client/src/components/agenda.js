@@ -7,8 +7,8 @@ function Agenda(props) {
   return (
     <div>
       <div className="grid grid-cols-3 gap-1 p-1 border shadow container flex items-center">
-        <div className="col-span-1 flex items-center">
-          <input type="checkbox" />
+        <div className="col-span-1 flex items-center ">
+          <input className="w-5 h-5" type="checkbox" />
         </div>
         <div className="col-start-2 flex items-center">
           {" "}
@@ -42,7 +42,7 @@ function Agenda(props) {
                     key={task._id}
                   >
                     <div className="col-span-1 flex items-center">
-                      <input type="checkbox" />
+                      <input className="w-5 h-5" type="checkbox" />
                     </div>
                     <div className="grid "> {task.task}</div>
                     <div className="flex items-center justify-end">
