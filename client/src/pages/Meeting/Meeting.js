@@ -12,7 +12,7 @@ function Meeting() {
   const [meeting, setMeeting] = useState([]);
   const [attendees, setAttendees] = useState([]);
   const [content, setContent] = useState("");
-
+  const [agendaFiltered, setagendaFiltered] = useState([])
 
   var full_url = document.URL; // Get current url
   var url_array = full_url.split('/') // Split the string into an array with / as separator
@@ -28,21 +28,30 @@ function Meeting() {
   function loadMeeting() {
     API.getMeeting(id)
       .then(res => {
-        console.log('42', res.data.agenda[0].vote)
+        console.log('42', res.data)
         setMeeting(res.data);
+        setagendaFiltered(res.data.agenda)
         let users = res.data.users
         return Promise.all(users.map(user => {
           return API.getUser(user)
             .then(res => {
               return res.data;
             })
-
         }))
       }).then(result => {
 
         setAttendees(result)
       })
       .catch(err => console.log(err));
+  }
+
+  // console.log("agendaFiltered", agendaFiltered.sort(sortAgenda))
+
+  let sortAgenda = (a, b) => {
+    console.log('ab', a.vote, b)
+    let voteA = a.vote;
+    let voteB = b.vote;
+    return voteB - voteA
   }
   // let allMeetingUsers = [];
 
@@ -191,35 +200,35 @@ function Meeting() {
 
 
         <div className="flex row-start-5 justify-around col-start-2 col-span-2 text-lg bg-blue-100 p-2 mb-1">
-  
+
           <div className="bg-red-500">
-          Agenda:
+            Agenda:
           {meeting.agenda ? (
-            <div>
-              {meeting.agenda.map(agenda => {
-                // console.log(agenda);
-                if (agenda.vote >= 0) {
-                  return (
-                    <Agenda
-                      agenda={agenda}
-                      key={agenda._id}
-                      handleDownVote={handleDownVote}
-                      handleUpVote={handleUpVote}
-                      handleTask={handleTask}
-                      tasks={agenda.tasks}
-                    ></Agenda>
-                  );
-                }
-              })}
-            </div>
-          ) : (
-              <>
-                <div>
-                  No meeting agenda has been set!
+              <div>
+                {meeting.agenda.sort(sortAgenda).map(agenda => {
+                  // console.log(agenda);
+                  if (agenda.vote >= 0) {
+                    return (
+                      <Agenda
+                        agenda={agenda}
+                        key={agenda._id}
+                        handleDownVote={handleDownVote}
+                        handleUpVote={handleUpVote}
+                        handleTask={handleTask}
+                        tasks={agenda.tasks}
+                      ></Agenda>
+                    );
+                  }
+                })}
+              </div>
+            ) : (
+                <>
+                  <div>
+                    No meeting agenda has been set!
               </div>
 
-              </>
-            )}
+                </>
+              )}
           </div>
           <div className="col-span-2 bg-purple-200 p-2">
             BAE:
