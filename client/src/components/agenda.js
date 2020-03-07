@@ -14,11 +14,11 @@ function Agenda(props) {
 
         <div id="js-votes" className="col-start-3 flex items-center justify-end">
           <button
-            className="fa fa-arrow-up"
+            className="fa p-2 fa-arrow-up hover:bg-green-600"
             onClick={() => props.handleUpVote(props.agenda._id)}
           ></button>
           <button
-            className="fa fa-arrow-down"
+            className="fa p-2 fa-arrow-down hover:bg-red-600"
             onClick={() => props.handleDownVote(props.agenda._id)}
           ></button>
 
