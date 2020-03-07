@@ -6,7 +6,6 @@ import AttendeeCard from "../../components/attendeeCard";
 import Agenda from "../../components/agenda";
 // import { PromiseProvider } from "mongoose";
 import { Editor } from "@tinymce/tinymce-react";
-import { promises } from "fs";
 
 
 function Meeting() {
@@ -14,6 +13,8 @@ function Meeting() {
   const [attendees, setAttendees] = useState([]);
   const [content, setContent] = useState("");
   
+
+  const [agendaFiltered, setagendaFiltered] = useState([]);
 
   var full_url = document.URL; // Get current url
   var url_array = full_url.split("/"); // Split the string into an array with / as separator
@@ -26,7 +27,10 @@ function Meeting() {
   function loadMeeting() {
     API.getMeeting(id)
       .then(res => {
+        console.log("42", res.data);
         setMeeting(res.data);
+
+        setagendaFiltered(res.data.agenda);
         let users = res.data.users;
         return Promise.all(
           users.map(user => {
@@ -41,22 +45,22 @@ function Meeting() {
       })
       .catch(err => console.log(err));
   }
-  let allMeetingUsers = [];
 
-  function setAllUsers(users) {
-    users.map(user => {
-      API.getUser(user).then(res => {
-        let newUser = res.data;
-        allMeetingUsers.push(newUser);
-        setAttendees(allMeetingUsers);
-      });
-    });
-  }
+  let sortAgenda = (a, b) => {
+    console.log("ab", a.vote, b);
+    let voteA = a.vote;
+    let voteB = b.vote;
+    return voteB - voteA;
+  };
 
-  // function loadAttendees() {
-  //   res => {
-  //     setAttendees(meeting.users);
-  //   };
+  // function setAllUsers(users) {
+  //   users.map(user => {
+  //     API.getUser(user).then(res => {
+  //       let newUser = res.data;
+  //       allMeetingUsers.push(newUser);
+  //       setAttendees(allMeetingUsers);
+  //     });
+  //   });
   // }
 
   function hideVotes() {
@@ -104,6 +108,7 @@ function Meeting() {
         
       }
       API.updateMeeting(meeting._id, meeting);
+      loadMeeting();
     });
   }
 
@@ -135,6 +140,7 @@ function Meeting() {
   function sendMail() {
     // let emails = []
     // emails.join(";")
+
     var link =
       "mailto: mcbride.katieb@gmail.com; taylor.m.mcbride@gmail.com" +
       "?cc=myCCaddress@example.com" +
@@ -142,12 +148,20 @@ function Meeting() {
       escape("Post Meeting Survey") +
       "&body=" +
       escape(document.getElementById("myText").value);
+
     window.location.href = link;
   }
 
   function handleEditorChange(content, editor) {
     setContent(content);
   }
+
+  // console.log(meeting.agenda[0])
+
+  // meeting.agenda.forEach(testing => {
+  //   console.log(testing)
+  // })
+  console.log("attendee", attendees);
 
   return (
     <>
@@ -156,55 +170,84 @@ function Meeting() {
 
         <div className="row-start-2 col-start-2 col-span-4 text-2xl font-extrabold">
           {meeting.name}
-
         </div>
         <div className="row-start-2 col-start-8 col-span-2 text-2xl font-bold text-center">
           Attendees
         </div>
 
-       <div className="row-start-3 col-start-2 col-span-4 text-lg">
+        <div className="row-start-3 col-start-2 col-span-4 text-lg">
           <div className="font-bold">Outcome:</div>
-          <div className= "border border-solid border-gray-300 py-3 bg-gray-200">
-          {meeting.outcome} This is where the outcome will be at.
+          <div className="border border-solid border-gray-300 py-3 bg-gray-200">
+            {meeting.outcome} This is where the outcome will be at.
           </div>
         </div>
 
-         <div className="row-start-4 col-start-2 col-span-4 text-lg">
+        <div className="row-start-4 col-start-2 col-span-4 text-lg">
           <div className="font-bold">BAE items:</div>
+<<<<<<< HEAD
           <div className= "border border-solid border-gray-300 py-3 bg-gray-200">
             <li>This is where an agenda item will be transferred to the BAE</li>
             <li>BAe</li>
             <li>BAe</li>
             <li>BAe</li>
           {meeting.backgroundForMeeting} 
+=======
+          <div className="border border-solid border-gray-300 py-3 bg-gray-200">
+            {meeting.agenda ? (
+              <div className="bg-gray-100">
+                {meeting.agenda.map(agenda => {
+                  // console.log(agenda);
+                  if (agenda.vote < 0) {
+                    return (
+                      <Agenda
+                        agenda={agenda}
+                        key={agenda._id}
+                        handleDownVote={handleDownVote}
+                        handleUpVote={handleUpVote}
+                        handleTask={handleTask}
+                        tasks={agenda.tasks}
+                      ></Agenda>
+                    );
+                  }
+                })}
+              </div>
+            ) : (
+              <>
+                <div>No meeting agenda has been set!</div>
+              </>
+            )}
+>>>>>>> 1ab6c3eba9b88246dddef9bc29259b3df1b7a447
           </div>
         </div>
 
         <div className="row-start-5 col-start-2 col-span-4 text-lg">
-
-
-          {" "}
-          <div className="font-bold">Agenda:</div>
-          {meeting.agenda ? (
-            <div className="pl-5">
-              {meeting.agenda.map(agenda => {
-                return (
-                  <Agenda
-                    agenda={agenda}
-                    key={agenda._id}
-                    handleDownVote={handleDownVote}
-                    handleUpVote={handleUpVote}
-                    handleTask={handleTask}
-                    tasks={agenda.tasks}
-                  ></Agenda>
-                );
-              })}
-            </div>
-          ) : (
-            <></>
-          )}
+          <div className="bg-red-500">
+            <div className="font-bold">Agenda:</div>
+            {meeting.agenda ? (
+              <div>
+                {meeting.agenda.sort(sortAgenda).map(agenda => {
+                  // console.log(agenda);
+                  if (agenda.vote >= 0) {
+                    return (
+                      <Agenda
+                        agenda={agenda}
+                        key={agenda._id}
+                        handleDownVote={handleDownVote}
+                        handleUpVote={handleUpVote}
+                        handleTask={handleTask}
+                        tasks={agenda.tasks}
+                      ></Agenda>
+                    );
+                  }
+                })}
+              </div>
+            ) : (
+              <>
+                <div>No meeting agenda has been set!</div>
+              </>
+            )}
+          </div>
         </div>
-
 
         <div className="row-start-6 row-end-6 col-start-2 col-span-4 text-lg">
           <div className="font-bold">Notes:</div>
@@ -234,7 +277,12 @@ function Meeting() {
           {meeting.users ? (
             <>
               {attendees.map(attendee => {
-                return <AttendeeCard attendee={attendee}></AttendeeCard>;
+                return (
+                  <AttendeeCard
+                    key={attendee._id}
+                    attendee={attendee}
+                  ></AttendeeCard>
+                );
               })}
             </>
           ) : (

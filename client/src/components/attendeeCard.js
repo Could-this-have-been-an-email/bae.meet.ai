@@ -1,6 +1,7 @@
 import React from "react";
 
 function attendeeCard(props) {
+
   return (
     <div className="max-w-sm rounded overflow-hidden mb-1 shadow">
       <div className="grid grid-cols-6 gap-1 shadow border">
