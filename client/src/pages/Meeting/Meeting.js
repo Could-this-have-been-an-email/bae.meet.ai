@@ -7,10 +7,12 @@ import Agenda from "../../components/agenda";
 // import { PromiseProvider } from "mongoose";
 import { Editor } from "@tinymce/tinymce-react";
 
+
 function Meeting() {
   const [meeting, setMeeting] = useState([]);
   const [attendees, setAttendees] = useState([]);
   const [content, setContent] = useState("");
+  
 
   const [agendaFiltered, setagendaFiltered] = useState([]);
 
@@ -94,19 +96,26 @@ function Meeting() {
     meeting.agenda.forEach(singleAgenda => {
       if (id === singleAgenda._id) {
         var inputVal = document.getElementById("task").value;
-
+        
         singleAgenda.tasks.push({
           completed: false,
-          userId: "",
+          userId: "123",
           meetingId: meeting._id,
           agendaId: id,
           task: inputVal
         });
         singleAgenda.tasks.task = inputVal;
+        
       }
       API.updateMeeting(meeting._id, meeting);
       loadMeeting();
     });
+  }
+
+ 
+
+  function taskUser(id){
+
   }
 
   function handleNotes(id) {
@@ -127,9 +136,6 @@ function Meeting() {
     });
   }
 
-  // function alertSurvey() {
-  //   alert(`Send feedback to your manager: https://www.surveymonkey.com/r/Y2YW3FQ`)
-  // };
 
   function sendMail() {
     // let emails = []

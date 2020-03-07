@@ -1,5 +1,6 @@
 import React from 'react';
 import API from '../../utils/API';
+import { Link } from 'react-router-dom';
 import Logo from './Lookin good.png';
 import"./style.css"
 
@@ -71,6 +72,9 @@ function Login() {
               </button>
             </div>
           </form>
+          <div className="mt-2 text-center text-l text-gray-900">
+              Not a member? <Link to="/signup"> Sign Up</Link>
+          </div>
         </div>
         
       </div>
