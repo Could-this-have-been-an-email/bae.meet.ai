@@ -4,6 +4,7 @@ import API from "../../utils/API";
 // import MeetingNotes from "../../components/MeetingNotes";
 import AttendeeCard from "../../components/attendeeCard";
 import Agenda from "../../components/agenda";
+import BAE from '../../components/BAE';
 // import { PromiseProvider } from "mongoose";
 import { Editor } from "@tinymce/tinymce-react";
 
@@ -12,7 +13,7 @@ function Meeting() {
   const [meeting, setMeeting] = useState([]);
   const [attendees, setAttendees] = useState([]);
   const [content, setContent] = useState("");
-  
+
 
   const [agendaFiltered, setagendaFiltered] = useState([]);
 
@@ -30,7 +31,7 @@ function Meeting() {
         console.log("42", res.data);
         setMeeting(res.data);
 
-        setagendaFiltered(res.data.agenda);
+        setagendaFiltered(res.data.agenda.sort(sortAgenda));
         let users = res.data.users;
         return Promise.all(
           users.map(user => {
@@ -97,7 +98,7 @@ function Meeting() {
     meeting.agenda.forEach(singleAgenda => {
       if (id === singleAgenda._id) {
         var inputVal = document.getElementById("task").value;
-        
+
         singleAgenda.tasks.push({
           completed: false,
           userId: "123",
@@ -106,7 +107,7 @@ function Meeting() {
           task: inputVal
         });
         singleAgenda.tasks.task = inputVal;
-        
+
       }
       API.updateMeeting(meeting._id, meeting);
       loadMeeting();
@@ -114,6 +115,13 @@ function Meeting() {
   }
 
 
+<<<<<<< HEAD
+=======
+
+  function taskUser(id) {
+
+  }
+>>>>>>> fd550fd148d38103fd985e5497e6c2c0b04a28c5
 
   function handleNotes(id) {
     var inputNote = content;
@@ -188,24 +196,24 @@ function Meeting() {
                   // console.log(agenda);
                   if (agenda.vote < 0) {
                     return (
-                      <Agenda
+                      <BAE
                         agenda={agenda}
                         attendees={attendees}
                         key={agenda._id}
                         handleDownVote={handleDownVote}
                         handleUpVote={handleUpVote}
-                        handleTask={handleTask}
+                        //   handleTask={handleTask}
                         tasks={agenda.tasks}
-                      ></Agenda>
+                      ></BAE>
                     );
                   }
                 })}
               </div>
             ) : (
-              <>
-                <div>No meeting agenda has been set!</div>
-              </>
-            )}
+                <>
+                  <div>No meeting agenda has been set!</div>
+                </>
+              )}
           </div>
         </div>
 
@@ -214,7 +222,7 @@ function Meeting() {
             <div className="font-bold">Agenda:</div>
             {meeting.agenda ? (
               <div>
-                {meeting.agenda.sort(sortAgenda).map(agenda => {
+                {meeting.agenda.map(agenda => {
                   // console.log(agenda);
                   if (agenda.vote >= 0) {
                     return (
@@ -231,10 +239,10 @@ function Meeting() {
                 })}
               </div>
             ) : (
-              <>
-                <div>No meeting agenda has been set!</div>
-              </>
-            )}
+                <>
+                  <div>No meeting agenda has been set!</div>
+                </>
+              )}
           </div>
         </div>
 
@@ -275,8 +283,8 @@ function Meeting() {
               })}
             </>
           ) : (
-            <></>
-          )}
+              <></>
+            )}
         </div>
         <div className="row-start-7 col-start-4">
           <input
