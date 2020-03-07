@@ -1,15 +1,14 @@
 import React from "react";
-import AddTasks from "../components/addTasks";
 
 function Agenda(props) {
   var tasks = props.tasks;
+  console.log(props);
 
   return (
     <div>
       <div className="grid grid-cols-3 gap-1 p-1 border shadow container flex items-center">
-
-        <div className="col-span-1 flex items-center">
-          <input type="checkbox" />
+        <div className="col-span-1 flex items-center ">
+          <input className="w-5 h-5" type="checkbox" />
         </div>
         <div className="col-start-2 flex items-center">
           {" "}
@@ -43,7 +42,7 @@ function Agenda(props) {
                     key={task._id}
                   >
                     <div className="col-span-1 flex items-center">
-                      <input type="checkbox" />
+                      <input className="w-5 h-5" type="checkbox" />
                     </div>
                     <div className="grid "> {task.task}</div>
                     <div className="flex items-center justify-end">
@@ -58,7 +57,25 @@ function Agenda(props) {
           <></>
         )}
       </div>
-      <AddTasks handleTask={props.handleTask}></AddTasks>
+      <div className="pl-10 flex container flex items-center">
+        <div className="w-5/6 py-1 px-1">
+          <input
+            className=" appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="task"
+            type="text"
+            placeholder="Add a Task"
+          ></input>
+        </div>
+        <div className="flex w-1/6 justify-end">
+          <button
+            onClick={() => props.handleTask(props.agenda._id)}
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded focus:outline-none focus:shadow-outline"
+            type="button"
+          >
+            Add Task
+          </button>
+        </div>
+      </div>
     </div>
   );
 }
