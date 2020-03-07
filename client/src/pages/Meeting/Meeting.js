@@ -190,7 +190,7 @@ function Meeting() {
 
 
 
-        <div className="flex row-start-5 col-start-2 col-span-2 text-lg bg-blue-100 p-2 mb-1">
+        <div className="flex row-start-5 justify-around col-start-2 col-span-2 text-lg bg-blue-100 p-2 mb-1">
   
           <div className="bg-red-500">
           Agenda:
