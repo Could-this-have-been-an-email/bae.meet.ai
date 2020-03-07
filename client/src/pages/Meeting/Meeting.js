@@ -101,6 +101,7 @@ function Meeting() {
         singleAgenda.tasks.task = inputVal;
       }
       API.updateMeeting(meeting._id, meeting);
+      loadMeeting();
     });
   }
 
@@ -150,33 +151,33 @@ function Meeting() {
 
         <div className="row-start-2 col-start-2 col-span-4 text-2xl font-extrabold">
           {meeting.name}
-
         </div>
         <div className="row-start-2 col-start-8 col-span-2 text-2xl font-bold text-center">
           Attendees
         </div>
 
-       <div className="row-start-3 col-start-2 col-span-4 text-lg">
+        <div className="row-start-3 col-start-2 col-span-4 text-lg">
           <div className="font-bold">Outcome:</div>
-          <div className= "border border-solid border-gray-300 py-3 bg-gray-200">
-          {meeting.outcome} This is where the outcome will be at.
+          <div className="border border-solid border-gray-300 py-3 bg-gray-200">
+            {meeting.outcome} This is where the outcome will be at.
           </div>
         </div>
 
-         <div className="row-start-4 col-start-2 col-span-4 text-lg">
+        <div className="row-start-4 col-start-2 col-span-4 text-lg">
           <div className="font-bold">BAE items:</div>
-          <div className= "border border-solid border-gray-300 py-3 bg-gray-200">
-            <li>BAe bae bae bae bae bae bae bae bae bae bae bae bae bae bae bae bae</li>
+          <div className="border border-solid border-gray-300 py-3 bg-gray-200">
+            <li>
+              BAe bae bae bae bae bae bae bae bae bae bae bae bae bae bae bae
+              bae
+            </li>
             <li>BAe</li>
             <li>BAe</li>
             <li>BAe</li>
-          {meeting.backgroundForMeeting} 
+            {meeting.backgroundForMeeting}
           </div>
         </div>
 
         <div className="row-start-5 col-start-2 col-span-4 text-lg">
-
-
           {" "}
           <div className="font-bold">Agenda:</div>
           {meeting.agenda ? (
@@ -198,7 +199,6 @@ function Meeting() {
             <></>
           )}
         </div>
-
 
         <div className="row-start-6 row-end-6 col-start-2 col-span-4 text-lg">
           <div className="font-bold">Notes:</div>
