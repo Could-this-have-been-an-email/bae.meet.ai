@@ -115,13 +115,6 @@ function Meeting() {
   }
 
 
-<<<<<<< HEAD
-=======
-
-  function taskUser(id) {
-
-  }
->>>>>>> fd550fd148d38103fd985e5497e6c2c0b04a28c5
 
   function handleNotes(id) {
     var inputNote = content;

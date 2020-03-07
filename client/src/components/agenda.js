@@ -55,17 +55,31 @@ function Agenda(props) {
                       <input className="w-5 h-5" type="checkbox" />
                     </div>
                     <div className="grid "> {task.task}</div>
-                    <div className="flex items-center justify-end popup" onClick={popupUser}>
+                    <div className="flex items-center justify-end popup">
                       <i className="fa fa-ellipsis-v"></i>
-                      {popup ? <span className="popuptext">
-                        {props.attendees && props.attendees.map(attendee => {
-                          console.log({attendee})
-                          return(
-                            <div>`${attendee.firstName}`</div>
-                          )
-                        })}
-                      
-                      </span> : <></>}
+                      <div class="dropdown is-hoverable">
+                        <div class="dropdown-trigger">
+                          <button class="button" aria-haspopup="true" aria-controls="dropdown-menu4">
+                            <span>Hover me</span>
+                            <span class="icon is-small">
+                              <i class="fas fa-angle-down" aria-hidden="true"></i>
+                            </span>
+                          </button>
+                        </div>
+                        <div class="dropdown-menu" id="dropdown-menu4" role="menu">
+                          <div class="dropdown-content">
+                            
+                            {props.attendees && props.attendees.map(attendee => {
+                                console.log({attendee})
+                                return(
+                                  <a className="dropdown-item">{attendee.firstName}</a>
+                                )
+                              })}
+                            
+                          </div>
+                        </div>
+                      </div>
+                                          
                       
                     </div>
                   </div>
@@ -100,3 +114,4 @@ function Agenda(props) {
   );
 }
 export default Agenda;
+
