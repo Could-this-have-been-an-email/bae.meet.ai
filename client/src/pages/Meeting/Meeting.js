@@ -169,23 +169,32 @@ function Meeting() {
     <>
       <div className="grid grid-rows-7 grid-flow-col gap-1">
         <div className="row-start-1"></div>
-        <div className="row-start-2 col-start-2 col-span-4 text-2xl">
-          Meeting Title:
-          {meeting.name}
+        <div className="row-start-2 col-start-2 col-span-4 text-3xl">
+          Meeting: {meeting.name}
         </div>
         <div className="row-start-2 col-start-8 col-span-2 text-2xl underline text-center">
           Attendees
         </div>
-        <div className="row-start-3 col-start-2 col-span-4 text-lg">
-          Outcome:{meeting.outcome}
+        <div className="row-start-3 col-start-2 col-span-4 text-lg mt-5">
+          Outcome:
+          <div className= "border border-solid border-gray-300 py-3 bg-gray-200">
+          {meeting.outcome} This is where the outcome will be at.
+          </div>
         </div>
 
-        <div className="row-start-4 col-start-2 col-span-4 text-lg">
-          Pre-Mtg Info / BAE items:{meeting.backgroundForMeeting}
+        <div className="row-start-4 col-start-2 col-span-4 text-lg mt-5">
+          BAE items:
+          <div className= "border border-solid border-gray-300 py-3 bg-gray-200">
+            <li>BAe bae bae bae bae bae bae bae bae bae bae bae bae bae bae bae bae</li>
+            <li>BAe</li>
+            <li>BAe</li>
+            <li>BAe</li>
+          {meeting.backgroundForMeeting} 
+          </div>
         </div>
 
 
-        <div className="row-start-5 col-start-2 col-span-2 text-lg">
+        <div className="row-start-5 col-start-2 col-span-2 text-lg mt-5">
           {" "}
 
           Agenda:
@@ -210,7 +219,7 @@ function Meeting() {
             )}
         </div>
 
-        <div className="row-start-6 row-end-6 col-start-2 col-span-4 text-lg">
+        <div className="row-start-6 row-end-6 col-start-2 col-span-4 text-lg mt-5">
           Notes:
           <Editor
             apiKey="avgvd7u4i68a9mq24lbgo9zusv5tq1vyu4pw9xrjkt9depds"
