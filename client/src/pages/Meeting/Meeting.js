@@ -7,7 +7,6 @@ import AttendeeCard from "../../components/attendeeCard";
 import Agenda from "../../components/agenda";
 // import { PromiseProvider } from "mongoose";
 import { Editor } from "@tinymce/tinymce-react";
-import { promises } from 'fs';
 
 function Meeting() {
   const [meeting, setMeeting] = useState([]);
@@ -20,7 +19,6 @@ function Meeting() {
   var id = url_array[url_array.length - 1];  // Get the last part of the array (-1)
 
 
-  // console.log(id);
 
   useEffect(() => {
     loadMeeting();
@@ -30,39 +28,37 @@ function Meeting() {
   function loadMeeting() {
     API.getMeeting(id)
       .then(res => {
+        console.log('42', res.data.agenda[0].vote)
         setMeeting(res.data);
-        console.log(res.data.users)
         let users = res.data.users
         return Promise.all(users.map(user => {
           return API.getUser(user)
             .then(res => {
               return res.data;
             })
-        }))
 
+        }))
       }).then(result => {
-        console.log('46', result);
+
         setAttendees(result)
       })
       .catch(err => console.log(err));
   }
-  let allMeetingUsers = [];
+  // let allMeetingUsers = [];
 
-  function setAllUsers(users) {
-    users.map(user => {
-      API.getUser(user)
-        .then(res => {
-          let newUser = res.data;
-          console.log("1a", allMeetingUsers);
-          allMeetingUsers.push(newUser)
-          setAttendees(allMeetingUsers);
+  // function setAllUsers(users) {
+  //   users.map(user => {
+  //     API.getUser(user)
+  //       .then(res => {
+  //         let newUser = res.data;
+  //         console.log("1a", allMeetingUsers);
+  //         allMeetingUsers.push(newUser)
+  //         setAttendees(allMeetingUsers);
 
-        })
+  //       })
 
-    });
-  };
-  console.log("2a", attendees);
-
+  //   });
+  // };
 
   // function loadAttendees() {
   //   res => {
@@ -152,18 +148,26 @@ function Meeting() {
     // let emails = []
     // emails.join(";")
     var link = "mailto: mcbride.katieb@gmail.com; taylor.m.mcbride@gmail.com"
-             + "?cc=myCCaddress@example.com"
-             + "&subject=" + escape("Post Meeting Survey")
-             + "&body=" + escape(document.getElementById('myText').value)
-    ;
+      + "?cc=myCCaddress@example.com"
+      + "&subject=" + escape("Post Meeting Survey")
+      + "&body=" + escape(document.getElementById('myText').value)
+      ;
 
     window.location.href = link;
-}
+  }
 
   function handleEditorChange(content, editor) {
     // console.log("Content was updated:", content);
     setContent(content);
   };
+
+  // console.log(meeting.agenda[0])
+
+  // meeting.agenda.forEach(testing => {
+  //   console.log(testing)
+  // })
+  console.log('attendee', attendees)
+
 
   return (
     <>
@@ -185,6 +189,7 @@ function Meeting() {
         </div>
 
 
+
         <div className="row-start-5 col-start-2 col-span-2 text-lg">
           {" "}
 
@@ -193,22 +198,63 @@ function Meeting() {
             <div>
               {meeting.agenda.map(agenda => {
                 // console.log(agenda);
-                return (
-                  <Agenda
-                    agenda={agenda}
-                    key={agenda._id}
-                    handleDownVote={handleDownVote}
-                    handleUpVote={handleUpVote}
-                    handleTask={handleTask}
-                    tasks={agenda.tasks}
-                  ></Agenda>
-                );
+                if (agenda.vote >= 0) {
+                  return (
+                    <Agenda
+                      agenda={agenda}
+                      key={agenda._id}
+                      handleDownVote={handleDownVote}
+                      handleUpVote={handleUpVote}
+                      handleTask={handleTask}
+                      tasks={agenda.tasks}
+                    ></Agenda>
+                  );
+                }
               })}
             </div>
           ) : (
-              <></>
+              <>
+                <div>
+                  No meeting agenda has been set!
+              </div>
+
+              </>
             )}
+          <div className="col-span-2">
+            BAE:
+            {meeting.agenda ? (
+              <div>
+                {meeting.agenda.map(agenda => {
+                  // console.log(agenda);
+                  if (agenda.vote < 0) {
+                    return (
+                      <Agenda
+                        agenda={agenda}
+                        key={agenda._id}
+                        handleDownVote={handleDownVote}
+                        handleUpVote={handleUpVote}
+                        handleTask={handleTask}
+                        tasks={agenda.tasks}
+                      ></Agenda>
+                    );
+                  }
+                })}
+              </div>
+            ) : (
+                <>
+                  <div>
+                    No meeting agenda has been set!
+              </div>
+
+                </>
+              )}
+          </div>
+
+
         </div>
+
+
+
 
         <div className="row-start-6 row-end-6 col-start-2 col-span-4 text-lg">
           Notes:
@@ -240,7 +286,7 @@ function Meeting() {
             <>
               {attendees.map(attendee => {
                 console.log(attendee);
-                return <AttendeeCard attendee={attendee}></AttendeeCard>;
+                return <AttendeeCard key={attendee._id} attendee={attendee}></AttendeeCard>;
               })}
             </>
           ) : (
@@ -258,8 +304,8 @@ function Meeting() {
         </div>
 
         <textarea id="myText" className="hideSurvey">
-            Thank you for your attendance. I would appreciate your feedback in order to improve our meetings. 
-            Please follow the link to the fill out a 5 question survey.  https://www.surveymonkey.com/r/Y2YW3FQ 
+          Thank you for your attendance. I would appreciate your feedback in order to improve our meetings.
+          Please follow the link to the fill out a 5 question survey.  https://www.surveymonkey.com/r/Y2YW3FQ
         </textarea>
 
         <div className="row-start-7 col-start-4">
