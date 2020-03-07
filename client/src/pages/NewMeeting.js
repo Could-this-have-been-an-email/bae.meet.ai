@@ -6,7 +6,7 @@ import API from "../utils/API";
 function Meeting() {
   let usersSelected = [];
   const [users, setUsers] = useState([]);
-  // const baeInput = useRef();
+
 
   const agendaInput = useRef();
 
@@ -24,19 +24,6 @@ function Meeting() {
     }
   }, []);
 
-  // const [baevalue, displace] = useReducer((state, action) => {
-  //   if (action.type === "addBae") {
-  //     return [
-  //       ...state,
-  //       {
-  //         id: state.length + 1,
-  //         newbae: action.value
-  //       }
-  //     ];
-  //   } else {
-  //     return state;
-  //   }
-  // }, []);
 
   useEffect(() => {
     async function fetchData() {
@@ -67,18 +54,12 @@ function Meeting() {
     agendaInput.current.value = "";
   };
 
-  // const submitBae = () => {
-  //   dispatch({
-  //     type: "addBae",
-  //     value: baeInput.current.value.trim()
-  //   });
-  //   baeInput.current.value = "";
-  // };
 
   const submitMeetingInfoAPI = meeting => {
     console.log("2", meeting);
     API.createMeeting(meeting)
-      .then(console.log("completedapi"))
+      // .then(console.log("completedapi"))
+      .then(window.history.back())
       .catch(err => console.log(err));
   };
   const submitFormUser = event => {
@@ -91,7 +72,6 @@ function Meeting() {
       duration: event.target.meetingDuration.value,
       outcome: event.target.outcome.value,
       name: event.target.meetingName.value.trim(),
-      // backgroundForMeeting: baevalue,
       agenda: agendavalue,
       users: usersSelected
     };

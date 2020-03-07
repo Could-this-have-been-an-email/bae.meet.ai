@@ -1,5 +1,7 @@
 import React from 'react';
 import API from '../../utils/API';
+import Logo from './Lookin good.png';
+import"./style.css"
 
 function Login() {
   const handleSubmit = e => {
@@ -20,17 +22,23 @@ function Login() {
       });
   };
 
-  API.getUserAuthen((req, res) => {
-    console.log('touchdown res res', res);
-  });
+  // API.getUserAuthen((req, res) => {
+  //   console.log('touchdown res res', res);
+  // });
+
+
   return (
-    <div>
+    <div className="body">
       <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-md w-full">
+      <img src={Logo} height="300" width="300" />
+        <div className="max-w-md w-full px-50 py-50 card-background">
           <div>
-            <h2 className="mt-6 text-center text-3xl leading-9 font-extrabold text-gray-900">
-              Login to your account
+            <h2 className="mt-6 text-center text-2xl leading-9 font-extrabold text-gray-900">
+              Productive meetings = Happier people
             </h2>
+            <div className="mt-2 text-center text-l text-gray-900">
+              Login to a better workplace
+            </div>
           </div>
           <form className="mt-8" onSubmit={handleSubmit}>
             <input type="hidden" name="remember" value="true" />
@@ -64,7 +72,9 @@ function Login() {
             </div>
           </form>
         </div>
+        
       </div>
+     
     </div>
   );
 }
