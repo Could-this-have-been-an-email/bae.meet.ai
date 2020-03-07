@@ -17,8 +17,6 @@ function Meeting() {
   var url_array = full_url.split("/"); // Split the string into an array with / as separator
   var id = url_array[url_array.length - 1]; // Get the last part of the array (-1)
 
-  // console.log(id);
-
   useEffect(() => {
     loadMeeting();
   }, []);
@@ -27,7 +25,6 @@ function Meeting() {
     API.getMeeting(id)
       .then(res => {
         setMeeting(res.data);
-        console.log(res.data.users);
         let users = res.data.users;
         return Promise.all(
           users.map(user => {
@@ -38,7 +35,6 @@ function Meeting() {
         );
       })
       .then(result => {
-        console.log("46", result);
         setAttendees(result);
       })
       .catch(err => console.log(err));
@@ -49,13 +45,11 @@ function Meeting() {
     users.map(user => {
       API.getUser(user).then(res => {
         let newUser = res.data;
-        console.log("1a", allMeetingUsers);
         allMeetingUsers.push(newUser);
         setAttendees(allMeetingUsers);
       });
     });
   }
-  console.log("2a", attendees);
 
   // function loadAttendees() {
   //   res => {
@@ -111,9 +105,7 @@ function Meeting() {
   }
 
   function handleNotes(id) {
-    // console.log(id);
     var inputNote = content;
-    // console.log(inputNote)
     meeting.meetingNote.push({
       userName: "katieb",
       note: inputNote
@@ -128,10 +120,6 @@ function Meeting() {
         "meeting.note": { inputNote }
       }
     });
-    // console.log(meeting);
-    // console.log(inputNote);
-    // console.log(meeting._id);
-    // console.log(meeting);
   }
 
   // function alertSurvey() {
@@ -141,17 +129,17 @@ function Meeting() {
   function sendMail() {
     // let emails = []
     // emails.join(";")
-    var link = "mailto: mcbride.katieb@gmail.com; taylor.m.mcbride@gmail.com"
-             + "?cc=myCCaddress@example.com"
-             + "&subject=" + escape("Post Meeting Survey")
-             + "&body=" + escape(document.getElementById('myText').value)
-    ;
-
+    var link =
+      "mailto: mcbride.katieb@gmail.com; taylor.m.mcbride@gmail.com" +
+      "?cc=myCCaddress@example.com" +
+      "&subject=" +
+      escape("Post Meeting Survey") +
+      "&body=" +
+      escape(document.getElementById("myText").value);
     window.location.href = link;
-}
+  }
 
   function handleEditorChange(content, editor) {
-    // console.log("Content was updated:", content);
     setContent(content);
   }
 
@@ -180,7 +168,6 @@ function Meeting() {
           {meeting.agenda ? (
             <div>
               {meeting.agenda.map(agenda => {
-                // console.log(agenda);
                 return (
                   <Agenda
                     agenda={agenda}
@@ -225,7 +212,6 @@ function Meeting() {
           {meeting.users ? (
             <>
               {attendees.map(attendee => {
-                console.log(attendee);
                 return <AttendeeCard attendee={attendee}></AttendeeCard>;
               })}
             </>
@@ -243,8 +229,9 @@ function Meeting() {
         </div>
 
         <textarea id="myText" className="hideSurvey">
-            Thank you for your attendance. I would appreciate your feedback in order to improve our meetings. 
-            Please follow the link to the fill out a 5 question survey.  https://www.surveymonkey.com/r/Y2YW3FQ 
+          Thank you for your attendance. I would appreciate your feedback in
+          order to improve our meetings. Please follow the link to the fill out
+          a 5 question survey. https://www.surveymonkey.com/r/Y2YW3FQ
         </textarea>
 
         <div className="row-start-7 col-start-4">
