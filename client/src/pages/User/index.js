@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { BrowserRouter as Router, Route } from 'react-router';
 import './style.css';
 import API from '../../utils/API';
+import MeetingCardWrapper from '../../components/MeetingCardWrapper';
 import MeetingCard from '../../components/MeetingCard';
 import Navbar from '../../components/Navbar';
 // import Chart from './chart.png';
@@ -89,24 +90,47 @@ function User() {
               <p>minutes on meetings</p>
             </div>
           </div>
-          <div className="b w-full">
-            <div className="b h-half scrollable">
-              <p>Upcoming Meetings</p>
-              {meetings.map(meeting => {
-                return (
-                  <MeetingCard
-                    name={meeting.name}
-                    time={meeting.time}
-                    date={meeting.date}
-                    duration={meeting.duration}
-                    meetingID={meeting._id}
-                    outcome={meeting.outcome}
-                  ></MeetingCard>
-                );
-              })}
-              {/* <MeetingCard test="test prop"></MeetingCard> */}
-            </div>
-            <div className="b h-half"> Past Meetings</div>
+
+          <div className="w-full">
+            <MeetingCardWrapper title="UPCOMING MEETINGS">
+              <ul id="meetingList ">
+                {upcomingMeetings.map(meeting => {
+                  return (
+                    <li className="">
+                      <MeetingCard
+                        name={meeting.name}
+                        time={meeting.time}
+                        date={meeting.date}
+                        duration={meeting.duration}
+                        meetingID={meeting._id}
+                        outcome={meeting.outcome}
+                      ></MeetingCard>
+                    </li>
+                  );
+                })}
+              </ul>
+            </MeetingCardWrapper>
+            <MeetingCardWrapper title="PAST MEETINGS">
+              <ul id="meetingList ">
+                {prevMeetings.map(meeting => {
+                  return (
+                    <li className="">
+                      <MeetingCard
+                        name={meeting.name}
+                        time={meeting.time}
+                        date={meeting.date}
+                        duration={meeting.duration}
+                        meetingID={meeting._id}
+                        outcome={meeting.outcome}
+                      ></MeetingCard>
+                    </li>
+                  );
+                })}
+              </ul>
+            </MeetingCardWrapper>
+            {/* <div className="b h-half">
+              <p className="m-4 font-bold text-xl">PAST MEETINGS</p>
+            </div> */}
           </div>
         </div>
       </div>
