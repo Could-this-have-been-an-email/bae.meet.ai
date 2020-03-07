@@ -1,7 +1,6 @@
 import React from "react";
 
 function attendeeCard(props) {
-  console.log("props firstname", props.attendee);
   // const lastName = props.attendee.lastName;
   // const attendeeName = props.attendee;
   return (
