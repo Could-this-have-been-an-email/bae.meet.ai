@@ -94,6 +94,7 @@ function Meeting() {
   }
 
   function handleTask(id) {
+    console.log("handle task")
     meeting.agenda.forEach(singleAgenda => {
       if (id === singleAgenda._id) {
         var inputVal = document.getElementById("task").value;
@@ -114,10 +115,6 @@ function Meeting() {
   }
 
 
-
-  function taskUser(id) {
-
-  }
 
   function handleNotes(id) {
     var inputNote = content;
@@ -179,7 +176,7 @@ function Meeting() {
         <div className="row-start-3 col-start-2 col-span-4 text-lg">
           <div className="font-bold">Outcome:</div>
           <div className="border border-solid border-gray-300 py-3 bg-gray-200">
-            {meeting.outcome} This is where the outcome will be at.
+            {meeting.outcome}.
           </div>
         </div>
 
@@ -194,6 +191,7 @@ function Meeting() {
                     return (
                       <BAE
                         agenda={agenda}
+                        attendees={attendees}
                         key={agenda._id}
                         handleDownVote={handleDownVote}
                         handleUpVote={handleUpVote}
@@ -228,6 +226,7 @@ function Meeting() {
                         handleUpVote={handleUpVote}
                         handleTask={handleTask}
                         tasks={agenda.tasks}
+                        attendees= {attendees}
                       ></Agenda>
                     );
                   }

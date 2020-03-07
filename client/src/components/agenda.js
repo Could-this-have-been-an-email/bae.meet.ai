@@ -2,19 +2,16 @@ import React, { useState, useEffect } from "react";
 // import AddTasks from "../components/addTasks";
 import "../pages/Meeting/Meeting"
 import { PromiseProvider } from "mongoose";
+import Dropdown from "./Dropdown";
 
 
 function Agenda(props) {
   const [popup, setPopup] = useState("");
 
-
   function popupUser() {
     console.log("working")
     setPopup(true);
   };
-
-  var tasks = props.tasks;
-  console.log(props);
 
   return (
     <div>
@@ -48,7 +45,7 @@ function Agenda(props) {
       <div className="mx-16 pt-2">
         {props.tasks ? (
           <>
-            {tasks.map(task => {
+            {props.tasks.map(task => {
               return (
                 <div className="py-1">
                   <div
@@ -59,12 +56,24 @@ function Agenda(props) {
                       <input className="w-5 h-5 py-1" type="checkbox" />
                     </div>
                     <div className="grid "> {task.task}</div>
-                    <div className="flex items-center justify-end popup" onClick={popupUser}>
+                    <div className="flex items-center justify-end popup">
                       <i className="fa fa-ellipsis-v"></i>
-                      {popup ? <span className="popuptext">
-
-
-                      </span> : <></>}
+                      <div class="dropdown is-hoverable">
+                        <div class="dropdown-trigger">
+                          <button class="button" aria-haspopup="true" aria-controls="dropdown-menu4">
+                            <span>Hover me</span>
+                            <span class="icon is-small">
+                              <i class="fas fa-angle-down" aria-hidden="true"></i>
+                            </span>
+                          </button>
+                        </div>
+                        <div class="dropdown-menu" id="dropdown-menu4" role="menu">
+                          <Dropdown attendees={props.attendees} />
+                          
+                        </div>
+                      </div>
+                                          
+                      
 
                     </div>
                   </div>
@@ -99,3 +108,4 @@ function Agenda(props) {
   );
 }
 export default Agenda;
+
