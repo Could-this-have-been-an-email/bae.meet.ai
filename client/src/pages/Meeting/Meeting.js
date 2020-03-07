@@ -8,10 +8,12 @@ import Agenda from "../../components/agenda";
 import { Editor } from "@tinymce/tinymce-react";
 import { promises } from "fs";
 
+
 function Meeting() {
   const [meeting, setMeeting] = useState([]);
   const [attendees, setAttendees] = useState([]);
   const [content, setContent] = useState("");
+  
 
   var full_url = document.URL; // Get current url
   var url_array = full_url.split("/"); // Split the string into an array with / as separator
@@ -90,18 +92,25 @@ function Meeting() {
     meeting.agenda.forEach(singleAgenda => {
       if (id === singleAgenda._id) {
         var inputVal = document.getElementById("task").value;
-
+        
         singleAgenda.tasks.push({
           completed: false,
-          userId: "",
+          userId: "123",
           meetingId: meeting._id,
           agendaId: id,
           task: inputVal
         });
         singleAgenda.tasks.task = inputVal;
+        
       }
       API.updateMeeting(meeting._id, meeting);
     });
+  }
+
+ 
+
+  function taskUser(id){
+
   }
 
   function handleNotes(id) {
@@ -122,9 +131,6 @@ function Meeting() {
     });
   }
 
-  // function alertSurvey() {
-  //   alert(`Send feedback to your manager: https://www.surveymonkey.com/r/Y2YW3FQ`)
-  // };
 
   function sendMail() {
     // let emails = []
@@ -166,7 +172,7 @@ function Meeting() {
          <div className="row-start-4 col-start-2 col-span-4 text-lg">
           <div className="font-bold">BAE items:</div>
           <div className= "border border-solid border-gray-300 py-3 bg-gray-200">
-            <li>BAe bae bae bae bae bae bae bae bae bae bae bae bae bae bae bae bae</li>
+            <li>This is where an agenda item will be transferred to the BAE</li>
             <li>BAe</li>
             <li>BAe</li>
             <li>BAe</li>

@@ -1,8 +1,20 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import AddTasks from "../components/addTasks";
+import "../pages/Meeting/Meeting"
+import { PromiseProvider } from "mongoose";
+
 
 function Agenda(props) {
+  const [popup, setPopup] = useState("");
+
+
+  function popupUser() {
+    console.log("working")
+    setPopup(true);
+  };
+
   var tasks = props.tasks;
+  
 
   return (
     <div>
@@ -46,8 +58,13 @@ function Agenda(props) {
                       <input type="checkbox" />
                     </div>
                     <div className="grid "> {task.task}</div>
-                    <div className="flex items-center justify-end">
-                      <i class="fa fa-ellipsis-v"></i>
+                    <div className="flex items-center justify-end popup" onClick={popupUser}>
+                      <i className="fa fa-ellipsis-v"></i>
+                      {popup ? <span className="popuptext">
+                      
+                      
+                      </span> : <></>}
+                      
                     </div>
                   </div>
                 </div>
