@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Landing from './pages/Landing/index';
 import NoMatch from './pages/NoMatch';
-import User from './pages/User';
+import User from './pages/User/index';
 import Meeting from './pages/Meeting/Meeting';
 import SignUp from './pages/SignUp';
 import NewMeeting from './pages/NewMeeting';
@@ -34,7 +34,7 @@ function App() {
             <Meeting />
           </Route>
           <Route path="/survey">
-            <Survey  />
+            <Survey />
           </Route>
           <Route>
             <NoMatch />
