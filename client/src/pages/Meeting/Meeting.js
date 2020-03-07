@@ -180,8 +180,8 @@ function Meeting() {
           </div>
         </div>
 
-        <div className="row-start-4 col-start-2 col-span-4 text-lg">
-          <div className="font-bold">BAE items:</div>
+        <div className="row-start-4 col-start-2 col-span-4 pt-2 text-lg">
+          <div className="font-extrabold">BAE items:</div>
           <div className="border border-solid border-gray-300 py-3 bg-gray-200">
             {meeting.agenda ? (
               <div className="bg-gray-100">
@@ -211,8 +211,8 @@ function Meeting() {
         </div>
 
         <div className="row-start-5 col-start-2 col-span-4 text-lg">
-          <div className="bg-red-500">
-            <div className="font-bold">Agenda:</div>
+          <div className="bg-gray-200">
+            <div className="font-extrabold">Agenda:</div>
             {meeting.agenda ? (
               <div>
                 {meeting.agenda.map(agenda => {
