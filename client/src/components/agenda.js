@@ -7,7 +7,8 @@ function Agenda(props) {
 
   return (
     <div className="test">
-      <div className="grid grid-cols-3 gap-1 px-1 border shadow container flex items-center">
+      <div className="grid grid-cols-3 gap-1 px-1 border shadow container flex items-center mt-5">
+
         <div className="col-span-1 flex items-center">
           <input type="checkbox" />
         </div>
