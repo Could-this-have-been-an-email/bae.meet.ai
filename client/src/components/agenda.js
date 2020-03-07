@@ -20,11 +20,13 @@ function Agenda(props) {
           className="col-start-3 flex items-center justify-end"
         >
           <button
+
             className="fa fa-arrow-up px-1"
             onClick={() => props.handleUpVote(props.agenda._id)}
           ></button>
           <button
             className="fa fa-arrow-down px-1"
+
             onClick={() => props.handleDownVote(props.agenda._id)}
           ></button>
 

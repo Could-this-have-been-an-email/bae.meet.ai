@@ -6,16 +6,21 @@ import AttendeeCard from "../../components/attendeeCard";
 import Agenda from "../../components/agenda";
 // import { PromiseProvider } from "mongoose";
 import { Editor } from "@tinymce/tinymce-react";
-import { promises } from "fs";
+
 
 function Meeting() {
   const [meeting, setMeeting] = useState([]);
   const [attendees, setAttendees] = useState([]);
   const [content, setContent] = useState("");
 
+  const [agendaFiltered, setagendaFiltered] = useState([])
+
   var full_url = document.URL; // Get current url
-  var url_array = full_url.split("/"); // Split the string into an array with / as separator
-  var id = url_array[url_array.length - 1]; // Get the last part of the array (-1)
+  var url_array = full_url.split('/') // Split the string into an array with / as separator
+  var id = url_array[url_array.length - 1];  // Get the last part of the array (-1)
+
+
+
 
   useEffect(() => {
     loadMeeting();
@@ -24,22 +29,33 @@ function Meeting() {
   function loadMeeting() {
     API.getMeeting(id)
       .then(res => {
+        console.log('42', res.data)
         setMeeting(res.data);
-        let users = res.data.users;
-        return Promise.all(
-          users.map(user => {
-            return API.getUser(user).then(res => {
+
+        setagendaFiltered(res.data.agenda)
+        let users = res.data.users
+        return Promise.all(users.map(user => {
+          return API.getUser(user)
+            .then(res => {
               return res.data;
-            });
-          })
-        );
-      })
-      .then(result => {
-        setAttendees(result);
+            })
+        }))
+      }).then(result => {
+
+        setAttendees(result)
+
       })
       .catch(err => console.log(err));
   }
-  let allMeetingUsers = [];
+
+
+  let sortAgenda = (a, b) => {
+    console.log('ab', a.vote, b)
+    let voteA = a.vote;
+    let voteB = b.vote;
+    return voteB - voteA
+  }
+  
 
   function setAllUsers(users) {
     users.map(user => {
@@ -50,12 +66,6 @@ function Meeting() {
       });
     });
   }
-
-  // function loadAttendees() {
-  //   res => {
-  //     setAttendees(meeting.users);
-  //   };
-  // }
 
   function hideVotes() {
     var x = document.getElementById("js-votes");
@@ -130,6 +140,7 @@ function Meeting() {
   function sendMail() {
     // let emails = []
     // emails.join(";")
+
     var link =
       "mailto: mcbride.katieb@gmail.com; taylor.m.mcbride@gmail.com" +
       "?cc=myCCaddress@example.com" +
@@ -137,12 +148,21 @@ function Meeting() {
       escape("Post Meeting Survey") +
       "&body=" +
       escape(document.getElementById("myText").value);
+
     window.location.href = link;
   }
 
   function handleEditorChange(content, editor) {
     setContent(content);
   }
+
+  // console.log(meeting.agenda[0])
+
+  // meeting.agenda.forEach(testing => {
+  //   console.log(testing)
+  // })
+  console.log('attendee', attendees)
+
 
   return (
     <>
@@ -166,39 +186,79 @@ function Meeting() {
         <div className="row-start-4 col-start-2 col-span-4 text-lg">
           <div className="font-bold">BAE items:</div>
           <div className="border border-solid border-gray-300 py-3 bg-gray-200">
-            <li>
-              BAe bae bae bae bae bae bae bae bae bae bae bae bae bae bae bae
-              bae
-            </li>
-            <li>BAe</li>
-            <li>BAe</li>
-            <li>BAe</li>
-            {meeting.backgroundForMeeting}
+            <div className="col-span-2 bg-purple-200 p-2">
+            
+            {meeting.agenda ? (
+              <div className="bg-gray-100">
+                {meeting.agenda.map(agenda => {
+                  // console.log(agenda);
+                  if (agenda.vote < 0) {
+                    return (
+                      <Agenda
+                        agenda={agenda}
+                        key={agenda._id}
+                        handleDownVote={handleDownVote}
+                        handleUpVote={handleUpVote}
+                        handleTask={handleTask}
+                        tasks={agenda.tasks}
+                      ></Agenda>
+                    );
+                  }
+                })}
+              </div>
+            ) : (
+                <>
+                  <div>
+                    No meeting agenda has been set!
+              </div>
+
+                </>
+              )}
+          </div>
           </div>
         </div>
 
+
+
+
         <div className="row-start-5 col-start-2 col-span-4 text-lg">
-          {" "}
-          <div className="font-bold">Agenda:</div>
+
+          <div className="bg-red-500">
+            <div className="font-bold">Agenda:</div>
           {meeting.agenda ? (
-            <div className="pl-5">
-              {meeting.agenda.map(agenda => {
-                return (
-                  <Agenda
-                    agenda={agenda}
-                    key={agenda._id}
-                    handleDownVote={handleDownVote}
-                    handleUpVote={handleUpVote}
-                    handleTask={handleTask}
-                    tasks={agenda.tasks}
-                  ></Agenda>
-                );
-              })}
-            </div>
-          ) : (
-            <></>
-          )}
-        </div>
+              <div>
+                {meeting.agenda.sort(sortAgenda).map(agenda => {
+                  // console.log(agenda);
+                  if (agenda.vote >= 0) {
+                    return (
+                      <Agenda
+                        agenda={agenda}
+                        key={agenda._id}
+                        handleDownVote={handleDownVote}
+                        handleUpVote={handleUpVote}
+                        handleTask={handleTask}
+                        tasks={agenda.tasks}
+                      ></Agenda>
+                    );
+                  }
+                })}
+              </div>
+            ) : (
+                <>
+                  <div>
+                    No meeting agenda has been set!
+              </div>
+
+                </>
+              )}
+          </div>
+          
+
+
+
+
+
+
 
         <div className="row-start-6 row-end-6 col-start-2 col-span-4 text-lg">
           <div className="font-bold">Notes:</div>
@@ -228,7 +288,9 @@ function Meeting() {
           {meeting.users ? (
             <>
               {attendees.map(attendee => {
-                return <AttendeeCard attendee={attendee}></AttendeeCard>;
+
+                return <AttendeeCard key={attendee._id} attendee={attendee}></AttendeeCard>;
+
               })}
             </>
           ) : (
@@ -245,9 +307,11 @@ function Meeting() {
         </div>
 
         <textarea id="myText" className="hideSurvey">
+
           Thank you for your attendance. I would appreciate your feedback in
           order to improve our meetings. Please follow the link to the fill out
           a 5 question survey. https://www.surveymonkey.com/r/Y2YW3FQ
+
         </textarea>
 
         <div className="row-start-7 col-start-4">
