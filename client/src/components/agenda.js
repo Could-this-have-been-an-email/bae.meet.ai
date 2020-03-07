@@ -7,14 +7,10 @@ import { PromiseProvider } from "mongoose";
 function Agenda(props) {
   const [popup, setPopup] = useState("");
 
-
   function popupUser() {
     console.log("working")
     setPopup(true);
   };
-
-  var tasks = props.tasks;
-  console.log(props);
 
   return (
     <div>
@@ -48,7 +44,7 @@ function Agenda(props) {
       <div className="grid col-start-3 pl-10">
         {props.tasks ? (
           <>
-            {tasks.map(task => {
+            {props.tasks.map(task => {
               return (
                 <div className="pt-1">
                   <div
@@ -62,7 +58,12 @@ function Agenda(props) {
                     <div className="flex items-center justify-end popup" onClick={popupUser}>
                       <i className="fa fa-ellipsis-v"></i>
                       {popup ? <span className="popuptext">
-                      
+                        {props.attendees && props.attendees.map(attendee => {
+                          console.log({attendee})
+                          return(
+                            <div>`${attendee.firstName}`</div>
+                          )
+                        })}
                       
                       </span> : <></>}
                       
