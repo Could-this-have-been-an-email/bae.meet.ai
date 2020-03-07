@@ -7,20 +7,16 @@ import Agenda from "../../components/agenda";
 // import { PromiseProvider } from "mongoose";
 import { Editor } from "@tinymce/tinymce-react";
 
-
 function Meeting() {
   const [meeting, setMeeting] = useState([]);
   const [attendees, setAttendees] = useState([]);
   const [content, setContent] = useState("");
 
-  const [agendaFiltered, setagendaFiltered] = useState([])
+  const [agendaFiltered, setagendaFiltered] = useState([]);
 
   var full_url = document.URL; // Get current url
-  var url_array = full_url.split('/') // Split the string into an array with / as separator
-  var id = url_array[url_array.length - 1];  // Get the last part of the array (-1)
-
-
-
+  var url_array = full_url.split("/"); // Split the string into an array with / as separator
+  var id = url_array[url_array.length - 1]; // Get the last part of the array (-1)
 
   useEffect(() => {
     loadMeeting();
@@ -29,43 +25,41 @@ function Meeting() {
   function loadMeeting() {
     API.getMeeting(id)
       .then(res => {
-        console.log('42', res.data)
+        console.log("42", res.data);
         setMeeting(res.data);
 
-        setagendaFiltered(res.data.agenda)
-        let users = res.data.users
-        return Promise.all(users.map(user => {
-          return API.getUser(user)
-            .then(res => {
+        setagendaFiltered(res.data.agenda);
+        let users = res.data.users;
+        return Promise.all(
+          users.map(user => {
+            return API.getUser(user).then(res => {
               return res.data;
-            })
-        }))
-      }).then(result => {
-
-        setAttendees(result)
-
+            });
+          })
+        );
+      })
+      .then(result => {
+        setAttendees(result);
       })
       .catch(err => console.log(err));
   }
 
-
   let sortAgenda = (a, b) => {
-    console.log('ab', a.vote, b)
+    console.log("ab", a.vote, b);
     let voteA = a.vote;
     let voteB = b.vote;
-    return voteB - voteA
-  }
-  
+    return voteB - voteA;
+  };
 
-  function setAllUsers(users) {
-    users.map(user => {
-      API.getUser(user).then(res => {
-        let newUser = res.data;
-        allMeetingUsers.push(newUser);
-        setAttendees(allMeetingUsers);
-      });
-    });
-  }
+  // function setAllUsers(users) {
+  //   users.map(user => {
+  //     API.getUser(user).then(res => {
+  //       let newUser = res.data;
+  //       allMeetingUsers.push(newUser);
+  //       setAttendees(allMeetingUsers);
+  //     });
+  //   });
+  // }
 
   function hideVotes() {
     var x = document.getElementById("js-votes");
@@ -161,8 +155,7 @@ function Meeting() {
   // meeting.agenda.forEach(testing => {
   //   console.log(testing)
   // })
-  console.log('attendee', attendees)
-
+  console.log("attendee", attendees);
 
   return (
     <>
@@ -186,8 +179,6 @@ function Meeting() {
         <div className="row-start-4 col-start-2 col-span-4 text-lg">
           <div className="font-bold">BAE items:</div>
           <div className="border border-solid border-gray-300 py-3 bg-gray-200">
-            <div className="col-span-2 bg-purple-200 p-2">
-            
             {meeting.agenda ? (
               <div className="bg-gray-100">
                 {meeting.agenda.map(agenda => {
@@ -207,25 +198,17 @@ function Meeting() {
                 })}
               </div>
             ) : (
-                <>
-                  <div>
-                    No meeting agenda has been set!
-              </div>
-
-                </>
-              )}
-          </div>
+              <>
+                <div>No meeting agenda has been set!</div>
+              </>
+            )}
           </div>
         </div>
 
-
-
-
         <div className="row-start-5 col-start-2 col-span-4 text-lg">
-
           <div className="bg-red-500">
             <div className="font-bold">Agenda:</div>
-          {meeting.agenda ? (
+            {meeting.agenda ? (
               <div>
                 {meeting.agenda.sort(sortAgenda).map(agenda => {
                   // console.log(agenda);
@@ -244,21 +227,12 @@ function Meeting() {
                 })}
               </div>
             ) : (
-                <>
-                  <div>
-                    No meeting agenda has been set!
-              </div>
-
-                </>
-              )}
+              <>
+                <div>No meeting agenda has been set!</div>
+              </>
+            )}
           </div>
-          
-
-
-
-
-
-
+        </div>
 
         <div className="row-start-6 row-end-6 col-start-2 col-span-4 text-lg">
           <div className="font-bold">Notes:</div>
@@ -288,9 +262,12 @@ function Meeting() {
           {meeting.users ? (
             <>
               {attendees.map(attendee => {
-
-                return <AttendeeCard key={attendee._id} attendee={attendee}></AttendeeCard>;
-
+                return (
+                  <AttendeeCard
+                    key={attendee._id}
+                    attendee={attendee}
+                  ></AttendeeCard>
+                );
               })}
             </>
           ) : (
@@ -307,11 +284,9 @@ function Meeting() {
         </div>
 
         <textarea id="myText" className="hideSurvey">
-
           Thank you for your attendance. I would appreciate your feedback in
           order to improve our meetings. Please follow the link to the fill out
           a 5 question survey. https://www.surveymonkey.com/r/Y2YW3FQ
-
         </textarea>
 
         <div className="row-start-7 col-start-4">
