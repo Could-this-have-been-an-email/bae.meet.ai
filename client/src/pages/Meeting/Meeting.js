@@ -78,8 +78,8 @@ function Meeting() {
       if (id === singleAgenda._id) {
         singleAgenda.vote += 1;
       }
-      loadMeeting();
       API.updateMeeting(meeting._id, meeting);
+      loadMeeting();
     });
   }
 
@@ -88,8 +88,8 @@ function Meeting() {
       if (id === singleAgenda._id) {
         singleAgenda.vote -= 1;
       }
-      loadMeeting();
       API.updateMeeting(meeting._id, meeting);
+      loadMeeting();
     });
   }
 
@@ -186,7 +186,7 @@ function Meeting() {
             {meeting.agenda ? (
               <div className="bg-gray-100">
                 {meeting.agenda.map(agenda => {
-                  // console.log(agenda);
+                  
                   if (agenda.vote < 0) {
                     return (
                       <BAE
@@ -195,7 +195,6 @@ function Meeting() {
                         key={agenda._id}
                         handleDownVote={handleDownVote}
                         handleUpVote={handleUpVote}
-                        //   handleTask={handleTask}
                         tasks={agenda.tasks}
                       ></BAE>
                     );
@@ -227,6 +226,7 @@ function Meeting() {
                         handleTask={handleTask}
                         tasks={agenda.tasks}
                         attendees= {attendees}
+                        // meetings={meetings}
                       ></Agenda>
                     );
                   }
