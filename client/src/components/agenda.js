@@ -69,7 +69,7 @@ function Agenda(props) {
                           </button>
                         </div>
                         <div class="dropdown-menu" id="dropdown-menu4" role="menu">
-                          <Dropdown attendees={props.attendees} meetings={props.meetings}/>
+                          <Dropdown attendees={props.attendees} />
                           
                         </div>
                       </div>
