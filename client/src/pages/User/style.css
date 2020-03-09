@@ -3,7 +3,7 @@
 }
 
 .sidebar {
-  width: 450px;
+  min-width: 300px;
 }
 
 .h-all {
@@ -11,23 +11,35 @@
 }
 
 .h-half {
-  min-height: 50%;
-  max-height: 50%;
+  max-height: calc((100vh - 3.25rem) / 2);
 }
 
 .scrollable {
   overflow-y: auto;
 }
 
-/* hr {
+#profileIcon {
+  margin: 0 auto;
+  width: 270px;
+}
+
+hr {
   display: block;
   height: 1px;
   border: 0;
   border-top: 1px solid #a0aec0;
   margin: 1em 0;
   padding: 0;
-} */
+}
 
+@media screen and (max-width: 640px) {
+  #profileIcon {
+    max-width: 150px;
+    align-self: center;
+  }
+}
+
+/* 
 li:last-child hr {
   border-top: none;
-}
+} */

@@ -1,81 +1,84 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from 'react';
 // import AddTasks from "../components/addTasks";
-import "../pages/Meeting/Meeting"
-import { PromiseProvider } from "mongoose";
-import Dropdown from "./Dropdown";
+
+import '../pages/Meeting/Meeting';
+// import { PromiseProvider } from 'mongoose';
+import Dropdown from './Dropdown';
 
 
 function Agenda(props) {
-  const [popup, setPopup] = useState("");
+  const [popup, setPopup] = useState('');
 
   function popupUser() {
-    console.log("working")
-    setPopup(true);
-  };
 
-  
+    console.log('working');
+
+    setPopup(true);
+  }
 
   return (
-    <div>
-      <div className="grid grid-cols-3 gap-1 p-1 border shadow container flex bg-teal-200 items-center">
-        <div className="col-span-1 flex items-center ">
+    <div className="p-5">
+      <div className="gap-1 p-1 border rounded shadow container flex items-center justify-between bg-white">
+        <div className="flex justify-left items-center w-1/12 ">
           <input className="w-5 h-5" type="checkbox" />
         </div>
-        <div className="col-start-2 flex items-center">
+
+        <div className="flex items-center justify-center w-10/12">
           {" "}
+
           {props.agenda.newagenda}
         </div>
 
-        <div
-          id="js-votes"
-          className="col-start-3 flex items-center justify-end"
-        >
+        <div id="js-votes" className="flex items-center justify-end w-1/12">
           <button
-
             className="fa fa-arrow-up px-1"
             onClick={() => props.handleUpVote(props.agenda._id)}
           ></button>
           <button
             className="fa fa-arrow-down px-1"
-
             onClick={() => props.handleDownVote(props.agenda._id)}
           ></button>
 
           <span className="px-1">{props.agenda.vote}</span>
         </div>
       </div>
-      <div className="mx-16 pt-2">
+      <div className="px-16 pt-2">
         {props.tasks ? (
           <>
             {props.tasks.map(task => {
               return (
                 <div className="py-1">
                   <div
-                    className="grid grid-cols-3 bg-blue-200 p-1 border w-full"
+                    className="flex flex-row items-baseline justify-between p-1 border-2 rounded w-full"
                     key={task._id}
                   >
-                    <div className="col-span-1 rounded-lg flex justify-center">
-                      <input className="w-5 h-5 py-1" type="checkbox" />
+                    <div className="pl-3 text w-5/6 font-white font-bold">
+                      {" "}
+                      {task.task}
                     </div>
-                    <div className="grid "> {task.task}</div>
-                    <div className="flex items-center justify-end popup">
+                    <div className="popup flex w-1/6 justify-end">
                       <div class="dropdown is-hoverable">
                         <div class="dropdown-trigger">
-                          <button class="button" aria-haspopup="true" aria-controls="dropdown-menu4">
-                            <span>Assign Task</span>
-                            <span class="icon is-small">
-                              <i class="fas fa-angle-down" aria-hidden="true"></i>
-                            </span>
+                          <button
+
+                            class="button h-8"
+                            aria-haspopup="true"
+                            aria-controls="dropdown-menu4"
+                          >
+                            <i class="fas fa-user"></i>
+
                           </button>
                         </div>
-                        <div class="dropdown-menu" id="dropdown-menu4" role="menu">
-                          <Dropdown attendees={props.attendees} />
-                          
+                        <div
+                          class="dropdown-menu"
+                          id="dropdown-menu4"
+                          role="menu"
+                        >
+                          <Dropdown
+                            attendees={props.attendees}
+                          />
                         </div>
                       </div>
-                                          
-                      
-
                     </div>
                   </div>
                 </div>
@@ -83,11 +86,11 @@ function Agenda(props) {
             })}
           </>
         ) : (
-            <></>
-          )}
+          <></>
+        )}
       </div>
-      <div className="pl-10 flex container flex items-center">
-        <div className="w-5/6 py-1 px-1">
+      <div className="px-16 flex container items-center">
+        <div className="w-5/6 p-1">
           <input
             className=" appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id="task"
@@ -98,7 +101,7 @@ function Agenda(props) {
         <div className="flex w-1/6 justify-end">
           <button
             onClick={() => props.handleTask(props.agenda._id)}
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded focus:outline-none focus:shadow-outline"
+            className="plum_plate hover:bg-blue-700 text-white font-bold py-1 px-2 rounded focus:outline-none focus:shadow-outline"
             type="button"
           >
             Add Task
@@ -109,4 +112,3 @@ function Agenda(props) {
   );
 }
 export default Agenda;
-

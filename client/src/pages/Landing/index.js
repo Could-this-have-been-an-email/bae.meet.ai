@@ -46,7 +46,7 @@ function Landing() {
               <img
                 className="self-center "
                 src="https://via.placeholder.com/550x300?text=Hero+Image"
-                alt=""
+                alt="hero example"
               />
             </div>
           </div>
@@ -56,6 +56,7 @@ function Landing() {
           <div className="md:flex bg-blue-300">
             <div className="flex justify-center p-10 md:w-2/4">
               <img
+                alt="example 1"
                 className="self-center"
                 src="https://via.placeholder.com/500x500?text=Cool+Product+Image1"
               />
@@ -83,6 +84,7 @@ function Landing() {
           <div className="md:flex md:flex-row-reverse bg-purple-300">
             <div className="flex justify-center p-10 md:w-2/4">
               <img
+                alt="example 2"
                 className="self-center"
                 src="https://via.placeholder.com/500x500?text=Cool+Product+Image2"
               />
@@ -110,6 +112,7 @@ function Landing() {
           <div className="md:flex bg-teal-300">
             <div className="flex justify-center p-10 md:w-2/4">
               <img
+                alt="example 3"
                 className="self-center"
                 src="https://via.placeholder.com/500x500?text=Cool+Product+Image1"
               />
