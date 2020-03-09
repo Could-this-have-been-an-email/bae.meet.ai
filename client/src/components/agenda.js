@@ -76,7 +76,6 @@ function Agenda(props) {
                         >
                           <Dropdown
                             attendees={props.attendees}
-                            meetings={props.meetings}
                           />
                         </div>
                       </div>

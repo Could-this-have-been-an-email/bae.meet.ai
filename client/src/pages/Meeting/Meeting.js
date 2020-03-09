@@ -205,7 +205,6 @@ function Meeting() {
                       handleTask={handleTask}
                       tasks={agenda.tasks}
                       attendees={attendees}
-                      // meetings={meetings}
                     ></Agenda>
                   );
                 }
