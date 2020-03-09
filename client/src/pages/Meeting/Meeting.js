@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./style.css";
 import API from "../../utils/API";
 // import MeetingNotes from "../../components/MeetingNotes";
@@ -13,6 +13,7 @@ function Meeting() {
   const [meeting, setMeeting] = useState([]);
   const [attendees, setAttendees] = useState([]);
   const [content, setContent] = useState("");
+  let userInputRef = useRef()
 
 
   const [agendaFiltered, setagendaFiltered] = useState([]);
@@ -54,15 +55,6 @@ function Meeting() {
     return voteB - voteA;
   };
 
-  // function setAllUsers(users) {
-  //   users.map(user => {
-  //     API.getUser(user).then(res => {
-  //       let newUser = res.data;
-  //       allMeetingUsers.push(newUser);
-  //       setAttendees(allMeetingUsers);
-  //     });
-  //   });
-  // }
 
   function hideVotes() {
     var x = document.getElementById("js-votes");
@@ -94,14 +86,13 @@ function Meeting() {
   }
 
   function handleTask(id) {
-    console.log("handle task")
+    console.log("handle task", userInputRef)
     meeting.agenda.forEach(singleAgenda => {
       if (id === singleAgenda._id) {
         var inputVal = document.getElementById("task").value;
 
         singleAgenda.tasks.push({
           completed: false,
-          userId: "123",
           meetingId: meeting._id,
           agendaId: id,
           task: inputVal
@@ -133,6 +124,36 @@ function Meeting() {
       }
     });
   }
+
+  const addUserTask = action => {
+    console.log('agendaID', action.target.getAttribute("agendaidforuser"))
+    console.log('userinput', action.target.getAttribute("useridvalue"))
+    console.log('taskid', action.target.getAttribute("taskidforuser"))
+    console.log('meetingid', meeting)
+
+
+
+    // let userTaskAssign = {
+    //   agendaId: action.target.getAttribute("agendaIdforUser"),
+    //   user: action.target.getAttribute("value"),
+    // }
+
+    meeting.agenda.forEach(singleAgenda => {
+      if (singleAgenda._id === action.target.getAttribute("agendaidforuser")) {
+        singleAgenda.tasks.map(task => {
+          if (task._id === action.target.getAttribute("taskidforuser")) {
+            console.log('success', task)
+            task["user"] = action.target.getAttribute("useridvalue")
+          }
+          API.updateMeeting(meeting._id, meeting)
+
+        })
+      }
+
+    })
+  };
+
+
 
 
   function sendMail() {
@@ -186,7 +207,7 @@ function Meeting() {
             {meeting.agenda ? (
               <div className="bg-gray-100">
                 {meeting.agenda.map(agenda => {
-                  
+
                   if (agenda.vote < 0) {
                     return (
                       <BAE
@@ -225,8 +246,9 @@ function Meeting() {
                         handleUpVote={handleUpVote}
                         handleTask={handleTask}
                         tasks={agenda.tasks}
-                        attendees= {attendees}
-                        // meetings={meetings}
+                        attendees={attendees}
+                        addUserTask={addUserTask}
+                      // meetings={meetings}
                       ></Agenda>
                     );
                   }
