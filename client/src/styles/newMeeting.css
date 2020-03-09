@@ -1,3 +1,11 @@
 .side-scrollbar-none::-webkit-scrollbar { 
   display: none;
 }
+
+.background{
+  background-color: rgb(187, 230, 250);
+}
+
+.holder{
+  padding-top: 10px;
+}

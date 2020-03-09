@@ -3,7 +3,7 @@ import UserLI from '../components/UserLI';
 
 function InfoMeeting(props) {
   return (
-    <div className="w-1/2 mx-auto">
+    <div className="w-1/2 mx-auto mt-10 background">
       <form
         className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
         id="meetingForm"
