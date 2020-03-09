@@ -27,7 +27,7 @@ function MeetingCard(props) {
         </article>
       </div>
 
-      <hr className="mx-10"></hr>
+      {/* <hr className="mx-10"></hr> */}
     </>
   );
 }
