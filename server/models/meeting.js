@@ -10,6 +10,7 @@ const taskSchema = new Schema({
   meetingId: { type: String },
   agendaId: { type: String },
   task: { type: String },
+  user: { type: String },
   completed: { type: Boolean, default: false }
 });
 
