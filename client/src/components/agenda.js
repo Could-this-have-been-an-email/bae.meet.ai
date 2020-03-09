@@ -1,19 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from 'react';
 // import AddTasks from "../components/addTasks";
-import "../pages/Meeting/Meeting"
-import { PromiseProvider } from "mongoose";
-import Dropdown from "./Dropdown";
-
+import '../pages/Meeting/Meeting';
+// import { PromiseProvider } from 'mongoose';
+import Dropdown from './Dropdown';
 
 function Agenda(props) {
-  const [popup, setPopup] = useState("");
+  const [popup, setPopup] = useState('');
 
   function popupUser() {
-    console.log("working")
+    console.log('working');
     setPopup(true);
-  };
-
-  
+  }
 
   return (
     <div>
@@ -22,7 +19,7 @@ function Agenda(props) {
           <input className="w-5 h-5" type="checkbox" />
         </div>
         <div className="col-start-2 flex items-center">
-          {" "}
+          {' '}
           {props.agenda.newagenda}
         </div>
 
@@ -31,13 +28,11 @@ function Agenda(props) {
           className="col-start-3 flex items-center justify-end"
         >
           <button
-
             className="fa fa-arrow-up px-1"
             onClick={() => props.handleUpVote(props.agenda._id)}
           ></button>
           <button
             className="fa fa-arrow-down px-1"
-
             onClick={() => props.handleDownVote(props.agenda._id)}
           ></button>
 
@@ -61,21 +56,31 @@ function Agenda(props) {
                     <div className="flex items-center justify-end popup">
                       <div class="dropdown is-hoverable">
                         <div class="dropdown-trigger">
-                          <button class="button" aria-haspopup="true" aria-controls="dropdown-menu4">
+                          <button
+                            class="button"
+                            aria-haspopup="true"
+                            aria-controls="dropdown-menu4"
+                          >
                             <span>Assign Task</span>
                             <span class="icon is-small">
-                              <i class="fas fa-angle-down" aria-hidden="true"></i>
+                              <i
+                                class="fas fa-angle-down"
+                                aria-hidden="true"
+                              ></i>
                             </span>
                           </button>
                         </div>
-                        <div class="dropdown-menu" id="dropdown-menu4" role="menu">
-                          <Dropdown attendees={props.attendees} meetings={props.meetings}/>
-                          
+                        <div
+                          class="dropdown-menu"
+                          id="dropdown-menu4"
+                          role="menu"
+                        >
+                          <Dropdown
+                            attendees={props.attendees}
+                            meetings={props.meetings}
+                          />
                         </div>
                       </div>
-                                          
-                      
-
                     </div>
                   </div>
                 </div>
@@ -83,8 +88,8 @@ function Agenda(props) {
             })}
           </>
         ) : (
-            <></>
-          )}
+          <></>
+        )}
       </div>
       <div className="pl-10 flex container flex items-center">
         <div className="w-5/6 py-1 px-1">
@@ -109,4 +114,3 @@ function Agenda(props) {
   );
 }
 export default Agenda;
-

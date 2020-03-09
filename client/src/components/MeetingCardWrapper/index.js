@@ -3,7 +3,7 @@ import React from 'react';
 function MeetingCardWrapper(props) {
   return (
     <>
-      <div className="h-half scrollable">
+      <div className="h-half scrollable b">
         <p className="m-4 font-bold text-xl">{props.title}</p>
         {props.children}
       </div>
