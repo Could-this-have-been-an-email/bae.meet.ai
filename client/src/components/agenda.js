@@ -13,7 +13,7 @@ function Agenda(props) {
     setPopup(true);
   };
 
-  
+
 
   return (
     <div>
@@ -59,22 +59,22 @@ function Agenda(props) {
                     </div>
                     <div className="grid "> {task.task}</div>
                     <div className="flex items-center justify-end popup">
-                      <div class="dropdown is-hoverable">
-                        <div class="dropdown-trigger">
-                          <button class="button" aria-haspopup="true" aria-controls="dropdown-menu4">
+                      <div className="dropdown is-hoverable">
+                        <div className="dropdown-trigger">
+                          <button className="button" aria-haspopup="true" aria-controls="dropdown-menu4">
                             <span>Assign Task</span>
-                            <span class="icon is-small">
-                              <i class="fas fa-angle-down" aria-hidden="true"></i>
+                            <span className="icon is-small">
+                              <i className="fas fa-angle-down" aria-hidden="true"></i>
                             </span>
                           </button>
                         </div>
-                        <div class="dropdown-menu" id="dropdown-menu4" role="menu">
-                          <Dropdown attendees={props.attendees} meetings={props.meetings}/>
-                          
+                        <div className="dropdown-menu" id="dropdown-menu4" role="menu">
+                          <Dropdown attendees={props.attendees} taskidforuser={task._id} agendaidforuser={props.agenda._id} addUserTask={props.addUserTask} meetings={props.meetings} />
+
                         </div>
                       </div>
-                                          
-                      
+
+
 
                     </div>
                   </div>
