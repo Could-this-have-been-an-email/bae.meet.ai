@@ -87,27 +87,35 @@ function User() {
       <Navbar />
 
       <div className="sm:flex h-all">
-        <div className="bg-blue-900 menu sidebar">
-          <figure className="image is-square ">
-            <img
-              alt="profile icon"
-              src="https://images.unsplash.com/photo-1544133782-b62779394064?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2734&q=80"
-            />
-          </figure>
-          <div className="p-6">
-            <p className="text-4xl text-white">
-              {user.firstName} {user.lastName}
-            </p>
-            <p className="text-gray-400">{user.email}</p>
-            <p className="text-gray-400"> {user.position}</p>
-            <a className="button is-fullwidth mt-6" href="/newmeeting">
-              Create new meeting!
-            </a>
+        <div className="bg-blue-900 menu sidebar p-2">
+          <div className="flex flex-row sm:flex-col pt-2">
+            <figure id="profileIcon" className="image flex">
+              <img
+                className="is-rounded object-cover"
+                alt="profile icon"
+                src="https://images.generated.photos/MyCtCHFSpG4M_-ncOFAGjFCIMl7kHMKowz5VVi4PgPE/rs:fit:512:512/Z3M6Ly9nZW5lcmF0/ZWQtcGhvdG9zLzA5/OTk2NjQuanBn.jpg"
+              />
+            </figure>
+            <div className="p-6">
+              <p className="text-2xl sm:text-4xl text-white text-center sm:text-left ">
+                {user.firstName} {user.lastName}
+              </p>
+              <p className="text-gray-400 text-center sm:text-left">
+                {user.email}
+              </p>
+              <p className="text-gray-400 text-center sm:text-left">
+                {user.position}
+              </p>
+            </div>
           </div>
+
+          <a className="button is-fullwidth mt-6 is-info" href="/newmeeting">
+            Create new meeting!
+          </a>
         </div>
 
         <div className="sm:flex w-full">
-          <div className="p-6 flex flex-col justify-top">
+          <div className="p-6 flex flex-col justify-around items-center">
             <div className="w-64 box h-64 flex flex-col justify-around text-center">
               <p>You've spent</p>
               <p className="text-6xl">{timeSpent}</p>
@@ -137,6 +145,7 @@ function User() {
                 })}
               </ul>
             </MeetingCardWrapper>
+            <hr className="mx-20"></hr>
             <MeetingCardWrapper title="PAST MEETINGS">
               <ul id="prevMeetings">
                 {prevMeetings.map(meeting => {
