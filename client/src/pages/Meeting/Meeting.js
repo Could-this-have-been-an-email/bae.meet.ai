@@ -124,6 +124,11 @@ function Meeting() {
       escape(document.getElementById("myText").value);
 
     window.location.href = link;
+    
+  }
+
+  function returnBack(){
+    window.history.back();
   }
 
   function handleEditorChange(content, editor) {
@@ -284,6 +289,7 @@ function Meeting() {
             className="mx-auto plum_plate hover:happy_fisher text-white font-bold py-2 px-4 border border-white rounded"
             onClick={() => handleNotes()}
             onClick={() => sendMail()}
+            onClick={() => returnBack()}
           ></input>
         </div>
       </div>
