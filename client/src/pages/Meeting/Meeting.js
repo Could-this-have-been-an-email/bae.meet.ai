@@ -11,8 +11,7 @@ function Meeting() {
   const [meeting, setMeeting] = useState([]);
   const [attendees, setAttendees] = useState([]);
   const [content, setContent] = useState("");
-  let userInputRef = useRef()
-
+  const [userTaskName, setuserTaskName] = useState("")
   const [agendaFiltered, setagendaFiltered] = useState([]);
 
   var full_url = document.URL; // Get current url
@@ -135,6 +134,10 @@ function Meeting() {
         singleAgenda.tasks.map(task => {
           if (task._id === action.target.getAttribute("taskidforuser")) {
             console.log('success', task)
+
+            setuserTaskName(`${action.target.getAttribute("attendeeFirstName")} ${action.target.getAttribute("attendeeLastName")}
+            `)
+
             task["user"] = action.target.getAttribute("useridvalue")
           }
           API.updateMeeting(meeting._id, meeting)
@@ -155,10 +158,10 @@ function Meeting() {
       escape(document.getElementById("myText").value);
 
     window.location.href = link;
-    
+
   }
 
-  function returnBack(){
+  function returnBack() {
     window.history.back();
   }
 
@@ -171,7 +174,7 @@ function Meeting() {
   // meeting.agenda.forEach(testing => {
   //   console.log(testing)
   // })
-  console.log("attendee", attendees);
+  console.log("attendee", userTaskName);
 
   return (
     <>
@@ -218,10 +221,10 @@ function Meeting() {
                 })}
               </div>
             ) : (
-              <>
-                <div>No meeting agenda has been set!</div>
-              </>
-            )}
+                <>
+                  <div>No meeting agenda has been set!</div>
+                </>
+              )}
           </div>
         </div>
 
@@ -235,7 +238,7 @@ function Meeting() {
                 // console.log(agenda);
                 if (agenda.vote >= 0) {
                   return (
-                   <Agenda
+                    <Agenda
                       agenda={agenda}
                       key={agenda._id}
                       handleDownVote={handleDownVote}
@@ -244,17 +247,17 @@ function Meeting() {
                       tasks={agenda.tasks}
                       attendees={attendees}
                       addUserTask={addUserTask}
-                      // meetings={meetings}
+                    // meetings={meetings}
                     ></Agenda>
                   );
                 }
               })}
             </div>
           ) : (
-            <>
-              <div>No meeting agenda has been set!</div>
-            </>
-          )}
+              <>
+                <div>No meeting agenda has been set!</div>
+              </>
+            )}
         </div>
 
         {/* WYSIWYG Meeting Notes */}
@@ -297,8 +300,8 @@ function Meeting() {
               })}
             </>
           ) : (
-            <></>
-          )}
+              <></>
+            )}
         </div>
 
         {/* Start/Stop Meeting buttons */}
@@ -324,7 +327,7 @@ function Meeting() {
             className="mx-auto plum_plate hover:happy_fisher text-white font-bold py-2 px-4 border border-white rounded"
             onClick={() => handleNotes()}
             onClick={() => sendMail()}
-            // onClick={() => returnBack()}
+          // onClick={() => returnBack()}
           ></input>
         </div>
       </div>
