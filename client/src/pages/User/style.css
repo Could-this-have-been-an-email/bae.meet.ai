@@ -11,8 +11,7 @@
 }
 
 .h-half {
-  min-height: 50%;
-  max-height: 50%;
+  max-height: calc((100vh - 3.25rem) / 2);
 }
 
 .scrollable {
