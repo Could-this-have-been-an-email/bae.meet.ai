@@ -11,10 +11,13 @@ function Agenda(props) {
 
   function popupUser() {
 
+
+
     console.log('working');
 
     setPopup(true);
   }
+
 
   return (
     <div className="p-5">
@@ -56,6 +59,7 @@ function Agenda(props) {
                       {" "}
                       {task.task}
                     </div>
+
                     <div className="popup flex w-1/6 justify-end">
                       <div class="dropdown is-hoverable">
                         <div class="dropdown-trigger">
@@ -74,9 +78,7 @@ function Agenda(props) {
                           id="dropdown-menu4"
                           role="menu"
                         >
-                          <Dropdown
-                            attendees={props.attendees}
-                          />
+                          <Dropdown attendees={props.attendees} taskidforuser={task._id} agendaidforuser={props.agenda._id} addUserTask={props.addUserTask} meetings={props.meetings} />
                         </div>
                       </div>
                     </div>

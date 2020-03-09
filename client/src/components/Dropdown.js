@@ -1,27 +1,22 @@
 import React, { useState, useEffect } from "react";
-import Agenda from "./agenda"
 
 
 function Dropdown(props) {
 
-    const [task, setTask] = useState("");
-    
 
+    return (
+        <div class="dropdown-content">
 
+            {props.attendees && props.attendees.map(attendee => {
+                // console.log({attendee})
+                return (
+                    <div className="dropdown-item" key={attendee._id} useridvalue={attendee._id} taskidforuser={props.taskidforuser} agendaidforuser={props.agendaidforuser} onClick={props.addUserTask}>{attendee.firstName}</div>
+                )
+            })}
 
+        </div>
+    )
 
-return(
-<div class="dropdown-content">
-                            
-    {props.attendees && props.attendees.map(attendee => {
-    // console.log({attendee})
-    return(
-    <a className="dropdown-item">{attendee.firstName}</a>
-        )
-    })}
-                            
-</div>
-)
 
 
 };
