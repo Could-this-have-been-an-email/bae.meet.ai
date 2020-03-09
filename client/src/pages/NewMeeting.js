@@ -78,7 +78,8 @@ function Meeting() {
   };
 
   return (
-    <div>
+    <div className="background">
+      <div className="holder background"></div>
       <InfoMeeting
         submitform={submitFormUser}
         submitAgenda={submitAgenda}
@@ -87,6 +88,7 @@ function Meeting() {
         userJson={users}
         submitUsers={submitUsers}
       ></InfoMeeting>
+      <div className="holder background"></div>
     </div>
   );
 }
