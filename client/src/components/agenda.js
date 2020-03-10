@@ -1,16 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from 'react';
 // import AddTasks from "../components/addTasks";
-import "../pages/Meeting/Meeting";
-import { PromiseProvider } from "mongoose";
-import Dropdown from "./Dropdown";
+
+import '../pages/Meeting/Meeting';
+// import { PromiseProvider } from 'mongoose';
+import Dropdown from './Dropdown';
+
 
 function Agenda(props) {
-  const [popup, setPopup] = useState("");
+  const [popup, setPopup] = useState('');
 
   function popupUser() {
-    console.log("working");
+
+
+
+    console.log('working');
+
     setPopup(true);
   }
+
 
   return (
     <div className="p-5">
@@ -18,8 +25,10 @@ function Agenda(props) {
         <div className="flex justify-left items-center w-1/12 ">
           <input className="w-5 h-5" type="checkbox" />
         </div>
+
         <div className="flex items-center justify-center w-10/12">
           {" "}
+
           {props.agenda.newagenda}
         </div>
 
@@ -50,15 +59,18 @@ function Agenda(props) {
                       {" "}
                       {task.task}
                     </div>
+
                     <div className="popup flex w-1/6 justify-end">
                       <div class="dropdown is-hoverable">
                         <div class="dropdown-trigger">
                           <button
+
                             class="button h-8"
                             aria-haspopup="true"
                             aria-controls="dropdown-menu4"
                           >
                             <i class="fas fa-user"></i>
+
                           </button>
                         </div>
                         <div
@@ -66,10 +78,7 @@ function Agenda(props) {
                           id="dropdown-menu4"
                           role="menu"
                         >
-                          <Dropdown
-                            attendees={props.attendees}
-                            meetings={props.meetings}
-                          />
+                          <Dropdown attendees={props.attendees} taskidforuser={task._id} agendaidforuser={props.agenda._id} addUserTask={props.addUserTask} meetings={props.meetings} />
                         </div>
                       </div>
                     </div>

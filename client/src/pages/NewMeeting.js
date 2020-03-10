@@ -1,17 +1,16 @@
-import React, { useReducer, useRef, useState, useEffect } from "react";
-import InfoMeeting from "../components/InfoMeeting";
-import "../styles/newMeeting.css";
-import API from "../utils/API";
+import React, { useReducer, useRef, useState, useEffect } from 'react';
+import InfoMeeting from '../components/InfoMeeting';
+import '../styles/newMeeting.css';
+import API from '../utils/API';
 
 function Meeting() {
   let usersSelected = [];
   const [users, setUsers] = useState([]);
 
-
   const agendaInput = useRef();
 
   const [agendavalue, dispatch] = useReducer((state, action) => {
-    if (action.type === "addAgenda") {
+    if (action.type === 'addAgenda') {
       return [
         ...state,
         {
@@ -23,7 +22,6 @@ function Meeting() {
       return state;
     }
   }, []);
-
 
   useEffect(() => {
     async function fetchData() {
@@ -48,15 +46,14 @@ function Meeting() {
 
   const submitAgenda = () => {
     dispatch({
-      type: "addAgenda",
+      type: 'addAgenda',
       value: agendaInput.current.value.trim()
     });
-    agendaInput.current.value = "";
+    agendaInput.current.value = '';
   };
 
-
   const submitMeetingInfoAPI = meeting => {
-    console.log("2", meeting);
+    console.log('2', meeting);
     API.createMeeting(meeting)
       // .then(console.log("completedapi"))
       .then(window.history.back())
@@ -76,12 +73,13 @@ function Meeting() {
       users: usersSelected
     };
 
-    console.log("1", oneMeeting);
+    console.log('1', oneMeeting);
     submitMeetingInfoAPI(oneMeeting);
   };
 
   return (
-    <div>
+    <div className="background">
+      <div className="holder background"></div>
       <InfoMeeting
         submitform={submitFormUser}
         submitAgenda={submitAgenda}
@@ -90,6 +88,7 @@ function Meeting() {
         userJson={users}
         submitUsers={submitUsers}
       ></InfoMeeting>
+      <div className="holder background"></div>
     </div>
   );
 }

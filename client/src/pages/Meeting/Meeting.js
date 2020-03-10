@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./style.css";
 import "../../styles/gradientColors.css";
 import API from "../../utils/API";
@@ -11,6 +11,7 @@ function Meeting() {
   const [meeting, setMeeting] = useState([]);
   const [attendees, setAttendees] = useState([]);
   const [content, setContent] = useState("");
+  let userInputRef = useRef()
 
   const [agendaFiltered, setagendaFiltered] = useState([]);
 
@@ -81,13 +82,14 @@ function Meeting() {
   }
 
   function handleTask(id) {
+
     console.log("handle task");
+
     meeting.agenda.forEach(singleAgenda => {
       if (id === singleAgenda._id) {
         var inputVal = document.getElementById("task").value;
         singleAgenda.tasks.push({
           completed: false,
-          userId: "123",
           meetingId: meeting._id,
           agendaId: id,
           task: inputVal
@@ -114,6 +116,35 @@ function Meeting() {
     });
   }
 
+
+  const addUserTask = action => {
+    console.log('agendaID', action.target.getAttribute("agendaidforuser"))
+    console.log('userinput', action.target.getAttribute("useridvalue"))
+    console.log('taskid', action.target.getAttribute("taskidforuser"))
+    console.log('meetingid', meeting)
+
+
+
+    // let userTaskAssign = {
+    //   agendaId: action.target.getAttribute("agendaIdforUser"),
+    //   user: action.target.getAttribute("value"),
+    // }
+
+    meeting.agenda.forEach(singleAgenda => {
+      if (singleAgenda._id === action.target.getAttribute("agendaidforuser")) {
+        singleAgenda.tasks.map(task => {
+          if (task._id === action.target.getAttribute("taskidforuser")) {
+            console.log('success', task)
+            task["user"] = action.target.getAttribute("useridvalue")
+          }
+          API.updateMeeting(meeting._id, meeting)
+
+        })
+      }
+
+    })
+  };
+
   function sendMail() {
     var link =
       "mailto: mcbride.katieb@gmail.com; taylor.m.mcbride@gmail.com" +
@@ -124,6 +155,11 @@ function Meeting() {
       escape(document.getElementById("myText").value);
 
     window.location.href = link;
+    
+  }
+
+  function returnBack(){
+    window.history.back();
   }
 
   function handleEditorChange(content, editor) {
@@ -166,6 +202,7 @@ function Meeting() {
             {meeting.agenda ? (
               <div className="deep_blue rounded">
                 {meeting.agenda.map(agenda => {
+
                   if (agenda.vote < 0) {
                     return (
                       <BAE
@@ -188,6 +225,7 @@ function Meeting() {
           </div>
         </div>
 
+
         {/* Agenda and tasks */}
         <div className="row-start-5 col-start-2 col-span-4 pt-2 text-lg">
           <div className="font-extrabold">Agenda:</div>
@@ -197,7 +235,7 @@ function Meeting() {
                 // console.log(agenda);
                 if (agenda.vote >= 0) {
                   return (
-                    <Agenda
+                   <Agenda
                       agenda={agenda}
                       key={agenda._id}
                       handleDownVote={handleDownVote}
@@ -205,6 +243,7 @@ function Meeting() {
                       handleTask={handleTask}
                       tasks={agenda.tasks}
                       attendees={attendees}
+                      addUserTask={addUserTask}
                       // meetings={meetings}
                     ></Agenda>
                   );
@@ -286,6 +325,7 @@ function Meeting() {
             className="mx-auto plum_plate hover:happy_fisher text-white font-bold py-2 px-4 border border-white rounded"
             onClick={() => handleNotes()}
             onClick={() => sendMail()}
+            // onClick={() => returnBack()}
           ></input>
         </div>
       </div>
