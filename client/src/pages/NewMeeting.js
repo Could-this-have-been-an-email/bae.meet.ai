@@ -57,7 +57,7 @@ function Meeting() {
     console.log('2', meeting);
     API.createMeeting(meeting)
       // .then(console.log("completedapi"))
-      // .then(window.history.back())
+      .then(window.history.back())
       .catch(err => console.log(err));
   };
   const submitFormUser = event => {
