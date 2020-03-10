@@ -18,7 +18,7 @@ function Agenda(props) {
     setPopup(true);
   }
 
-  console.log('33333', props.attendees)
+  // console.log('33333', props.attendees)
 
 
   return (
@@ -102,8 +102,10 @@ function Agenda(props) {
       <div className="px-16 flex container items-center">
         <div className="w-5/6 p-1">
           <input
+            ref={props.inputRef}
+            onChange={props.agendaInputValue}
             className=" appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="task"
+            // id="task"
             type="text"
             placeholder="Add a Task"
           ></input>
