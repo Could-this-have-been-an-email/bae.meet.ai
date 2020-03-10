@@ -18,8 +18,7 @@ function Agenda(props) {
     setPopup(true);
   }
 
-  console.log('33333', props.userTaskName)
-  console.log('4444', props.tasks)
+  console.log('33333', props.attendees)
 
 
   return (
@@ -55,30 +54,35 @@ function Agenda(props) {
               return (
                 <div className="py-1">
                   <div
-                    className="flex flex-row items-baseline justify-between p-1 border-2 rounded w-full"
+                    className="flex flex-row items-baseline  p-1 border-2 rounded w-full"
                     key={task._id}
                   >
-                    <div className="pl-3 text w-5/6 font-white font-bold">
-                      {" "}
+                    <div className="pl-3 text w-5/6 font-white font-bold flex justify-between">
                       {task.task}
-                      {task._id === props.userTaskName.taskid ? props.userTaskName.name : ''}
+                      {props.attendees.map(attendee => {
+                        return (
+                          <div>
+                            { task.user === attendee._id ? `${attendee.firstName} ${attendee.lastName}` : "" }
+                          </div>
+                        )
+                      })}
                     </div>
 
                     <div className="popup flex w-1/6 justify-end">
-                      <div class="dropdown is-hoverable">
-                        <div class="dropdown-trigger">
+                      <div className="dropdown is-hoverable">
+                        <div className="dropdown-trigger">
                           <button
 
-                            class="button h-8"
+                            className="button h-8"
                             aria-haspopup="true"
                             aria-controls="dropdown-menu4"
                           >
-                            <i class="fas fa-user"></i>
+                            <i className="fas fa-user"></i>
 
                           </button>
                         </div>
                         <div
-                          class="dropdown-menu"
+                          className="dropdown-menu"
                           id="dropdown-menu4"
                           role="menu"
                         >
