@@ -50,17 +50,29 @@ function Agenda(props) {
               return (
                 <div className="py-1">
                   <div
-                    className="flex flex-row items-baseline justify-between p-1 border-2 rounded w-full"
+                    className="flex flex-row items-baseline  p-1 border-2 rounded w-full"
                     key={task._id}
                   >
-                    <div className="pl-3 text w-5/6 font-white font-bold">
-                      {" "}
-                      {task.task}
+                    <div className="pl-3 text w-9/12 font-white font-bold flex justify-between">
+                      <div>{task.task}</div>
                     </div>
 
-                    <div className="popup flex w-1/6 justify-end">
-                      <div class="dropdown is-hoverable">
-                        <div class="dropdown-trigger">
+                    <div className="popup flex w-3/12 justify-end self-center">
+                      {props.attendees.map(attendee => {
+                        return (
+                          <>
+                            {task.user === attendee._id ? (
+                              <div className="pr-1 font-white font-bold">
+                                {attendee.firstName} {attendee.lastName}
+                              </div>
+                            ) : (
+                              <>{""}</>
+                            )}
+                          </>
+                        );
+                      })}
+                      <div className="dropdown is-hoverable">
+                        <div className="dropdown-trigger">
                           <button
                             class="button h-8"
                             aria-haspopup="true"
@@ -70,7 +82,7 @@ function Agenda(props) {
                           </button>
                         </div>
                         <div
-                          class="dropdown-menu"
+                          className="dropdown-menu"
                           id="dropdown-menu4"
                           role="menu"
                         >
@@ -96,8 +108,10 @@ function Agenda(props) {
       <div className="px-16 flex container items-center">
         <div className="w-5/6 p-1">
           <input
+            ref={props.inputRef}
+            onChange={props.agendaInputValue}
             className=" appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="task"
+            // id="task"
             type="text"
             placeholder="Add a Task"
           ></input>

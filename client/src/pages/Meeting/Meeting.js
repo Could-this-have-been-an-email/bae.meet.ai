@@ -5,16 +5,19 @@ import API from "../../utils/API";
 import AttendeeCard from "../../components/attendeeCard";
 import Agenda from "../../components/agenda";
 import BAE from "../../components/BAE";
+import Navbar from "../../components/Navbar";
 import { Editor } from "@tinymce/tinymce-react";
 
 function Meeting() {
   const [meeting, setMeeting] = useState([]);
   const [attendees, setAttendees] = useState([]);
-  const [content, setContent] = useState("");
   let userInputRef = useRef();
   const [meetingStatus, setMeetingStatus] = useState([]);
 
+  const [content, setContent] = useState("");
+  const [userTaskName, setuserTaskName] = useState([]);
   const [agendaFiltered, setagendaFiltered] = useState([]);
+  const inputRef = useRef();
 
   var full_url = document.URL; // Get current url
   var url_array = full_url.split("/"); // Split the string into an array with / as separator
@@ -27,7 +30,6 @@ function Meeting() {
   function loadMeeting() {
     API.getMeeting(id)
       .then(res => {
-        console.log("42", res.data);
         setMeeting(res.data);
         setMeetingStatus(res.data.meetingStarted);
         setagendaFiltered(res.data.agenda.sort(sortAgenda));
@@ -47,7 +49,6 @@ function Meeting() {
   }
 
   let sortAgenda = (a, b) => {
-    console.log("ab", a.vote, b);
     let voteA = a.vote;
     let voteB = b.vote;
     return voteB - voteA;
@@ -82,12 +83,19 @@ function Meeting() {
     });
   }
 
-  function handleTask(id) {
-    console.log("handle task");
+  let userInput = "";
 
+  const agendaInputValue = event => {
+    userInput = event.target.value;
+  };
+
+  function handleTask(id) {
+    console.log("333333", userInput);
     meeting.agenda.forEach(singleAgenda => {
       if (id === singleAgenda._id) {
-        var inputVal = document.getElementById("task").value;
+        var inputVal = userInput;
+        // console.log("handle task", inputVal);
+
         singleAgenda.tasks.push({
           completed: false,
           meetingId: meeting._id,
@@ -109,29 +117,34 @@ function Meeting() {
     });
     console.log(meeting);
     API.updateMeeting(meeting._id, meeting);
-    // var inputNote = document.getElementById("notes").value;
-    // API.updateMeeting(meeting._id, {
-    //   $set: {
-    //     "meeting.note": { inputNote }
-    //   }
+    var inputNote = document.getElementById("notes").value;
+    API.updateMeeting(meeting._id, {
+      $set: {
+        "meeting.note": { inputNote }
+      }
+    });
   }
 
+  let userTaskArray = [];
+
   const addUserTask = action => {
-    console.log("agendaID", action.target.getAttribute("agendaidforuser"));
-    console.log("userinput", action.target.getAttribute("useridvalue"));
-    console.log("taskid", action.target.getAttribute("taskidforuser"));
-    console.log("meetingid", meeting);
-
-    // let userTaskAssign = {
-    //   agendaId: action.target.getAttribute("agendaIdforUser"),
-    //   user: action.target.getAttribute("value"),
-    // }
-
     meeting.agenda.forEach(singleAgenda => {
       if (singleAgenda._id === action.target.getAttribute("agendaidforuser")) {
         singleAgenda.tasks.map(task => {
           if (task._id === action.target.getAttribute("taskidforuser")) {
-            console.log("success", task);
+            // console.log('success', task)
+
+            let userAssignedToTask = {
+              name: `${action.target.getAttribute(
+                "attendeefirstname"
+              )} ${action.target.getAttribute("attendeelastname")}`,
+              taskid: action.target.getAttribute("taskidforuser")
+            };
+            // userTaskName.push(userAssignedToTask)
+
+            //redherring state, works because it resets the state in agenda however this state is not being used, will be deleted once I fix errors
+            setuserTaskName(userAssignedToTask);
+
             task["user"] = action.target.getAttribute("useridvalue");
           }
           API.updateMeeting(meeting._id, meeting);
@@ -165,10 +178,10 @@ function Meeting() {
   // meeting.agenda.forEach(testing => {
   //   console.log(testing)
   // })
-  console.log("attendee", attendees);
 
   return (
     <>
+      <Navbar />
       <div className="grid grid-rows-7 grid-flow-col gap-1 perfect_white">
         {/* Header */}
         <div className="row-start-1"></div>
@@ -236,7 +249,9 @@ function Meeting() {
                       tasks={agenda.tasks}
                       attendees={attendees}
                       addUserTask={addUserTask}
-                      // meetings={meetings}
+                      userTaskName={userTaskName}
+                      inputRef={inputRef}
+                      agendaInputValue={agendaInputValue}
                     ></Agenda>
                   );
                 }
