@@ -220,7 +220,7 @@ function Meeting() {
 
         {/* WYSIWYG Meeting Notes */}
         <div className="row-start-6 row-end-6 col-start-2 col-span-4 text-lg">
-          <div className="font-bold">Notes:</div>
+          <div className="font-extrabold">Notes:</div>
           <div className="p-2 deep_blue">
             <Editor
               apiKey="avgvd7u4i68a9mq24lbgo9zusv5tq1vyu4pw9xrjkt9depds"
@@ -263,6 +263,7 @@ function Meeting() {
         </div>
 
         {/* Start/Stop Meeting buttons */}
+
         <div className="row-start-7 col-start-4">
           <input
             type="submit"
