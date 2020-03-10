@@ -1,22 +1,23 @@
-import React, { useState, useEffect, useRef } from "react";
-import "./style.css";
-import "../../styles/gradientColors.css";
-import API from "../../utils/API";
-import AttendeeCard from "../../components/attendeeCard";
-import Agenda from "../../components/agenda";
-import BAE from "../../components/BAE";
-import { Editor } from "@tinymce/tinymce-react";
+import React, { useState, useEffect, useRef } from 'react';
+import './style.css';
+import '../../styles/gradientColors.css';
+import API from '../../utils/API';
+import AttendeeCard from '../../components/attendeeCard';
+import Agenda from '../../components/agenda';
+import BAE from '../../components/BAE';
+import Navbar from '../../components/Navbar';
+import { Editor } from '@tinymce/tinymce-react';
 
 function Meeting() {
   const [meeting, setMeeting] = useState([]);
   const [attendees, setAttendees] = useState([]);
-  const [content, setContent] = useState("");
-  const [userTaskName, setuserTaskName] = useState([])
+  const [content, setContent] = useState('');
+  const [userTaskName, setuserTaskName] = useState([]);
   const [agendaFiltered, setagendaFiltered] = useState([]);
   const inputRef = useRef()
 
   var full_url = document.URL; // Get current url
-  var url_array = full_url.split("/"); // Split the string into an array with / as separator
+  var url_array = full_url.split('/'); // Split the string into an array with / as separator
   var id = url_array[url_array.length - 1]; // Get the last part of the array (-1)
 
   useEffect(() => {
@@ -51,11 +52,11 @@ function Meeting() {
   };
 
   function hideVotes() {
-    var x = document.getElementById("js-votes");
-    if (x.style.display === "none") {
-      x.style.display = "block";
+    var x = document.getElementById('js-votes');
+    if (x.style.display === 'none') {
+      x.style.display = 'block';
     } else {
-      x.style.display = "none";
+      x.style.display = 'none';
     }
   }
 
@@ -87,6 +88,7 @@ function Meeting() {
   }
 
   function handleTask(id) {
+
     console.log('333333', userInput)
 
 
@@ -94,6 +96,7 @@ function Meeting() {
       if (id === singleAgenda._id) {
         var inputVal = userInput;
         // console.log("handle task", inputVal);
+
 
         singleAgenda.tasks.push({
           completed: false,
@@ -111,58 +114,57 @@ function Meeting() {
   function handleNotes(id) {
     var inputNote = content;
     meeting.meetingNote.push({
-      userName: "katieb",
+      userName: 'katieb',
       note: inputNote
     });
     API.updateMeeting(meeting._id, meeting);
-    var inputNote = document.getElementById("notes").value;
+    var inputNote = document.getElementById('notes').value;
     API.updateMeeting(meeting._id, {
       $set: {
-        "meeting.note": { inputNote }
+        'meeting.note': { inputNote }
       }
     });
   }
 
-  let userTaskArray = []
+  let userTaskArray = [];
 
   const addUserTask = action => {
-
     meeting.agenda.forEach(singleAgenda => {
-      if (singleAgenda._id === action.target.getAttribute("agendaidforuser")) {
+      if (singleAgenda._id === action.target.getAttribute('agendaidforuser')) {
         singleAgenda.tasks.map(task => {
-          if (task._id === action.target.getAttribute("taskidforuser")) {
+          if (task._id === action.target.getAttribute('taskidforuser')) {
             // console.log('success', task)
 
             let userAssignedToTask = {
-              name: `${action.target.getAttribute("attendeefirstname")} ${action.target.getAttribute("attendeelastname")}`,
-              taskid: action.target.getAttribute("taskidforuser")
-            }
+              name: `${action.target.getAttribute(
+                'attendeefirstname'
+              )} ${action.target.getAttribute('attendeelastname')}`,
+              taskid: action.target.getAttribute('taskidforuser')
+            };
             // userTaskName.push(userAssignedToTask)
 
             //redherring state, works because it resets the state in agenda however this state is not being used, will be deleted once I fix errors
-            setuserTaskName(userAssignedToTask)
+            setuserTaskName(userAssignedToTask);
 
-            task["user"] = action.target.getAttribute("useridvalue")
+            task['user'] = action.target.getAttribute('useridvalue');
           }
-          API.updateMeeting(meeting._id, meeting)
-
-        })
+          API.updateMeeting(meeting._id, meeting);
+        });
       }
-
-    })
+    });
   };
+
 
   function sendMail() {
     var link =
-      "mailto: mcbride.katieb@gmail.com; taylor.m.mcbride@gmail.com" +
-      "?cc=myCCaddress@example.com" +
-      "&subject=" +
-      escape("Post Meeting Survey") +
-      "&body=" +
-      escape(document.getElementById("myText").value);
+      'mailto: mcbride.katieb@gmail.com; taylor.m.mcbride@gmail.com' +
+      '?cc=myCCaddress@example.com' +
+      '&subject=' +
+      escape('Post Meeting Survey') +
+      '&body=' +
+      escape(document.getElementById('myText').value);
 
     window.location.href = link;
-
   }
 
   function returnBack() {
@@ -181,6 +183,7 @@ function Meeting() {
 
   return (
     <>
+      <Navbar />
       <div className="grid grid-rows-7 grid-flow-col gap-1 perfect_white">
         {/* Header */}
         <div className="row-start-1"></div>
@@ -208,7 +211,6 @@ function Meeting() {
             {meeting.agenda ? (
               <div className="deep_blue rounded">
                 {meeting.agenda.map(agenda => {
-
                   if (agenda.vote < 0) {
                     return (
                       <BAE
@@ -224,13 +226,12 @@ function Meeting() {
                 })}
               </div>
             ) : (
-                <>
-                  <div>No meeting agenda has been set!</div>
-                </>
-              )}
+              <>
+                <div>No meeting agenda has been set!</div>
+              </>
+            )}
           </div>
         </div>
-
 
         {/* Agenda and tasks */}
         <div className="row-start-5 col-start-2 col-span-4 pt-2 text-lg">
@@ -259,10 +260,10 @@ function Meeting() {
               })}
             </div>
           ) : (
-              <>
-                <div>No meeting agenda has been set!</div>
-              </>
-            )}
+            <>
+              <div>No meeting agenda has been set!</div>
+            </>
+          )}
         </div>
 
         {/* WYSIWYG Meeting Notes */}
@@ -277,14 +278,14 @@ function Meeting() {
                 height: 200,
                 menubar: false,
                 plugins: [
-                  "advlist autolink lists link image charmap print preview anchor",
-                  "searchreplace visualblocks code fullscreen",
-                  "insertdatetime media table paste code help wordcount"
+                  'advlist autolink lists link image charmap print preview anchor',
+                  'searchreplace visualblocks code fullscreen',
+                  'insertdatetime media table paste code help wordcount'
                 ],
                 toolbar:
-                  "undo redo | formatselect | bold italic backcolor | \
+                  'undo redo | formatselect | bold italic backcolor | \
             alignleft aligncenter alignright alignjustify | \
-            bullist numlist outdent indent | removeformat | help"
+            bullist numlist outdent indent | removeformat | help'
               }}
               onEditorChange={handleEditorChange}
             />
@@ -305,8 +306,8 @@ function Meeting() {
               })}
             </>
           ) : (
-              <></>
-            )}
+            <></>
+          )}
         </div>
 
         {/* Start/Stop Meeting buttons */}
@@ -332,7 +333,7 @@ function Meeting() {
             className="mx-auto plum_plate hover:happy_fisher text-white font-bold py-2 px-4 border border-white rounded"
             onClick={() => handleNotes()}
             onClick={() => sendMail()}
-          // onClick={() => returnBack()}
+            // onClick={() => returnBack()}
           ></input>
         </div>
       </div>
