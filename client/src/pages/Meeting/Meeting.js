@@ -135,8 +135,12 @@ function Meeting() {
           if (task._id === action.target.getAttribute("taskidforuser")) {
             console.log('success', task)
 
-            setuserTaskName(`${action.target.getAttribute("attendeeFirstName")} ${action.target.getAttribute("attendeeLastName")}
-            `)
+            let userAssignedToTask = {
+              name: `${action.target.getAttribute("attendeeFirstName")} ${action.target.getAttribute("attendeeLastName")}`,
+              taskid: action.target.getAttribute("taskidforuser")
+            }
+
+            setuserTaskName(userAssignedToTask)
 
             task["user"] = action.target.getAttribute("useridvalue")
           }
@@ -174,7 +178,6 @@ function Meeting() {
   // meeting.agenda.forEach(testing => {
   //   console.log(testing)
   // })
-  console.log("attendee", userTaskName);
 
   return (
     <>
@@ -247,6 +250,7 @@ function Meeting() {
                       tasks={agenda.tasks}
                       attendees={attendees}
                       addUserTask={addUserTask}
+                      userTaskName={userTaskName}
                     // meetings={meetings}
                     ></Agenda>
                   );
