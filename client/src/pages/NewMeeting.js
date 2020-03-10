@@ -2,6 +2,7 @@ import React, { useReducer, useRef, useState, useEffect } from 'react';
 import InfoMeeting from '../components/InfoMeeting';
 import '../styles/newMeeting.css';
 import API from '../utils/API';
+import Navbar from '../components/Navbar';
 
 function Meeting() {
   let usersSelected = [];
@@ -56,7 +57,7 @@ function Meeting() {
     console.log('2', meeting);
     API.createMeeting(meeting)
       // .then(console.log("completedapi"))
-      .then(window.history.back())
+      // .then(window.history.back())
       .catch(err => console.log(err));
   };
   const submitFormUser = event => {
@@ -78,18 +79,21 @@ function Meeting() {
   };
 
   return (
-    <div className="background">
-      <div className="holder background"></div>
-      <InfoMeeting
-        submitform={submitFormUser}
-        submitAgenda={submitAgenda}
-        agendaInput={agendaInput}
-        agendavalueMap={agendavalue}
-        userJson={users}
-        submitUsers={submitUsers}
-      ></InfoMeeting>
-      <div className="holder background"></div>
-    </div>
+    <>
+      <Navbar />
+      <div className="background">
+        <div className="holder background"></div>
+        <InfoMeeting
+          submitform={submitFormUser}
+          submitAgenda={submitAgenda}
+          agendaInput={agendaInput}
+          agendavalueMap={agendavalue}
+          userJson={users}
+          submitUsers={submitUsers}
+        ></InfoMeeting>
+        <div className="holder background"></div>
+      </div>
+    </>
   );
 }
 

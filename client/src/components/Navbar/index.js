@@ -10,14 +10,18 @@ function Navbar() {
   var url_array = full_url.split('/'); // Split the string into an array with / as separator
 
   useEffect(() => {
-    if (url_array[3] === 'user' || url_array[3] === 'meeting') {
+    if (
+      url_array[3] === 'user' ||
+      url_array[3] === 'meeting' ||
+      url_array[3] === 'newmeeting'
+    ) {
       setLogout(false);
     }
   });
 
   return (
     <nav
-      className="navbar is-black is-fixed-top"
+      className="navbar has-shadow is-fixed-top"
       role="navigation"
       aria-label="main navigation"
     >
