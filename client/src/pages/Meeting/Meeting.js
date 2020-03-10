@@ -14,6 +14,7 @@ function Meeting() {
   const [content, setContent] = useState('');
   const [userTaskName, setuserTaskName] = useState([]);
   const [agendaFiltered, setagendaFiltered] = useState([]);
+  const inputRef = useRef()
 
   var full_url = document.URL; // Get current url
   var url_array = full_url.split('/'); // Split the string into an array with / as separator
@@ -79,12 +80,24 @@ function Meeting() {
     });
   }
 
+  let userInput = ""
+
+  const agendaInputValue = event => {
+    userInput = event.target.value
+
+  }
+
   function handleTask(id) {
-    console.log('handle task');
+
+    console.log('333333', userInput)
+
 
     meeting.agenda.forEach(singleAgenda => {
       if (id === singleAgenda._id) {
-        var inputVal = document.getElementById('task').value;
+        var inputVal = userInput;
+        // console.log("handle task", inputVal);
+
+
         singleAgenda.tasks.push({
           completed: false,
           meetingId: meeting._id,
@@ -140,7 +153,7 @@ function Meeting() {
       }
     });
   };
-  console.log('success', userTaskName);
+
 
   function sendMail() {
     var link =
@@ -239,7 +252,8 @@ function Meeting() {
                       attendees={attendees}
                       addUserTask={addUserTask}
                       userTaskName={userTaskName}
-                      // meetings={meetings}
+                      inputRef={inputRef}
+                      agendaInputValue={agendaInputValue}
                     ></Agenda>
                   );
                 }
