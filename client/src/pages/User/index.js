@@ -121,10 +121,6 @@ function User() {
             </div>
             <div className="w-64 h-64 box">
               <div className="text-center border-b-2 pb-3">Tasks</div>
-              <li>Add voice recording to meetings.</li>
-              <li>Create a user image.</li>
-              <li>Pull completed notes back into WYSIWIG.</li>
-              <li>Add iCal and Google functionality.</li>
             </div>
           </div>
 
