@@ -2,6 +2,10 @@ import React, { useEffect } from 'react';
 import './style.css';
 import Navbar from '../../components/Navbar';
 import AOS from 'aos';
+import Logo from "./Screen Shot 2020-03-10 at 2.33.50 PM.jpg";
+import VoteLogo from "./Screen Shot 2020-03-10 at 2.36.58 PM.jpg";
+import BaeLogo from "./Screen Shot 2020-03-10 at 2.44.32 PM.jpg";
+import UserLogo from "./Screen Shot 2020-03-10 at 2.55.51 PM.jpg";
 
 function Landing() {
   useEffect(() => {
@@ -45,7 +49,7 @@ function Landing() {
             <div className="flex justify-center md:w-3/5">
               <img
                 className="self-center "
-                src="https://via.placeholder.com/550x300?text=Hero+Image"
+                src={Logo}
                 alt="hero example"
               />
             </div>
@@ -58,7 +62,7 @@ function Landing() {
               <img
                 alt="example 1"
                 className="self-center"
-                src="https://via.placeholder.com/500x500?text=Cool+Product+Image1"
+                src={VoteLogo}
               />
             </div>
             <div className="md:w-2/4">
@@ -86,7 +90,7 @@ function Landing() {
               <img
                 alt="example 2"
                 className="self-center"
-                src="https://via.placeholder.com/500x500?text=Cool+Product+Image2"
+                src={BaeLogo}
               />
             </div>
             <div className="md:w-2/4">
@@ -114,7 +118,7 @@ function Landing() {
               <img
                 alt="example 3"
                 className="self-center"
-                src="https://via.placeholder.com/500x500?text=Cool+Product+Image1"
+                src={UserLogo}
               />
             </div>
             <div className="md:w-2/4">
