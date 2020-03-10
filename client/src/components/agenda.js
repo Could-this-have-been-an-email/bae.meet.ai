@@ -18,6 +18,9 @@ function Agenda(props) {
     setPopup(true);
   }
 
+  console.log('33333', props.userTaskName)
+  console.log('4444', props.tasks)
+
 
   return (
     <div className="p-5">
@@ -58,6 +61,7 @@ function Agenda(props) {
                     <div className="pl-3 text w-5/6 font-white font-bold">
                       {" "}
                       {task.task}
+                      {task._id === props.userTaskName.taskid ? props.userTaskName.name : ''}
                     </div>
 
                     <div className="popup flex w-1/6 justify-end">
@@ -88,8 +92,8 @@ function Agenda(props) {
             })}
           </>
         ) : (
-          <></>
-        )}
+            <></>
+          )}
       </div>
       <div className="px-16 flex container items-center">
         <div className="w-5/6 p-1">
