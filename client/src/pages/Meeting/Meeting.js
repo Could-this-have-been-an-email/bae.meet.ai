@@ -1,23 +1,26 @@
-import React, { useState, useEffect, useRef } from 'react';
-import './style.css';
-import '../../styles/gradientColors.css';
-import API from '../../utils/API';
-import AttendeeCard from '../../components/attendeeCard';
-import Agenda from '../../components/agenda';
-import BAE from '../../components/BAE';
-import Navbar from '../../components/Navbar';
-import { Editor } from '@tinymce/tinymce-react';
+import React, { useState, useEffect, useRef } from "react";
+import "./style.css";
+import "../../styles/gradientColors.css";
+import API from "../../utils/API";
+import AttendeeCard from "../../components/attendeeCard";
+import Agenda from "../../components/agenda";
+import BAE from "../../components/BAE";
+import Navbar from "../../components/Navbar";
+import { Editor } from "@tinymce/tinymce-react";
 
 function Meeting() {
   const [meeting, setMeeting] = useState([]);
   const [attendees, setAttendees] = useState([]);
-  const [content, setContent] = useState('');
+  let userInputRef = useRef();
+  const [meetingStatus, setMeetingStatus] = useState([]);
+
+  const [content, setContent] = useState("");
   const [userTaskName, setuserTaskName] = useState([]);
   const [agendaFiltered, setagendaFiltered] = useState([]);
-  const inputRef = useRef()
+  const inputRef = useRef();
 
   var full_url = document.URL; // Get current url
-  var url_array = full_url.split('/'); // Split the string into an array with / as separator
+  var url_array = full_url.split("/"); // Split the string into an array with / as separator
   var id = url_array[url_array.length - 1]; // Get the last part of the array (-1)
 
   useEffect(() => {
@@ -28,7 +31,7 @@ function Meeting() {
     API.getMeeting(id)
       .then(res => {
         setMeeting(res.data);
-
+        setMeetingStatus(res.data.meetingStarted);
         setagendaFiltered(res.data.agenda.sort(sortAgenda));
         let users = res.data.users;
         return Promise.all(
@@ -52,11 +55,11 @@ function Meeting() {
   };
 
   function hideVotes() {
-    var x = document.getElementById('js-votes');
-    if (x.style.display === 'none') {
-      x.style.display = 'block';
+    var x = document.getElementById("js-votes");
+    if (x.style.display === "none") {
+      x.style.display = "block";
     } else {
-      x.style.display = 'none';
+      x.style.display = "none";
     }
   }
 
@@ -80,23 +83,18 @@ function Meeting() {
     });
   }
 
-  let userInput = ""
+  let userInput = "";
 
   const agendaInputValue = event => {
-    userInput = event.target.value
-
-  }
+    userInput = event.target.value;
+  };
 
   function handleTask(id) {
-
-    console.log('333333', userInput)
-
-
+    console.log("333333", userInput);
     meeting.agenda.forEach(singleAgenda => {
       if (id === singleAgenda._id) {
         var inputVal = userInput;
         // console.log("handle task", inputVal);
-
 
         singleAgenda.tasks.push({
           completed: false,
@@ -114,14 +112,15 @@ function Meeting() {
   function handleNotes(id) {
     var inputNote = content;
     meeting.meetingNote.push({
-      userName: 'katieb',
+      userName: "katieb",
       note: inputNote
     });
+    console.log(meeting);
     API.updateMeeting(meeting._id, meeting);
-    var inputNote = document.getElementById('notes').value;
+    var inputNote = document.getElementById("notes").value;
     API.updateMeeting(meeting._id, {
       $set: {
-        'meeting.note': { inputNote }
+        "meeting.note": { inputNote }
       }
     });
   }
@@ -130,23 +129,23 @@ function Meeting() {
 
   const addUserTask = action => {
     meeting.agenda.forEach(singleAgenda => {
-      if (singleAgenda._id === action.target.getAttribute('agendaidforuser')) {
+      if (singleAgenda._id === action.target.getAttribute("agendaidforuser")) {
         singleAgenda.tasks.map(task => {
-          if (task._id === action.target.getAttribute('taskidforuser')) {
+          if (task._id === action.target.getAttribute("taskidforuser")) {
             // console.log('success', task)
 
             let userAssignedToTask = {
               name: `${action.target.getAttribute(
-                'attendeefirstname'
-              )} ${action.target.getAttribute('attendeelastname')}`,
-              taskid: action.target.getAttribute('taskidforuser')
+                "attendeefirstname"
+              )} ${action.target.getAttribute("attendeelastname")}`,
+              taskid: action.target.getAttribute("taskidforuser")
             };
             // userTaskName.push(userAssignedToTask)
 
             //redherring state, works because it resets the state in agenda however this state is not being used, will be deleted once I fix errors
             setuserTaskName(userAssignedToTask);
 
-            task['user'] = action.target.getAttribute('useridvalue');
+            task["user"] = action.target.getAttribute("useridvalue");
           }
           API.updateMeeting(meeting._id, meeting);
         });
@@ -154,15 +153,14 @@ function Meeting() {
     });
   };
 
-
   function sendMail() {
     var link =
-      'mailto: mcbride.katieb@gmail.com; taylor.m.mcbride@gmail.com' +
-      '?cc=myCCaddress@example.com' +
-      '&subject=' +
-      escape('Post Meeting Survey') +
-      '&body=' +
-      escape(document.getElementById('myText').value);
+      "mailto: mcbride.katieb@gmail.com; taylor.m.mcbride@gmail.com" +
+      "?cc=myCCaddress@example.com" +
+      "&subject=" +
+      escape("Post Meeting Survey") +
+      "&body=" +
+      escape(document.getElementById("myText").value);
 
     window.location.href = link;
   }
@@ -268,7 +266,7 @@ function Meeting() {
 
         {/* WYSIWYG Meeting Notes */}
         <div className="row-start-6 row-end-6 col-start-2 col-span-4 text-lg">
-          <div className="font-bold">Notes:</div>
+          <div className="font-extrabold">Notes:</div>
           <div className="p-2 deep_blue">
             <Editor
               apiKey="avgvd7u4i68a9mq24lbgo9zusv5tq1vyu4pw9xrjkt9depds"
@@ -278,14 +276,14 @@ function Meeting() {
                 height: 200,
                 menubar: false,
                 plugins: [
-                  'advlist autolink lists link image charmap print preview anchor',
-                  'searchreplace visualblocks code fullscreen',
-                  'insertdatetime media table paste code help wordcount'
+                  "advlist autolink lists link image charmap print preview anchor",
+                  "searchreplace visualblocks code fullscreen",
+                  "insertdatetime media table paste code help wordcount"
                 ],
                 toolbar:
-                  'undo redo | formatselect | bold italic backcolor | \
+                  "undo redo | formatselect | bold italic backcolor | \
             alignleft aligncenter alignright alignjustify | \
-            bullist numlist outdent indent | removeformat | help'
+            bullist numlist outdent indent | removeformat | help"
               }}
               onEditorChange={handleEditorChange}
             />
@@ -311,13 +309,26 @@ function Meeting() {
         </div>
 
         {/* Start/Stop Meeting buttons */}
+
         <div className="row-start-7 col-start-4">
-          <input
-            type="submit"
-            value="Start Meeting"
-            className="mx-auto plum_plate hover:happy_fisher text-white font-bold py-2 px-4 border border-white rounded"
-            onClick={() => hideVotes()}
-          ></input>
+          {meetingStatus ? (
+            <input
+              type="submit"
+              value="End Meeting"
+              className="mx-auto plum_plate hover:happy_fisher text-white font-bold py-2 px-4 border border-white rounded"
+              onClick={() => handleNotes()}
+              // onClick={() => sendMail()}
+              // onClick={() => returnBack()}
+            ></input>
+          ) : (
+            <input
+              type="submit"
+              value="Start Meeting"
+              className="mx-auto plum_plate hover:happy_fisher text-white font-bold py-2 px-4 border border-white rounded"
+              onClick={() => hideVotes()}
+              onClick={() => setMeetingStatus(true)}
+            ></input>
+          )}
         </div>
 
         <textarea id="myText" className="hideSurvey">
@@ -325,17 +336,6 @@ function Meeting() {
           order to improve our meetings. Please follow the link to the fill out
           a 5 question survey. https://www.surveymonkey.com/r/Y2YW3FQ
         </textarea>
-
-        <div className="row-start-7 col-start-4">
-          <input
-            type="submit"
-            value="End Meeting"
-            className="mx-auto plum_plate hover:happy_fisher text-white font-bold py-2 px-4 border border-white rounded"
-            onClick={() => handleNotes()}
-            onClick={() => sendMail()}
-            // onClick={() => returnBack()}
-          ></input>
-        </div>
       </div>
     </>
   );
