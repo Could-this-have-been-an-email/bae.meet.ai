@@ -1,23 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 // import AddTasks from "../components/addTasks";
 
-import '../pages/Meeting/Meeting';
+import "../pages/Meeting/Meeting";
 // import { PromiseProvider } from 'mongoose';
-import Dropdown from './Dropdown';
-
+import Dropdown from "./Dropdown";
 
 function Agenda(props) {
-  const [popup, setPopup] = useState('');
+  const [popup, setPopup] = useState("");
+  const [addtask, setAddtask] = useState("");
+  const agendaId = props.agenda._id;
+
+  function addTaskShow() {}
 
   function popupUser() {
-
-
-
-    console.log('working');
+    console.log("working");
 
     setPopup(true);
   }
-
 
   return (
     <div className="p-5">
@@ -28,21 +27,20 @@ function Agenda(props) {
 
         <div className="flex items-center justify-center w-10/12">
           {" "}
-
           {props.agenda.newagenda}
         </div>
 
         <div id="js-votes" className="flex items-center justify-end w-1/12">
           <button
-            className="fa fa-arrow-up px-1"
+            className="fa fa-arrow-up px-1 js-votes"
             onClick={() => props.handleUpVote(props.agenda._id)}
           ></button>
           <button
-            className="fa fa-arrow-down px-1"
+            className="fa fa-arrow-down px-1 js-votes"
             onClick={() => props.handleDownVote(props.agenda._id)}
           ></button>
 
-          <span className="px-1">{props.agenda.vote}</span>
+          <span className="px-1 js-votes">{props.agenda.vote}</span>
         </div>
       </div>
       <div className="px-16 pt-2">
@@ -64,13 +62,11 @@ function Agenda(props) {
                       <div class="dropdown is-hoverable">
                         <div class="dropdown-trigger">
                           <button
-
                             class="button h-8"
                             aria-haspopup="true"
                             aria-controls="dropdown-menu4"
                           >
                             <i class="fas fa-user"></i>
-
                           </button>
                         </div>
                         <div
@@ -78,7 +74,13 @@ function Agenda(props) {
                           id="dropdown-menu4"
                           role="menu"
                         >
-                          <Dropdown attendees={props.attendees} taskidforuser={task._id} agendaidforuser={props.agenda._id} addUserTask={props.addUserTask} meetings={props.meetings} />
+                          <Dropdown
+                            attendees={props.attendees}
+                            taskidforuser={task._id}
+                            agendaidforuser={props.agenda._id}
+                            addUserTask={props.addUserTask}
+                            meetings={props.meetings}
+                          />
                         </div>
                       </div>
                     </div>
@@ -102,7 +104,7 @@ function Agenda(props) {
         </div>
         <div className="flex w-1/6 justify-end">
           <button
-            onClick={() => props.handleTask(props.agenda._id)}
+            onClick={() => props.handleTask(agendaId)}
             className="plum_plate hover:bg-blue-700 text-white font-bold py-1 px-2 rounded focus:outline-none focus:shadow-outline"
             type="button"
           >

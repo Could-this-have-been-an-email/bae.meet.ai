@@ -47,6 +47,7 @@ const meetingSchema = new Schema({
   duration: { type: Number },
   outcome: { type: String, trim: true, required: false },
   owner: { type: String, trim: true, required: false },
+  meetingStarted: { type: Boolean, default: false },
   backgroundForMeeting: [backgroundSchema],
   agenda: [agendaSchema],
   meetingNote: [meetingNoteSchema],

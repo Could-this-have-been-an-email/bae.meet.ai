@@ -11,7 +11,8 @@ function Meeting() {
   const [meeting, setMeeting] = useState([]);
   const [attendees, setAttendees] = useState([]);
   const [content, setContent] = useState("");
-  let userInputRef = useRef()
+  let userInputRef = useRef();
+  const [meetingStatus, setMeetingStatus] = useState([]);
 
   const [agendaFiltered, setagendaFiltered] = useState([]);
 
@@ -28,7 +29,7 @@ function Meeting() {
       .then(res => {
         console.log("42", res.data);
         setMeeting(res.data);
-
+        setMeetingStatus(res.data.meetingStarted);
         setagendaFiltered(res.data.agenda.sort(sortAgenda));
         let users = res.data.users;
         return Promise.all(
@@ -82,7 +83,6 @@ function Meeting() {
   }
 
   function handleTask(id) {
-
     console.log("handle task");
 
     meeting.agenda.forEach(singleAgenda => {
@@ -107,23 +107,20 @@ function Meeting() {
       userName: "katieb",
       note: inputNote
     });
+    console.log(meeting);
     API.updateMeeting(meeting._id, meeting);
-    var inputNote = document.getElementById("notes").value;
-    API.updateMeeting(meeting._id, {
-      $set: {
-        "meeting.note": { inputNote }
-      }
-    });
+    // var inputNote = document.getElementById("notes").value;
+    // API.updateMeeting(meeting._id, {
+    //   $set: {
+    //     "meeting.note": { inputNote }
+    //   }
   }
 
-
   const addUserTask = action => {
-    console.log('agendaID', action.target.getAttribute("agendaidforuser"))
-    console.log('userinput', action.target.getAttribute("useridvalue"))
-    console.log('taskid', action.target.getAttribute("taskidforuser"))
-    console.log('meetingid', meeting)
-
-
+    console.log("agendaID", action.target.getAttribute("agendaidforuser"));
+    console.log("userinput", action.target.getAttribute("useridvalue"));
+    console.log("taskid", action.target.getAttribute("taskidforuser"));
+    console.log("meetingid", meeting);
 
     // let userTaskAssign = {
     //   agendaId: action.target.getAttribute("agendaIdforUser"),
@@ -134,15 +131,13 @@ function Meeting() {
       if (singleAgenda._id === action.target.getAttribute("agendaidforuser")) {
         singleAgenda.tasks.map(task => {
           if (task._id === action.target.getAttribute("taskidforuser")) {
-            console.log('success', task)
-            task["user"] = action.target.getAttribute("useridvalue")
+            console.log("success", task);
+            task["user"] = action.target.getAttribute("useridvalue");
           }
-          API.updateMeeting(meeting._id, meeting)
-
-        })
+          API.updateMeeting(meeting._id, meeting);
+        });
       }
-
-    })
+    });
   };
 
   function sendMail() {
@@ -155,10 +150,9 @@ function Meeting() {
       escape(document.getElementById("myText").value);
 
     window.location.href = link;
-    
   }
 
-  function returnBack(){
+  function returnBack() {
     window.history.back();
   }
 
@@ -202,7 +196,6 @@ function Meeting() {
             {meeting.agenda ? (
               <div className="deep_blue rounded">
                 {meeting.agenda.map(agenda => {
-
                   if (agenda.vote < 0) {
                     return (
                       <BAE
@@ -225,7 +218,6 @@ function Meeting() {
           </div>
         </div>
 
-
         {/* Agenda and tasks */}
         <div className="row-start-5 col-start-2 col-span-4 pt-2 text-lg">
           <div className="font-extrabold">Agenda:</div>
@@ -235,7 +227,7 @@ function Meeting() {
                 // console.log(agenda);
                 if (agenda.vote >= 0) {
                   return (
-                   <Agenda
+                    <Agenda
                       agenda={agenda}
                       key={agenda._id}
                       handleDownVote={handleDownVote}
@@ -304,12 +296,24 @@ function Meeting() {
         {/* Start/Stop Meeting buttons */}
 
         <div className="row-start-7 col-start-4">
-          <input
-            type="submit"
-            value="Start Meeting"
-            className="mx-auto plum_plate hover:happy_fisher text-white font-bold py-2 px-4 border border-white rounded"
-            onClick={() => hideVotes()}
-          ></input>
+          {meetingStatus ? (
+            <input
+              type="submit"
+              value="End Meeting"
+              className="mx-auto plum_plate hover:happy_fisher text-white font-bold py-2 px-4 border border-white rounded"
+              onClick={() => handleNotes()}
+              // onClick={() => sendMail()}
+              // onClick={() => returnBack()}
+            ></input>
+          ) : (
+            <input
+              type="submit"
+              value="Start Meeting"
+              className="mx-auto plum_plate hover:happy_fisher text-white font-bold py-2 px-4 border border-white rounded"
+              onClick={() => hideVotes()}
+              onClick={() => setMeetingStatus(true)}
+            ></input>
+          )}
         </div>
 
         <textarea id="myText" className="hideSurvey">
@@ -317,17 +321,6 @@ function Meeting() {
           order to improve our meetings. Please follow the link to the fill out
           a 5 question survey. https://www.surveymonkey.com/r/Y2YW3FQ
         </textarea>
-
-        <div className="row-start-7 col-start-4">
-          <input
-            type="submit"
-            value="End Meeting"
-            className="mx-auto plum_plate hover:happy_fisher text-white font-bold py-2 px-4 border border-white rounded"
-            onClick={() => handleNotes()}
-            onClick={() => sendMail()}
-            // onClick={() => returnBack()}
-          ></input>
-        </div>
       </div>
     </>
   );
