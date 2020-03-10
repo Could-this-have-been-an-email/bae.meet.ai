@@ -129,7 +129,7 @@ function Meeting() {
             }
             // userTaskName.push(userAssignedToTask)
 
-
+            //redherring state, works because it resets the state in agenda however this state is not being used, will be deleted once I fix errors
             setuserTaskName(userAssignedToTask)
 
             task["user"] = action.target.getAttribute("useridvalue")
