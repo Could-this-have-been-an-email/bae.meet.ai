@@ -2,10 +2,10 @@ import React, { useEffect } from 'react';
 import './style.css';
 import Navbar from '../../components/Navbar';
 import AOS from 'aos';
-import Logo from "./Screen Shot 2020-03-10 at 2.33.50 PM.jpg";
-import VoteLogo from "./Screen Shot 2020-03-10 at 2.36.58 PM.jpg";
-import BaeLogo from "./Screen Shot 2020-03-10 at 2.44.32 PM.jpg";
-import UserLogo from "./Screen Shot 2020-03-10 at 2.55.51 PM.jpg";
+import Logo from './Screen Shot 2020-03-10 at 2.33.50 PM.jpg';
+import VoteLogo from './Screen Shot 2020-03-10 at 2.36.58 PM.jpg';
+import BaeLogo from './Screen Shot 2020-03-10 at 2.44.32 PM.jpg';
+import UserLogo from './Screen Shot 2020-03-10 at 2.55.51 PM.jpg';
 
 function Landing() {
   useEffect(() => {
@@ -47,11 +47,7 @@ function Landing() {
               </a>
             </div>
             <div className="flex justify-center md:w-3/5">
-              <img
-                className="self-center "
-                src={Logo}
-                alt="hero example"
-              />
+              <img className="self-center " src={Logo} alt="hero example" />
             </div>
           </div>
         </section>
@@ -59,11 +55,7 @@ function Landing() {
         <section data-aos="fade-up" className="md:p-20 vh">
           <div className="md:flex bg-blue-300">
             <div className="flex justify-center p-10 md:w-2/4">
-              <img
-                alt="example 1"
-                className="self-center"
-                src={VoteLogo}
-              />
+              <img alt="example 1" className="self-center" src={VoteLogo} />
             </div>
             <div className="md:w-2/4">
               <div className="md:w-9/12 lg:w-3/5 h-center v-offset">
@@ -87,11 +79,7 @@ function Landing() {
         <section data-aos="fade-up" className="md:p-20 vh">
           <div className="md:flex md:flex-row-reverse bg-purple-300">
             <div className="flex justify-center p-10 md:w-2/4">
-              <img
-                alt="example 2"
-                className="self-center"
-                src={BaeLogo}
-              />
+              <img alt="example 2" className="self-center" src={BaeLogo} />
             </div>
             <div className="md:w-2/4">
               <div className="md:w-9/12 lg:w-3/5 h-center v-offset">
@@ -115,11 +103,7 @@ function Landing() {
         <section data-aos="fade-up" className="md:p-20 vh">
           <div className="md:flex bg-teal-300">
             <div className="flex justify-center p-10 md:w-2/4">
-              <img
-                alt="example 3"
-                className="self-center"
-                src={UserLogo}
-              />
+              <img alt="example 3" className="self-center" src={UserLogo} />
             </div>
             <div className="md:w-2/4">
               <div className="md:w-9/12 lg:w-3/5 h-center v-offset">
