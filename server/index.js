@@ -28,13 +28,12 @@ app.use(users);
 
 // connect to db (meetingsdb)
 
-mongoose.connect(
-  "mongodb://heroku_v2vv80nz:77ncjdi60i4i1r1u7lu4sbqefr@ds143892.mlab.com:43892/heroku_v2vv80nz" ||
-    "mongodb://localhost/meetingsdb"
+mongoose.connect(process.env.MONGODB_URI ||
+  "mongodb://localhost/meetingsdb"
 );
 
 // Start the API server
-app.listen(process.env.PORT || 3001, function() {
+app.listen(process.env.PORT || PORT, function () {
   console.log("Express server is up and running!");
 });
 // app.listen(PORT, function() {
