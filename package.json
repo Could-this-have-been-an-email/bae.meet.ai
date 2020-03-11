@@ -10,7 +10,6 @@
     "express-session": "^1.17.0",
     "fs": "0.0.1-security",
     "https": "^1.0.0",
-    "ibm-watson": "^5.4.0",
     "mongoose": "^5.9.2",
     "nodemon": "^2.0.2"
   },
