@@ -20,7 +20,7 @@ function MeetingCard(props) {
             </div>
           </div>
           <div className="media-right">
-            <a className="button" href={`/meeting/${props.meetingID}`}>
+            <a className="button is-outlined is-success" href={`/meeting/${props.meetingID}`}>
               Go to meeting
             </a>
           </div>

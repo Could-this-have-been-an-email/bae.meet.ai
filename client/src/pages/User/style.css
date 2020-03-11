@@ -39,6 +39,10 @@ hr {
   }
 }
 
+.minutesColor{
+  color: #F14947;
+}
+
 /* 
 li:last-child hr {
   border-top: none;

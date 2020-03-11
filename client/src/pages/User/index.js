@@ -107,7 +107,7 @@ function User() {
             </div>
           </div>
 
-          <a className="button is-fullwidth mt-6 is-info" href="/newmeeting">
+          <a className="button is-fullwidth mt-6 is-warning" href="/newmeeting">
             Create new meeting!
           </a>
         </div>
@@ -116,7 +116,7 @@ function User() {
           <div className="p-6 flex flex-col justify-around items-center">
             <div className="w-64 box h-64 flex flex-col justify-around text-center">
               <p>You've spent</p>
-              <p className="text-6xl">{timeSpent}</p>
+              <p className="text-6xl minutesColor">{timeSpent}</p>
               <p>minutes in meetings</p>
             </div>
             <div className="w-64 h-64 box">

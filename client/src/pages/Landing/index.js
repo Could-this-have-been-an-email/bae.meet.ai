@@ -15,7 +15,7 @@ function Landing() {
     <div className="bg-gray-100">
       <Navbar />
       <div>
-        <section className="py-10 px-4 mainheight bg-yellow-300	">
+        <section className="py-10 px-4 mainheight first-color">
           <div className="md:flex md:px-12 md:mx-16">
             <div className="md:w-2/5 md:py-20">
               <p
@@ -38,7 +38,7 @@ function Landing() {
               </p>
               <a
                 href="/signup"
-                className="button is-link"
+                className="button is-warning"
                 data-aos="fade-up"
                 data-aos-duration="600"
                 data-aos-delay="400"
@@ -53,7 +53,7 @@ function Landing() {
         </section>
 
         <section data-aos="fade-up" className="md:p-20 vh">
-          <div className="md:flex bg-blue-300">
+          <div className="md:flex second-color">
             <div className="flex justify-center p-10 md:w-2/4">
               <img alt="example 1" className="self-center" src={VoteLogo} />
             </div>
@@ -77,7 +77,7 @@ function Landing() {
         </section>
 
         <section data-aos="fade-up" className="md:p-20 vh">
-          <div className="md:flex md:flex-row-reverse bg-purple-300">
+          <div className="md:flex md:flex-row-reverse third-color">
             <div className="flex justify-center p-10 md:w-2/4">
               <img alt="example 2" className="self-center" src={BaeLogo} />
             </div>
@@ -101,7 +101,7 @@ function Landing() {
         </section>
 
         <section data-aos="fade-up" className="md:p-20 vh">
-          <div className="md:flex bg-teal-300">
+          <div className="md:flex fourth-color">
             <div className="flex justify-center p-10 md:w-2/4">
               <img alt="example 3" className="self-center" src={UserLogo} />
             </div>
@@ -128,7 +128,7 @@ function Landing() {
           </p>
           <a
             href="/signup"
-            className="button is-medium is-rounded is-danger self-center"
+            className="button is-medium is-rounded is-warning self-center"
           >
             Get started!
           </a>
