@@ -157,7 +157,7 @@ function Meeting() {
   function sendMail() {
     var link =
       "mailto: mcbride.katieb@gmail.com; taylor.m.mcbride@gmail.com" +
-      "?cc=myCCaddress@example.com" +
+      "?cc=buhler.katie@gmail.com" +
       "&subject=" +
       escape("Post Meeting Survey") +
       "&body=" +
@@ -190,6 +190,25 @@ function Meeting() {
         {/* Meeting Title and Attendees */}
         <div className="row-start-2 col-start-2 col-span-4 text-4xl font-extrabold">
           {meeting.name}
+        </div>
+        <div className="row-start-2 col-start-5 mt-5">
+          {meetingStatus ? (
+            <input
+              type="submit"
+              value="End Meeting"
+              className="mx-auto plum_plate hover:happy_fisher text-white font-bold py-2 px-4 border border-white rounded"
+              onClick={() => handleNotes()}
+              onClick={() => sendMail()}
+            ></input>
+          ) : (
+            <input
+              type="submit"
+              value="Start Meeting"
+              className="mx-auto plum_plate hover:happy_fisher text-white font-bold py-2 px-4 border border-white rounded"
+              onClick={() => hideVotes()}
+              onClick={() => setMeetingStatus(true)}
+            ></input>
+          )}
         </div>
         <div className="row-start-2 col-start-8 col-span-2 text-2xl font-bold text-center flex content-center justify-center">
           Attendees
@@ -314,26 +333,7 @@ function Meeting() {
 
         {/* Start/Stop Meeting buttons */}
 
-        <div className="row-start-7 col-start-4">
-          {meetingStatus ? (
-            <input
-              type="submit"
-              value="End Meeting"
-              className="mx-auto plum_plate hover:happy_fisher text-white font-bold py-2 px-4 border border-white rounded"
-              onClick={() => handleNotes()}
-              // onClick={() => sendMail()}
-              // onClick={() => returnBack()}
-            ></input>
-          ) : (
-            <input
-              type="submit"
-              value="Start Meeting"
-              className="mx-auto plum_plate hover:happy_fisher text-white font-bold py-2 px-4 border border-white rounded"
-              onClick={() => hideVotes()}
-              onClick={() => setMeetingStatus(true)}
-            ></input>
-          )}
-        </div>
+       
 
         <textarea id="myText" className="hideSurvey">
           Thank you for your attendance. I would appreciate your feedback in
