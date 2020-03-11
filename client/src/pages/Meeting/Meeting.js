@@ -209,6 +209,14 @@ function Meeting() {
             ></input>
           )}
         </div>
+        <div className="row-start-2 col-start-4 mt-5">
+        <input
+              type="submit"
+              value="Return to User"
+              className="mx-auto plum_plate hover:happy_fisher text-white font-bold py-2 px-4 border border-white rounded"
+              onClick={() => returnBack()}
+        ></input>
+        </div>
         <div className="row-start-2 col-start-8 col-span-2 text-2xl font-bold text-center flex content-center justify-center">
           Attendees
         </div>
