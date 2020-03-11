@@ -10,7 +10,7 @@ const path = require("path");
 
 
 app.use(express.static("public"));
-express.static(path_join(__dirname, '../client/build'))
+app.use(express.static(path.join(__dirname, "../client/build")));
 
 
 app.use(session({ secret: "cats" }));
