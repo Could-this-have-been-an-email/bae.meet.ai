@@ -17,7 +17,8 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.0",
     "react-speech-recognition": "^2.0.4",
-    "postcss-cli": "^7.1.0"
+    "postcss-cli": "^7.1.0",
+    "tailwindcss": "^1.2.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -41,7 +42,6 @@
     ]
   },
   "devDependencies": {
-    "autoprefixer": "^9.7.4",
-    "tailwindcss": "^1.2.0"
+    "autoprefixer": "^9.7.4"
   }
 }
