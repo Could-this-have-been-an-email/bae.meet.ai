@@ -10,7 +10,9 @@ const path = require("path");
 
 
 app.use(express.static("public"));
-app.use(express.static(path.join(__dirname, "../client/build")));
+express.static(path_join(__dirname, '../client/build'))
+
+
 app.use(session({ secret: "cats" }));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(passport.initialize());
