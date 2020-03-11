@@ -1,7 +1,7 @@
-import React from 'react';
-import API from '../../utils/API';
-import Navbar from '../../components/Navbar';
-import './style.css';
+import React from "react";
+import API from "../../utils/API";
+import Navbar from "../../components/Navbar";
+import "./style.css";
 
 function SignUpNew() {
   const handleSubmit = e => {
@@ -36,25 +36,24 @@ function SignUpNew() {
       password: user.password
     };
 
+
     API.checkUser(checkedUser).then(result => {
       console.log('results', result);
       window.location.replace(`/user/${result.data._id}`);
     });
-    // .catch(err => {
-    //   console.log(err);
-    //   alert('wrong login, will style later');
-    // });
   }
 
   return (
     <div className="">
       <Navbar></Navbar>
-      <div className="section bg-custom">
+      <div className="section soft_cherish">
         <div className="container ">
           <div className="border-gray-300 border-solid border rounded max-w-screen-md center p-6 md:p-24 bg-white">
             <div className="title">Sign Up</div>
             <div className="subtitle">
+
               Already have an account?
+
               <a className="text-blue-600" href="/login">
                 Sign In
               </a>

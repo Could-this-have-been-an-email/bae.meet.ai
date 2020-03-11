@@ -7,6 +7,7 @@ import Agenda from "../../components/agenda";
 import BAE from "../../components/BAE";
 import Navbar from "../../components/Navbar";
 import { Editor } from "@tinymce/tinymce-react";
+import Speech from "../../components/speech";
 
 function Meeting() {
   const [meeting, setMeeting] = useState([]);
@@ -156,7 +157,7 @@ function Meeting() {
   function sendMail() {
     var link =
       "mailto: mcbride.katieb@gmail.com; taylor.m.mcbride@gmail.com" +
-      "?cc=myCCaddress@example.com" +
+      "?cc=buhler.katie@gmail.com" +
       "&subject=" +
       escape("Post Meeting Survey") +
       "&body=" +
@@ -190,6 +191,25 @@ function Meeting() {
         <div className="row-start-2 col-start-2 col-span-4 text-4xl font-extrabold">
           {meeting.name}
         </div>
+        <div className="row-start-2 col-start-5 mt-5">
+          {meetingStatus ? (
+            <input
+              type="submit"
+              value="End Meeting"
+              className="mx-auto plum_plate hover:happy_fisher text-white font-bold py-2 px-4 border border-white rounded"
+              onClick={() => handleNotes()}
+              onClick={() => sendMail()}
+            ></input>
+          ) : (
+            <input
+              type="submit"
+              value="Start Meeting"
+              className="mx-auto plum_plate hover:happy_fisher text-white font-bold py-2 px-4 border border-white rounded"
+              onClick={() => hideVotes()}
+              onClick={() => setMeetingStatus(true)}
+            ></input>
+          )}
+        </div>
         <div className="row-start-2 col-start-8 col-span-2 text-2xl font-bold text-center flex content-center justify-center">
           Attendees
         </div>
@@ -203,7 +223,7 @@ function Meeting() {
         </div>
 
         {/* BAE Items */}
-        <div className="row-start-4 col-start-2 col-span-4 pt-2 text-lg">
+        <div className="row-start-5 col-start-2 col-span-4 pt-2 text-lg">
           <div className="font-extrabold">BAE items:</div>
           <div className="">
             {meeting.agenda ? (
@@ -232,7 +252,7 @@ function Meeting() {
         </div>
 
         {/* Agenda and tasks */}
-        <div className="row-start-5 col-start-2 col-span-4 pt-2 text-lg">
+        <div className="row-start-4 col-start-2 col-span-4 pt-2 text-lg">
           <div className="font-extrabold">Agenda:</div>
           {meeting.agenda ? (
             <div className="deep_blue rounded">
@@ -291,7 +311,7 @@ function Meeting() {
         </div>
 
         {/* Attendees column */}
-        <div className="row-start-3 row-span-4 col-start-8 col-span-2 pr-2">
+        <div className="row-start-3 row-span-4 col-start-8 col-span-1 pr-2">
           {meeting.users ? (
             <>
               {attendees.map(attendee => {
@@ -302,6 +322,9 @@ function Meeting() {
                   ></AttendeeCard>
                 );
               })}
+              <div>
+                <Speech></Speech>
+              </div>
             </>
           ) : (
             <></>
@@ -310,26 +333,7 @@ function Meeting() {
 
         {/* Start/Stop Meeting buttons */}
 
-        <div className="row-start-7 col-start-4">
-          {meetingStatus ? (
-            <input
-              type="submit"
-              value="End Meeting"
-              className="mx-auto plum_plate hover:happy_fisher text-white font-bold py-2 px-4 border border-white rounded"
-              onClick={() => handleNotes()}
-              // onClick={() => sendMail()}
-              // onClick={() => returnBack()}
-            ></input>
-          ) : (
-            <input
-              type="submit"
-              value="Start Meeting"
-              className="mx-auto plum_plate hover:happy_fisher text-white font-bold py-2 px-4 border border-white rounded"
-              onClick={() => hideVotes()}
-              onClick={() => setMeetingStatus(true)}
-            ></input>
-          )}
-        </div>
+       
 
         <textarea id="myText" className="hideSurvey">
           Thank you for your attendance. I would appreciate your feedback in
