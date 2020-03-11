@@ -20,9 +20,9 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "concurrently \"node server/index.js --ignore 'client/*'\" \"npm run client\"",
-    "client": "cd client && npm run start",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+    "start": "cd server && npm install && node index.js",
+    "client": "cd client  && npm run start",
+    "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "repository": {
     "type": "git",
