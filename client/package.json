@@ -27,6 +27,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "build:styles": "postcss src/styles/tailwind.css -o src/styles/app.css",
+    "prebuild": "npm run build:styles",
+    "prestart": "npm run build:styles",
     "eject": "react-scripts eject",
     "rimraf": "./node_modules/rimraf/bin.js"
   },
