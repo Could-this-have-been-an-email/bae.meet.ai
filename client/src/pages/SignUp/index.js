@@ -21,30 +21,29 @@ function SignUpNew() {
 
   const submitOneUserAPI = user => {
     API.createUser(user)
-       
+
       // .then(window.location.assign('/login'))
-      .then(console.log("user login working"))
+      .then(console.log('user login working'))
 
       .catch(err => console.log(err));
-      
-      checkUser(user)
+
+    checkUser(user);
   };
 
-  function checkUser(user){
+  function checkUser(user) {
     let checkedUser = {
       email: user.email,
       password: user.password
     };
 
-    API.checkUser(checkedUser)
-      .then(result => {
-        console.log('results', result);
-        window.location.replace(`/user/${result.data._id}`);
-      })
-      .catch(err => {
-        console.log(err);
-        alert('wrong login, will style later');
-      });
+    API.checkUser(checkedUser).then(result => {
+      console.log('results', result);
+      window.location.replace(`/user/${result.data._id}`);
+    });
+    // .catch(err => {
+    //   console.log(err);
+    //   alert('wrong login, will style later');
+    // });
   }
 
   return (
