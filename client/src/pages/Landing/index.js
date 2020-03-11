@@ -15,7 +15,7 @@ function Landing() {
     <div className="bg-gray-100">
       <Navbar />
       <div>
-        <section className="py-10 px-4 mainheight bg-yellow-300	">
+        <section className="py-4 px-4 mainheight bg-yellow-300	">
           <div className="md:flex md:px-12 md:mx-16">
             <div className="md:w-2/5 md:py-20">
               <p
@@ -46,7 +46,7 @@ function Landing() {
                 Sign Up
               </a>
             </div>
-            <div className="flex justify-center md:w-3/5">
+            <div className="flex justify-center md:w-3/5 px-8">
               <img className="self-center " src={Logo} alt="hero example" />
             </div>
           </div>

@@ -91,7 +91,7 @@ function User() {
               <img
                 className="is-rounded object-cover"
                 alt="profile icon"
-                src="https://images.generated.photos/MyCtCHFSpG4M_-ncOFAGjFCIMl7kHMKowz5VVi4PgPE/rs:fit:512:512/Z3M6Ly9nZW5lcmF0/ZWQtcGhvdG9zLzA5/OTk2NjQuanBn.jpg"
+                src={user.profileURL}
               />
             </figure>
             <div className="p-6">
