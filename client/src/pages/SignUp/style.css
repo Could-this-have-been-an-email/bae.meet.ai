@@ -2,9 +2,13 @@
   margin: 0 auto;
 }
 
-.bg-custom {
+/* .bg-custom {
   background-image: url(./cool-background.svg);
   background-position: right top;
   background-repeat: no-repeat;
   background-size: auto 100%;
+} */
+
+.bg{
+  background-color: #3BA27A;
 }

@@ -46,7 +46,9 @@ function SignUpNew() {
   return (
     <div className="">
       <Navbar></Navbar>
-      <div className="section soft_cherish">
+
+      <div className="section bg">
+
         <div className="container ">
           <div className="border-gray-300 border-solid border rounded max-w-screen-md center p-6 md:p-24 bg-white">
             <div className="title">Sign Up</div>
@@ -127,7 +129,7 @@ function SignUpNew() {
                   </div>
                 </div>
               </div>
-              <button type="submit" className="button is-danger">
+              <button type="submit" className="button is-warning">
                 Sign up
               </button>
             </form>

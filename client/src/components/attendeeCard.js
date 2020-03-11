@@ -1,9 +1,12 @@
-import React from 'react';
+
+import React from "react";
+import Style from "../styles/attendeeCard.css"
+
 
 function attendeeCard(props) {
   return (
     <div className="max-w-sm rounded overflow-hidden mb-1 py-1">
-      <div className="grid grid-cols-6 gap-1 shadow-md rounded-full custom-6 font-white">
+      <div className="grid grid-cols-6 gap-1 shadow-md rounded-full attendee-color font-white">
         <div className="col-span-1">
           <img
             alt=""

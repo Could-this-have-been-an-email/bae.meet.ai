@@ -48,7 +48,7 @@ function Navbar() {
       <div className={`navbar-menu ${isActive ? 'is-active' : ''}`}>
         <div className="navbar-end">
           <div className="navbar-item flex justify-end">
-            <a href={logout ? '/login' : '/'} className="button is-danger">
+            <a href={logout ? '/login' : '/'} className="button is-warning">
               {logout ? 'Login' : 'Logout'}
             </a>
           </div>

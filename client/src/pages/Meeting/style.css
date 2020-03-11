@@ -30,3 +30,7 @@
   left: 50%;
   margin-left: -80px;
 }
+
+.meetingButton{
+  background-color: hsl(48, 100%, 67%);
+}
