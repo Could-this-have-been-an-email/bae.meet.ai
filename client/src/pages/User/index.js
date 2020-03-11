@@ -56,6 +56,7 @@ function User() {
   function filter(filterMeetings) {
     const prevMeetings = filterMeetings.filter(meeting => {
       let today = new Date();
+
       return today > new Date(meeting.date);
     });
     setPrevMeetings(prevMeetings);
@@ -79,6 +80,21 @@ function User() {
       resolve(totalTime);
     });
   }
+  prevMeetings.map(meeting => {
+    meeting.agenda.map(agenda => {
+      if ((agenda.tasks).length > 0) {
+        // console.log('111111111', user)
+
+        agenda.tasks.map(usertask => {
+          if (user.user === user._id) {
+            console.log('2222222', usertask.task)
+
+          }
+        })
+      }
+    })
+
+  })
 
   return (
     <div>
@@ -121,10 +137,14 @@ function User() {
             </div>
             <div className="w-64 h-64 box">
               <div className="text-center border-b-2 pb-3">Tasks</div>
-              <li>Add voice recording to meetings.</li>
-              <li>Create a user image.</li>
-              <li>Pull completed notes back into WYSIWIG.</li>
-              <li>Add iCal and Google functionality.</li>
+              {prevMeetings.map(meeting => {
+                return (
+                  <div className="bg-red-500">
+                    {meeting.name}
+                    {}
+                  </div>
+                )
+              })}
             </div>
           </div>
 
