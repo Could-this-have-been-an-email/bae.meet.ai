@@ -1,6 +1,9 @@
 {
   "name": "bae.meet.ai",
   "version": "0.1.0",
+  "engines": {
+    "node": "10.16.3"
+  },
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
