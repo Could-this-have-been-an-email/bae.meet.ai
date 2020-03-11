@@ -1,5 +1,6 @@
 import React from 'react';
 import UserLI from '../components/UserLI';
+import AgendaItem from '../components/AgendaItem';
 import '../styles/infomeeting.css';
 
 function InfoMeeting(props) {
@@ -24,7 +25,7 @@ function InfoMeeting(props) {
                 type="date"
                 placeholder="Username"
                 name="meetingDate"
-                tabindex="1"
+                tabIndex="1"
               ></input>
             </div>
             <div className="mb-4">
@@ -37,7 +38,7 @@ function InfoMeeting(props) {
                 type="text"
                 placeholder="Location"
                 name="meetingLocation"
-                tabindex="3"
+                tabIndex="3"
               ></input>
             </div>
             <div className="mb-4">
@@ -50,7 +51,7 @@ function InfoMeeting(props) {
                 type="text"
                 placeholder="Meeting"
                 name="meetingName"
-                tabindex="5"
+                tabIndex="5"
               ></input>
             </div>
           </div>
@@ -65,7 +66,7 @@ function InfoMeeting(props) {
                 type="time"
                 placeholder="Username"
                 name="meetingTime"
-                tabindex="2"
+                tabIndex="2"
               ></input>
             </div>
             <div className="mb-4">
@@ -78,7 +79,7 @@ function InfoMeeting(props) {
                 type="number"
                 placeholder="Duration"
                 name="meetingDuration"
-                tabindex="4"
+                tabIndex="4"
               ></input>
             </div>
           </div>
@@ -93,7 +94,7 @@ function InfoMeeting(props) {
             type="text"
             placeholder="Outcome"
             name="outcome"
-            tabindex="6"
+            tabIndex="6"
           ></input>
         </div>
 
@@ -101,24 +102,25 @@ function InfoMeeting(props) {
           <label className="block text-gray-700 text-sm font-bold mb-2">
             Agenda:
           </label>
-          <ul>
+          <ul key={props.agendavalueMap.id}>
             {props.agendavalueMap.map((item, index) => (
-              <li>{item.newagenda}</li>
+              <AgendaItem agenda={item.newagenda} id={item.id}></AgendaItem>
+              // <li>{item.newagenda}</li>
             ))}
           </ul>
           <input
             ref={props.agendaInput}
-            className="input"
+            className="input my-4"
             id="agenda"
             type="text"
             placeholder="Agenda"
             name="meetingAgenda"
-            tabindex="7"
+            tabIndex="7"
           ></input>
           <button
             onClick={props.submitAgenda}
             type="button"
-            className="button is-warning mt-4"
+            className="button is-warning"
           >
             Add Agenda
           </button>

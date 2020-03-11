@@ -54,7 +54,7 @@ function SignUpNew() {
           <div className="border-gray-300 border-solid border rounded max-w-screen-md center p-6 md:p-24 bg-white">
             <div className="title">Sign Up</div>
             <div className="subtitle">
-              Already have an account?{' '}
+              Already have an account?
               <a className="text-blue-600" href="/login">
                 Sign In
               </a>
