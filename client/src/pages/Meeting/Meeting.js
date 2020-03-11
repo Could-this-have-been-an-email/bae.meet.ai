@@ -183,7 +183,7 @@ function Meeting() {
   return (
     <>
       <Navbar />
-      <div className="grid grid-rows-7 grid-flow-col gap-1 perfect_white">
+      <div className="grid grid-rows-7 grid-flow-col gap-1">
         {/* Header */}
         <div className="row-start-1"></div>
 
@@ -191,12 +191,15 @@ function Meeting() {
         <div className="row-start-2 col-start-2 col-span-4 text-4xl font-extrabold">
           {meeting.name}
         </div>
+
+
+        {/* Start/Stop Meeting buttons */}
         <div className="row-start-2 col-start-5 mt-5">
           {meetingStatus ? (
             <input
               type="submit"
               value="End Meeting"
-              className="mx-auto plum_plate hover:happy_fisher text-white font-bold py-2 px-4 border border-white rounded"
+              className="mx-auto font-bold py-2 px-4 rounded meetingButton"
               onClick={() => handleNotes()}
               onClick={() => sendMail()}
             ></input>
@@ -204,11 +207,19 @@ function Meeting() {
             <input
               type="submit"
               value="Start Meeting"
-              className="mx-auto plum_plate hover:happy_fisher text-white font-bold py-2 px-4 border border-white rounded"
+              className="mx-auto font-bold py-2 px-4 rounded meetingButton"
               onClick={() => hideVotes()}
               onClick={() => setMeetingStatus(true)}
             ></input>
           )}
+        </div>
+        <div className="row-start-2 col-start-4 mt-5">
+        <input
+              type="submit"
+              value="Return to User"
+              className="mx-auto font-bold py-2 px-4 rounded meetingButton"
+              onClick={() => returnBack()}
+        ></input>
         </div>
         <div className="row-start-2 col-start-8 col-span-2 text-2xl font-bold text-center flex content-center justify-center">
           Attendees
@@ -217,7 +228,7 @@ function Meeting() {
         {/* Outcome */}
         <div className="row-start-3 col-start-2 col-span-4 text-lg">
           <div className="font-extrabold">Outcome:</div>
-          <div className="border border-solid p-5 deep_blue rounded">
+          <div className="border border-solid p-5 mind_crawl rounded">
             <div className="p-1 bg-white rounded">{meeting.outcome}.</div>
           </div>
         </div>
@@ -227,7 +238,7 @@ function Meeting() {
           <div className="font-extrabold">BAE items:</div>
           <div className="">
             {meeting.agenda ? (
-              <div className="deep_blue rounded">
+              <div className="mind_crawl rounded">
                 {meeting.agenda.map(agenda => {
                   if (agenda.vote < 0) {
                     return (
@@ -255,7 +266,7 @@ function Meeting() {
         <div className="row-start-4 col-start-2 col-span-4 pt-2 text-lg">
           <div className="font-extrabold">Agenda:</div>
           {meeting.agenda ? (
-            <div className="deep_blue rounded">
+            <div className="mind_crawl rounded">
               {meeting.agenda.map(agenda => {
                 // console.log(agenda);
                 if (agenda.vote >= 0) {
@@ -287,7 +298,7 @@ function Meeting() {
         {/* WYSIWYG Meeting Notes */}
         <div className="row-start-6 row-end-6 col-start-2 col-span-4 text-lg">
           <div className="font-extrabold">Notes:</div>
-          <div className="p-2 deep_blue">
+          <div className="p-2 mind_crawl">
             <Editor
               apiKey="avgvd7u4i68a9mq24lbgo9zusv5tq1vyu4pw9xrjkt9depds"
               initialValue="<p>This is the initial content of the editor</p>"
@@ -331,7 +342,6 @@ function Meeting() {
           )}
         </div>
 
-        {/* Start/Stop Meeting buttons */}
 
        
 

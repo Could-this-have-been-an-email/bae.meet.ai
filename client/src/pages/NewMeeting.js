@@ -25,24 +25,14 @@ function Meeting() {
   }, []);
 
   useEffect(() => {
-    async function fetchData() {
-      await API.getAllUsers()
-        .then(res => setUsers(res.data))
-        .catch(err => console.log(err));
-    }
-    fetchData();
+    API.getAllUsers()
+      .then(res => setUsers(res.data))
+      .catch(err => console.log(err));
   }, []);
-  console.log(users);
   // Update the document title using the browser API
 
   const submitUsers = event => {
-    // const filterUser = users.filter(user =>
-    //   user._id === event.target.name
-    // )
-
     usersSelected.push(event.target.name);
-
-    console.log(usersSelected);
   };
 
   const submitAgenda = () => {
@@ -56,7 +46,6 @@ function Meeting() {
   const submitMeetingInfoAPI = meeting => {
     console.log('2', meeting);
     API.createMeeting(meeting)
-      // .then(console.log("completedapi"))
       .then(window.history.back())
       .catch(err => console.log(err));
   };
@@ -73,11 +62,10 @@ function Meeting() {
       agenda: agendavalue,
       users: usersSelected
     };
-
-    console.log('1', oneMeeting);
     submitMeetingInfoAPI(oneMeeting);
   };
 
+  console.log('agendavalue', agendavalue);
   return (
     <>
       <Navbar />
