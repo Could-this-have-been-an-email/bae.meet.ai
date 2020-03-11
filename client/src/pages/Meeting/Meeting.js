@@ -7,6 +7,7 @@ import Agenda from "../../components/agenda";
 import BAE from "../../components/BAE";
 import Navbar from "../../components/Navbar";
 import { Editor } from "@tinymce/tinymce-react";
+import Speech from "../../components/speech";
 
 function Meeting() {
   const [meeting, setMeeting] = useState([]);
@@ -233,7 +234,7 @@ function Meeting() {
         </div>
 
         {/* BAE Items */}
-        <div className="row-start-4 col-start-2 col-span-4 pt-2 text-lg">
+        <div className="row-start-5 col-start-2 col-span-4 pt-2 text-lg">
           <div className="font-extrabold">BAE items:</div>
           <div className="">
             {meeting.agenda ? (
@@ -262,7 +263,7 @@ function Meeting() {
         </div>
 
         {/* Agenda and tasks */}
-        <div className="row-start-5 col-start-2 col-span-4 pt-2 text-lg">
+        <div className="row-start-4 col-start-2 col-span-4 pt-2 text-lg">
           <div className="font-extrabold">Agenda:</div>
           {meeting.agenda ? (
             <div className="mind_crawl rounded">
@@ -321,7 +322,7 @@ function Meeting() {
         </div>
 
         {/* Attendees column */}
-        <div className="row-start-3 row-span-4 col-start-8 col-span-2 pr-2">
+        <div className="row-start-3 row-span-4 col-start-8 col-span-1 pr-2">
           {meeting.users ? (
             <>
               {attendees.map(attendee => {
@@ -332,6 +333,9 @@ function Meeting() {
                   ></AttendeeCard>
                 );
               })}
+              <div>
+                <Speech></Speech>
+              </div>
             </>
           ) : (
             <></>

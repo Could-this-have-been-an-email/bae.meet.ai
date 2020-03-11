@@ -1,16 +1,13 @@
 import React from 'react';
 import UserLI from '../components/UserLI';
-import "../styles/infomeeting.css";
+import AgendaItem from '../components/AgendaItem';
+import '../styles/infomeeting.css';
 
 function InfoMeeting(props) {
   return (
     <div className="w-1/2 mx-auto mt-10 background">
-      <div className="title">
-        Create a new meeting
-      </div>
-      <div className="sub-title mb-10">
-        Productivity starts here.
-      </div>
+      <div className="title">Create a new meeting</div>
+      <div className="sub-title mb-10">Productivity starts here.</div>
       <form
         className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
         id="meetingForm"
@@ -23,11 +20,12 @@ function InfoMeeting(props) {
                 Date:
               </label>
               <input
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="input"
                 id="date"
                 type="date"
                 placeholder="Username"
                 name="meetingDate"
+                tabIndex="1"
               ></input>
             </div>
             <div className="mb-4">
@@ -35,11 +33,12 @@ function InfoMeeting(props) {
                 Location:
               </label>
               <input
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="input"
                 id="location"
                 type="text"
                 placeholder="Location"
                 name="meetingLocation"
+                tabIndex="3"
               ></input>
             </div>
             <div className="mb-4">
@@ -47,11 +46,12 @@ function InfoMeeting(props) {
                 Meeting Name:
               </label>
               <input
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="input"
                 id="name"
                 type="text"
                 placeholder="Meeting"
                 name="meetingName"
+                tabIndex="5"
               ></input>
             </div>
           </div>
@@ -61,11 +61,12 @@ function InfoMeeting(props) {
                 Time:
               </label>
               <input
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="input"
                 id="time"
                 type="time"
                 placeholder="Username"
                 name="meetingTime"
+                tabIndex="2"
               ></input>
             </div>
             <div className="mb-4">
@@ -73,49 +74,53 @@ function InfoMeeting(props) {
                 Duration:
               </label>
               <input
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="input"
                 id="duration"
                 type="number"
                 placeholder="Duration"
                 name="meetingDuration"
+                tabIndex="4"
               ></input>
             </div>
           </div>
         </div>
         <div className="mb-4">
-              <label className="block text-gray-700 text-sm font-bold mb-2">
-                Outcome:
-              </label>
-              <input
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                id="outcome"
-                type="text"
-                placeholder="Outcome"
-                name="outcome"
-              ></input>
+          <label className="block text-gray-700 text-sm font-bold mb-2">
+            Outcome:
+          </label>
+          <input
+            className="input"
+            id="outcome"
+            type="text"
+            placeholder="Outcome"
+            name="outcome"
+            tabIndex="6"
+          ></input>
         </div>
 
         <div className="mb-4">
           <label className="block text-gray-700 text-sm font-bold mb-2">
             Agenda:
           </label>
-          <ul>
+          <ul key={props.agendavalueMap.id}>
             {props.agendavalueMap.map((item, index) => (
-              <li>{item.newagenda}</li>
+              <AgendaItem agenda={item.newagenda} id={item.id}></AgendaItem>
+              // <li>{item.newagenda}</li>
             ))}
           </ul>
           <input
             ref={props.agendaInput}
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="input my-4"
             id="agenda"
             type="text"
             placeholder="Agenda"
             name="meetingAgenda"
+            tabIndex="7"
           ></input>
           <button
             onClick={props.submitAgenda}
             type="button"
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 mt-3 px-4 rounded-full"
+            className="button is-warning"
           >
             Add Agenda
           </button>
@@ -139,9 +144,8 @@ function InfoMeeting(props) {
           <input
             type="submit"
             value="Schedule Meeting"
-            className="mx-auto bg-green-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded"
-          >
-          </input>
+            className="button is-success"
+          ></input>
         </div>
       </form>
     </div>

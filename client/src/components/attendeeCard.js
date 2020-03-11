@@ -1,5 +1,7 @@
+
 import React from "react";
 import Style from "../styles/attendeeCard.css"
+
 
 function attendeeCard(props) {
   return (
@@ -8,7 +10,7 @@ function attendeeCard(props) {
         <div className="col-span-1">
           <img
             alt=""
-            src="https://i.imgur.com/8Km9tLL.jpg"
+            src={props.attendee.profileURL}
             className="rounded-full h-10 p-1"
           />
         </div>
