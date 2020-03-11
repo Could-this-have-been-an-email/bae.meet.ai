@@ -6,6 +6,8 @@ const cors = require("cors");
 var session = require("express-session"),
   bodyParser = require("body-parser");
 const passport = require("./config/passport");
+const path = require("path");
+
 
 app.use(express.static("public"));
 app.use(express.static(path.join(__dirname, "../client/build")));
