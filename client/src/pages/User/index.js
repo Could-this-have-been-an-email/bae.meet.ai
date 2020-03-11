@@ -52,7 +52,11 @@ function User() {
     });
   }
 
+
+  const [taskToUser, setTaskToUser] = useState([]);
   //Filter meetings based on date
+  let usertaskArray = []
+
   function filter(filterMeetings) {
     const prevMeetings = filterMeetings.filter(meeting => {
       let today = new Date();
@@ -60,6 +64,40 @@ function User() {
       return today > new Date(meeting.date);
     });
     setPrevMeetings(prevMeetings);
+
+
+    prevMeetings.map(meeting => {
+      meeting.agenda.map(agenda => {
+        if (agenda.tasks.length > 0) {
+
+          let taskAgendaName = agenda.newagenda
+          console.log('111111111', agenda)
+
+
+
+          agenda.tasks.map(usertask => {
+
+            if (usertask.user === user._id) {
+
+              let tasks = usertask.task
+              usertaskArray.push(tasks)
+
+              console.log('12', usertask)
+
+
+              // taskObjectArray.push({
+              //   userSet: tasks,
+              //   agendaName: taskAgendaName,
+              // })
+
+              setTaskToUser(usertaskArray)
+
+            }
+          })
+        }
+      })
+
+    })
 
     const upcomingMeetings = filterMeetings.filter(meeting => {
       let today = new Date();
@@ -80,22 +118,9 @@ function User() {
       resolve(totalTime);
     });
   }
-  prevMeetings.map(meeting => {
-    meeting.agenda.map(agenda => {
-      if ((agenda.tasks).length > 0) {
-        // console.log('111111111', user)
 
-        agenda.tasks.map(usertask => {
-          if (user.user === user._id) {
-            console.log('2222222', usertask.task)
 
-          }
-        })
-      }
-    })
-
-  })
-
+  console.log('33333333', taskToUser)
   return (
     <div>
       <Navbar />
@@ -141,7 +166,17 @@ function User() {
                 return (
                   <div className="bg-red-500">
                     {meeting.name}
-                    {}
+                    {taskToUser.map(taskUser => {
+                      return (
+                        <li>
+                          {taskUser}
+
+                        </li>
+                      )
+                    })}
+                    <div>
+
+                    </div>
                   </div>
                 )
               })}
