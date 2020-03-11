@@ -34,3 +34,7 @@
 .meetingButton{
   background-color: hsl(48, 100%, 67%);
 }
+
+.meetingName{
+  color: #F14947;
+}
