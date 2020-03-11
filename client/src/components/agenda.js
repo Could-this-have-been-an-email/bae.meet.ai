@@ -119,7 +119,7 @@ function Agenda(props) {
         <div className="flex w-1/6 justify-end">
           <button
             onClick={() => props.handleTask(agendaId)}
-            className="plum_plate hover:bg-blue-700 text-white font-bold py-1 px-2 rounded focus:outline-none focus:shadow-outline"
+            className="is-warning hover:bg-blue-700 text-white font-bold py-1 px-2 rounded focus:outline-none focus:shadow-outline"
             type="button"
           >
             Add Task

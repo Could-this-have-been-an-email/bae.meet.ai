@@ -183,12 +183,12 @@ function Meeting() {
   return (
     <>
       <Navbar />
-      <div className="grid grid-rows-7 grid-flow-col gap-1">
+      <div className="grid grid-rows-7 grid-flow-col gap-1 cochiti_lake">
         {/* Header */}
         <div className="row-start-1"></div>
 
         {/* Meeting Title and Attendees */}
-        <div className="row-start-2 col-start-2 col-span-4 text-4xl font-extrabold">
+        <div className="row-start-2 col-start-2 col-span-4 text-4xl font-extrabold meetingName">
           {meeting.name}
         </div>
 
@@ -228,7 +228,7 @@ function Meeting() {
         {/* Outcome */}
         <div className="row-start-3 col-start-2 col-span-4 text-lg">
           <div className="font-extrabold">Outcome:</div>
-          <div className="border border-solid p-5 mind_crawl rounded">
+          <div className="border border-solid p-5 rounded">
             <div className="p-1 bg-white rounded">{meeting.outcome}.</div>
           </div>
         </div>
@@ -238,7 +238,7 @@ function Meeting() {
           <div className="font-extrabold">BAE items:</div>
           <div className="">
             {meeting.agenda ? (
-              <div className="mind_crawl rounded">
+              <div className="rounded">
                 {meeting.agenda.map(agenda => {
                   if (agenda.vote < 0) {
                     return (
@@ -266,7 +266,7 @@ function Meeting() {
         <div className="row-start-4 col-start-2 col-span-4 pt-2 text-lg">
           <div className="font-extrabold">Agenda:</div>
           {meeting.agenda ? (
-            <div className="mind_crawl rounded">
+            <div className="rounded">
               {meeting.agenda.map(agenda => {
                 // console.log(agenda);
                 if (agenda.vote >= 0) {
@@ -298,7 +298,7 @@ function Meeting() {
         {/* WYSIWYG Meeting Notes */}
         <div className="row-start-6 row-end-6 col-start-2 col-span-4 text-lg">
           <div className="font-extrabold">Notes:</div>
-          <div className="p-2 mind_crawl">
+          <div className="p-2">
             <Editor
               apiKey="avgvd7u4i68a9mq24lbgo9zusv5tq1vyu4pw9xrjkt9depds"
               initialValue="<p>This is the initial content of the editor</p>"
