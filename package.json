@@ -2,6 +2,9 @@
   "name": "bae.meet.ai",
   "version": "1.0.0",
   "description": "Everyone has been in meetings that were uneccessary and shuold have been emails. Bae is a full MERN stack webapp that aims to streamline the process of planing meetings and determining if it should actually be an email.",
+  "engines": {
+    "node": "10.16.3"
+  },
   "main": "index.js",
   "dependencies": {
     "express": "^4.17.1",
@@ -11,7 +14,8 @@
     "fs": "0.0.1-security",
     "https": "^1.0.0",
     "mongoose": "^5.9.2",
-    "nodemon": "^2.0.2"
+    "nodemon": "^2.0.2",
+    "postcss-cli": "^7.1.0"
   },
   "devDependencies": {
     "concurrently": "^4.1.0",

@@ -1,6 +1,9 @@
 {
   "name": "bae.meet.ai",
   "version": "0.1.0",
+  "engines": {
+    "node": "10.16.3"
+  },
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
@@ -24,7 +27,11 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "build:styles": "postcss src/styles/tailwind.css -o src/styles/app.css",
+    "prebuild": "npm run build:styles",
+    "prestart": "npm run build:styles",
+    "eject": "react-scripts eject",
+    "rimraf": "./node_modules/rimraf/bin.js"
   },
   "eslintConfig": {
     "extends": "react-app"
