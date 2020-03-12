@@ -2,9 +2,7 @@
   "name": "bae.meet.ai",
   "version": "1.0.0",
   "description": "Everyone has been in meetings that were uneccessary and shuold have been emails. Bae is a full MERN stack webapp that aims to streamline the process of planing meetings and determining if it should actually be an email.",
-  "engines": {
-    "node": "10.16.3"
-  },
+ 
   "main": "index.js",
   "dependencies": {
     "express": "^4.17.1",
@@ -15,7 +13,7 @@
     "https": "^1.0.0",
     "mongoose": "^5.9.2",
     "nodemon": "^2.0.2",
-    "postcss-cli": "^7.1.0"
+
   },
   "devDependencies": {
     "concurrently": "^4.1.0",
@@ -23,9 +21,9 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "cd server && npm install && node index.js",
+    "start": "concurrently \"node server/index.js --ignore 'client/*'\" \"npm run client\"",
     "client": "cd client  && npm run start",
-    "heroku-postbuild": "cd client && npm install && npm run build"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "repository": {
     "type": "git",

@@ -18,7 +18,7 @@ const Dictaphone = ({
   }
   return (
     <>
-      <div className="font-extrabold">Meeting Transcript:</div>
+      <div className="font-extrabold mind_crawl text-white">Meeting Transcript:</div>
       <div className="deep_blue p-1">
         <div className="scrolling-touch overflow-auto h-screen w-full bg-white">
           {transcript}

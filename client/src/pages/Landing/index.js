@@ -24,15 +24,15 @@ function Landing() {
                 data-aos="fade-up"
                 data-aos-delay="200"
                 data-aos-duration="600"
-                className="text-6xl pb-6"
+                className="text-6xl pb-6 text-white"
               >
-                Build a <strong>better</strong> meeting
+                Build a <strong className="text-yellow-500">better</strong> meeting
               </p>
               <p
                 data-aos="fade-up"
                 data-aos-delay="400"
                 data-aos-duration="600"
-                className="text-xl text-gray-600	pb-6 "
+                className="text-xl text-white	pb-6 "
               >
                 We are building better, efficient, and on-topic meetings. Do you
                 ever leave a meeting and think, "That could have been an email?"

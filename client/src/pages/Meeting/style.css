@@ -36,5 +36,14 @@
 }
 
 .meetingName{
-  color: #F14947;
+  font-weight: 400;
+}
+
+
+.create{
+  background-color: rgb(255, 255, 255);
+}
+
+.outcomeBg{
+  background-color: rgb(242, 241, 245);
 }

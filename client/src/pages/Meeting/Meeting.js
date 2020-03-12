@@ -183,12 +183,12 @@ function Meeting() {
   return (
     <>
       <Navbar />
-      <div className="grid grid-rows-7 grid-flow-col gap-1 cochiti_lake">
+      <div className="grid grid-rows-7 grid-flow-col gap-1 create">
         {/* Header */}
         <div className="row-start-1"></div>
 
         {/* Meeting Title and Attendees */}
-        <div className="row-start-2 col-start-2 col-span-4 text-4xl font-extrabold meetingName">
+        <div className="row-start-2 col-start-2 col-span-4 text-5xl text-bold meetingName">
           {meeting.name}
         </div>
 
@@ -221,24 +221,24 @@ function Meeting() {
               onClick={() => returnBack()}
         ></input>
         </div>
-        <div className="row-start-2 col-start-8 col-span-2 text-2xl font-bold text-center flex content-center justify-center">
+        <div className="row-start-2 col-start-8 col-span-2 text-2xl meetingName text-center flex content-center justify-center">
           Attendees
         </div>
 
         {/* Outcome */}
-        <div className="row-start-3 col-start-2 col-span-4 text-lg">
-          <div className="font-extrabold">Outcome:</div>
-          <div className="border border-solid p-5 rounded">
+        <div className="row-start-3 col-start-2 col-span-4 text-xl outcomeBg">
+          <div className="font-bold text-xl mind_crawl text-white">Outcome:</div>
+          <div className="border border-solid p-5 shadow-xl rounded">
             <div className="p-1 bg-white rounded">{meeting.outcome}.</div>
           </div>
         </div>
 
         {/* BAE Items */}
-        <div className="row-start-5 col-start-2 col-span-4 pt-2 text-lg">
-          <div className="font-extrabold">BAE items:</div>
+        <div className="row-start-5 col-start-2 col-span-4 pt-2 text-xl outcomeBg">
+          <div className="font-bold mind_crawl text-white">BAE items:</div>
           <div className="">
             {meeting.agenda ? (
-              <div className="rounded">
+              <div className="rounded border border-solid shadow-xl p-5">
                 {meeting.agenda.map(agenda => {
                   if (agenda.vote < 0) {
                     return (
@@ -263,10 +263,10 @@ function Meeting() {
         </div>
 
         {/* Agenda and tasks */}
-        <div className="row-start-4 col-start-2 col-span-4 pt-2 text-lg">
-          <div className="font-extrabold">Agenda:</div>
+        <div className="row-start-4 col-start-2 col-span-4 pt-2 text-xl outcomeBg">
+          <div className="font-bold mind_crawl text-white">Agenda:</div>
           {meeting.agenda ? (
-            <div className="rounded">
+            <div className="rounded border border-solid shadow-xl p-5">
               {meeting.agenda.map(agenda => {
                 // console.log(agenda);
                 if (agenda.vote >= 0) {
@@ -296,8 +296,8 @@ function Meeting() {
         </div>
 
         {/* WYSIWYG Meeting Notes */}
-        <div className="row-start-6 row-end-6 col-start-2 col-span-4 text-lg">
-          <div className="font-extrabold">Notes:</div>
+        <div className="row-start-6 row-end-6 col-start-2 col-span-4 text-xl">
+          <div className="font-bold mind_crawl text-white">Notes:</div>
           <div className="p-2">
             <Editor
               apiKey="avgvd7u4i68a9mq24lbgo9zusv5tq1vyu4pw9xrjkt9depds"
@@ -319,7 +319,11 @@ function Meeting() {
               onEditorChange={handleEditorChange}
             />
           </div>
+          <div>
+            <Speech></Speech>
+          </div>
         </div>
+         
 
         {/* Attendees column */}
         <div className="row-start-3 row-span-4 col-start-8 col-span-1 pr-2">
@@ -333,9 +337,7 @@ function Meeting() {
                   ></AttendeeCard>
                 );
               })}
-              <div>
-                <Speech></Speech>
-              </div>
+
             </>
           ) : (
             <></>
