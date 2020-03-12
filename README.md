@@ -1,4 +1,4 @@
-# Bae (temp name)
+# BAE
 
 Everyone has been in meetings that were uneccessary and shuold have been emails. Bae is a full MERN stack webapp that aims to streamline the process of planing meetings and determining if it should actually be an email.
 
@@ -6,4 +6,3 @@ BAE presents you with a dashboard where you can write a list of things planned o
 
 We are utilizing Node.js, Express, React, and MongoDB in this app.
 
-FINISh
