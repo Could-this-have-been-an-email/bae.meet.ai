@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Logo from '../../assets/img/baelogo2.png';
+import Logo from '../../assets/img/updated BAE.png';
 import './style.css';
 
 function Navbar() {
@@ -27,8 +27,9 @@ function Navbar() {
     >
       <div className="navbar-brand">
         <a className="navbar-item" href="/">
-          <img src={Logo} width="50" alt="logo" />
+          <img src={Logo} width="32" alt="logo" />
         </a>
+        <h1 className="mt-3 font-bold text-2xl text-green-700">BAE</h1>
 
         <a
           onClick={() => {

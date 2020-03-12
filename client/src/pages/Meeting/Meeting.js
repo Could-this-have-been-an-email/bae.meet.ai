@@ -199,7 +199,7 @@ function Meeting() {
             <input
               type="submit"
               value="End Meeting"
-              className="mx-auto font-bold py-2 px-4 rounded meetingButton"
+              className="mx-auto py-2 px-4 rounded meetingButton"
               onClick={() => handleNotes()}
               onClick={() => sendMail()}
             ></input>
@@ -207,7 +207,7 @@ function Meeting() {
             <input
               type="submit"
               value="Start Meeting"
-              className="mx-auto font-bold py-2 px-4 rounded meetingButton"
+              className="mx-auto  py-2 px-4 rounded meetingButton"
               onClick={() => hideVotes()}
               onClick={() => setMeetingStatus(true)}
             ></input>
@@ -217,17 +217,17 @@ function Meeting() {
         <input
               type="submit"
               value="Return to User"
-              className="mx-auto font-bold py-2 px-4 rounded meetingButton"
+              className="mx-auto py-2 px-4 rounded meetingButton"
               onClick={() => returnBack()}
         ></input>
         </div>
-        <div className="row-start-2 col-start-8 col-span-2 text-2xl meetingName text-center flex content-center justify-center">
+        <div className="row-start-2 col-start-8 col-span-2 text-3xl meetingName text-center flex content-center justify-center mt-5">
           Attendees
         </div>
 
         {/* Outcome */}
         <div className="row-start-3 col-start-2 col-span-4 text-xl outcomeBg">
-          <div className="font-bold text-xl mind_crawl text-white">Outcome:</div>
+          <div className="font-bold text-xl mind_crawl text-white pl-3">Outcome:</div>
           <div className="border border-solid p-5 shadow-xl rounded">
             <div className="p-1 bg-white rounded">{meeting.outcome}.</div>
           </div>
@@ -235,7 +235,7 @@ function Meeting() {
 
         {/* BAE Items */}
         <div className="row-start-5 col-start-2 col-span-4 pt-2 text-xl outcomeBg">
-          <div className="font-bold mind_crawl text-white">BAE items:</div>
+          <div className="font-bold mind_crawl text-white pl-3">BAE items:</div>
           <div className="">
             {meeting.agenda ? (
               <div className="rounded border border-solid shadow-xl p-5">
@@ -264,7 +264,7 @@ function Meeting() {
 
         {/* Agenda and tasks */}
         <div className="row-start-4 col-start-2 col-span-4 pt-2 text-xl outcomeBg">
-          <div className="font-bold mind_crawl text-white">Agenda:</div>
+          <div className="font-bold mind_crawl text-white pl-3">Agenda:</div>
           {meeting.agenda ? (
             <div className="rounded border border-solid shadow-xl p-5">
               {meeting.agenda.map(agenda => {
@@ -297,7 +297,7 @@ function Meeting() {
 
         {/* WYSIWYG Meeting Notes */}
         <div className="row-start-6 row-end-6 col-start-2 col-span-4 text-xl">
-          <div className="font-bold mind_crawl text-white">Notes:</div>
+          <div className="font-bold mind_crawl text-white pl-3">Notes:</div>
           <div className="p-2">
             <Editor
               apiKey="avgvd7u4i68a9mq24lbgo9zusv5tq1vyu4pw9xrjkt9depds"

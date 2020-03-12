@@ -50,7 +50,7 @@ function Agenda(props) {
               return (
                 <div className="py-1">
                   <div
-                    className="flex flex-row items-baseline  p-1 border-2 rounded w-full"
+                    className="flex flex-row items-baseline  p-1 border-2 border-gray-500 rounded w-full"
                     key={task._id}
                   >
                     <div className="pl-3 text w-9/12 flex justify-between">
