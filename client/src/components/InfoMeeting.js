@@ -6,7 +6,7 @@ import '../styles/infomeeting.css';
 function InfoMeeting(props) {
   return (
     <div className="w-1/2 mx-auto mt-10 background">
-      <div className="title">Create a new meeting</div>
+      <div className="title font-bold">Create a new meeting</div>
       <div className="sub-title mb-10">Productivity starts here.</div>
       <form
         className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"

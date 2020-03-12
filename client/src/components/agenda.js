@@ -53,7 +53,7 @@ function Agenda(props) {
                     className="flex flex-row items-baseline  p-1 border-2 rounded w-full"
                     key={task._id}
                   >
-                    <div className="pl-3 text w-9/12 font-white font-bold flex justify-between">
+                    <div className="pl-3 text w-9/12 flex justify-between">
                       <div>{task.task}</div>
                     </div>
 
@@ -62,7 +62,7 @@ function Agenda(props) {
                         return (
                           <>
                             {task.user === attendee._id ? (
-                              <div className="pr-1 font-white font-bold">
+                              <div className="pr-1 font-bold">
                                 {attendee.firstName} {attendee.lastName}
                               </div>
                             ) : (
@@ -119,7 +119,7 @@ function Agenda(props) {
         <div className="flex w-1/6 justify-end">
           <button
             onClick={() => props.handleTask(agendaId)}
-            className="is-warning hover:bg-blue-700 text-white font-bold py-1 px-2 rounded focus:outline-none focus:shadow-outline"
+            className="bg-yellow-500 hover:bg-yellow-400 py-1 px-2 rounded focus:outline-none focus:shadow-outline"
             type="button"
           >
             Add Task
