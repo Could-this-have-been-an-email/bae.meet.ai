@@ -5,7 +5,6 @@ import AOS from 'aos';
 import Logo from './Screen Shot 2020-03-10 at 2.33.50 PM.jpg';
 import VoteLogo from './Screen Shot 2020-03-10 at 2.36.58 PM.jpg';
 import BaeLogo from './Screen Shot 2020-03-10 at 2.44.32 PM.jpg';
-import UserLogo from './Screen Shot 2020-03-10 at 2.55.51 PM.jpg';
 import Responsive from './responsive.jpg';
 
 function Landing() {
