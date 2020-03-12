@@ -19,21 +19,33 @@
   bottom: 30px;
 }
 
-.first-color{
-  background-color: #446BB8;
+.first-color {
+  background-color: #446bb8;
 }
 
-.second-color{
-  background-color: #3BA27A;
+.first-text {
+  color: #446bb8;
 }
 
-.third-color{
-  background-color: #F14947;
+.second-color {
+  background-color: #3ba27a;
 }
 
-.fourth-color{
-  background-color: #F9B53F;
+.second-text {
+  color: #3ba27a;
+}
+.third-color {
+  background-color: #f14947;
 }
 
+.third-text {
+  color: #f14947;
+}
 
+.fourth-color {
+  background-color: #f9b53f;
+}
 
+.fourth-text {
+  color: #f9b53f;
+}
