@@ -5,7 +5,6 @@ const path = require('path')
 
 const cors = require("cors");
 var session = require("express-session"),
-  bodyParser = require("body-parser");
 const passport = require("./config/passport");
 
 
