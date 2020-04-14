@@ -20,11 +20,10 @@ router
 
 
 router.post('/login',
-  passport.authenticate('local'),
+  passport.authenticate('heroku-addon'),
   function (req, res) {
     // If this function gets called, authentication was successful.
     // `req.user` contains the authenticated user.
-    console.log('11111', req.user)
     res.redirect(`/user/${req.user._id}`,
     )
 

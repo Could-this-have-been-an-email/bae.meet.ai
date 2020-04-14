@@ -1,9 +1,10 @@
 var passport = require("passport");
-var LocalStrategy = require("passport-local").Strategy;
+// var LocalStrategy = require("passport-local").Strategy;
+var PassportHerokuAddon = require('passport-heroku-addon');
 
 var db = require("../models");
 
-passport.use(new LocalStrategy(
+passport.use(new PassportHerokuAddon(
   {
     usernameField: "email"
   },
