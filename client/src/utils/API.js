@@ -47,7 +47,6 @@ export default {
   },
 
   checkUser: function (user) {
-    console.log('11111111111111111checking user')
     return server.post("/api/user/login", user);
   }
 };
