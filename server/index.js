@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
+const path = require('path')
 
 const cors = require("cors");
 var session = require("express-session"),
@@ -38,6 +39,14 @@ mongoose.connect(process.env.MONGODB_URI ||
 );
 
 // Start the API server
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build'));
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(_dirname, 'client', 'build', 'index.html')); //rel path
+  })
+}
+
 app.listen(process.env.PORT || PORT, function () {
   console.log("Express server is up and running!");
 });

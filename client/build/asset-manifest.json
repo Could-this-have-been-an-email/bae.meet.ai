@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/static/css/main.0fe44407.chunk.css",
+    "main.js": "/static/js/main.42157dc9.chunk.js",
+    "main.js.map": "/static/js/main.42157dc9.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.a69251b9.js",
+    "runtime-main.js.map": "/static/js/runtime-main.a69251b9.js.map",
+    "static/js/2.66fa329d.chunk.js": "/static/js/2.66fa329d.chunk.js",
+    "static/js/2.66fa329d.chunk.js.map": "/static/js/2.66fa329d.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.ba967c13da148fb191044305a633e188.js": "/precache-manifest.ba967c13da148fb191044305a633e188.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.0fe44407.chunk.css.map": "/static/css/main.0fe44407.chunk.css.map",
+    "static/js/2.66fa329d.chunk.js.LICENSE.txt": "/static/js/2.66fa329d.chunk.js.LICENSE.txt",
+    "static/media/Lookin good.png": "/static/media/Lookin good.3c4335a7.png",
+    "static/media/Meetings to email.png": "/static/media/Meetings to email.c0811522.png",
+    "static/media/Screen Shot 2020-03-12 at 2.37.46 PM.jpg": "/static/media/Screen Shot 2020-03-12 at 2.37.46 PM.bda7c33a.jpg",
+    "static/media/Screen Shot 2020-03-12 at 2.40.59 PM.jpg": "/static/media/Screen Shot 2020-03-12 at 2.40.59 PM.7895588d.jpg",
+    "static/media/responsive.jpg": "/static/media/responsive.b3b2e9b7.jpg",
+    "static/media/updated BAE.png": "/static/media/updated BAE.e4ce9230.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.a69251b9.js",
+    "static/js/2.66fa329d.chunk.js",
+    "static/css/main.0fe44407.chunk.css",
+    "static/js/main.42157dc9.chunk.js"
+  ]
+}
