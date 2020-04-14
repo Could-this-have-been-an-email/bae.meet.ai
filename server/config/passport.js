@@ -11,6 +11,7 @@ passport.use(new LocalStrategy(
     usernameField: "email"
   },
   function (email, password, done) {
+    console.log('33333333', email, password)
     db.User.findOne({
       email: email
     }).then(function (dbUser) {

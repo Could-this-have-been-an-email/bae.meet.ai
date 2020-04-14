@@ -22,6 +22,7 @@ router
 router.post('/login',
   passport.authenticate('local'),
   function (req, res) {
+    console.log('22222222 router post')
     // If this function gets called, authentication was successful.
     // `req.user` contains the authenticated user.
     res.redirect(`/user/${req.user._id}`,
