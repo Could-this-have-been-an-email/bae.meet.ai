@@ -4,8 +4,10 @@ const app = express();
 const path = require('path')
 
 const cors = require("cors");
-var session = require("express-session"),
+var session = require("express-session");
 const passport = require("./config/passport");
+const bodyParser = require("body-parser");
+
 
 
 
@@ -34,7 +36,7 @@ app.use(users);
 // connect to db (meetingsdb)
 
 mongoose.connect(process.env.MONGODB_URI ||
-  "mongodb://localhost/meetingsdb"
+  "mongodb://user:password1@ds157723.mlab.com:57723/heroku_bn48wp3b"
 );
 
 // Start the API server
